@@ -1,0 +1,213 @@
+/* Sticky bar */
+
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+.sticky-bar {
+  display: none;
+}
+
+.product-details-quantity {
+  max-width: 131px;
+
+  .form-control {
+    padding-left: 2.6rem;
+    padding-right: 2.6rem;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.product-details-action {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  margin-bottom: 3rem;
+
+  .btn-cart {
+    padding: 1rem 1.5rem;
+    max-width: 198px;
+    color: $primary-color;
+    border: 0.1rem solid $primary-color;
+
+    span {
+      font-size: 1.4rem;
+      color: inherit;
+      text-transform: uppercase;
+      box-shadow: none;
+      transition: box-shadow 0.35s ease, color 0s ease;
+    }
+
+    &:before {
+      margin-right: 0.4rem;
+    }
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      border-color: $primary-color;
+      background-color: $primary-color;
+    }
+  }
+}
+
+@include mq("1700px") {
+  .container-fluid {
+    .product-details-action .btn-cart {
+      min-width: 240px;
+    }
+
+    .details-filter-row .form-control {
+      min-width: 171px;
+    }
+  }
+}
+
+@include mq("lg") {
+  .sticky-bar {
+    display: block;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #fff;
+    box-shadow: -15px 0 43px rgba(51, 51, 51, 0.15);
+
+    .row {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .col-6 {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-media {
+      max-width: 60px;
+      margin-right: 2rem;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .product-title {
+      margin-bottom: 0;
+      letter-spacing: -0.025em;
+    }
+
+    .product-price {
+      margin-bottom: 0;
+      margin-right: 2rem;
+    }
+
+    .product-details-quantity {
+      margin-right: 2rem;
+      max-width: 100px;
+    }
+
+    .product-details-action {
+      margin-bottom: 0;
+    }
+
+    .btn-cart {
+      min-width: 200px;
+      margin-right: 2rem;
+    }
+
+    .btn-product + .btn-product {
+      border: none;
+    }
+
+    .btn-wishlist {
+      font-size: 1.8rem;
+      margin-right: 2rem;
+
+      span {
+        display: none;
+      }
+
+      &:before {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .product-details-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-action-wrapper {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .product-details-action .btn-cart {
+    min-width: 198px;
+  }
+
+  .product-details-tab {
+    .nav.nav-pills .nav-item {
+      & + .nav-item {
+        margin-left: 1rem;
+      }
+
+      .nav-link {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .product-details-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-action-wrapper {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .product-details-footer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .social-icons {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  .review {
+    .row {
+      flex-direction: column;
+    }
+  }
+
+  .details-filter-row .select-custom {
+    margin-right: 1.5rem;
+  }
+
+  .product-details-action .btn-cart,
+  .product-details-centered .product-details-action .btn-cart {
+    min-width: 198px;
+  }
+
+  .product-details-sidebar .details-action-col .btn-product {
+    min-width: 168px;
+  }
+}

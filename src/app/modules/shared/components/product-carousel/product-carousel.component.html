@@ -1,0 +1,22 @@
+<owl-carousel-o
+  class="carousel-equal-height carousel-with-shadow"
+  [options]="customOptions"
+  *ngIf="type === 'simple'"
+>
+  <ng-template carouselSlide *ngFor="let product of products">
+    <app-product-card-simple [product]="product"></app-product-card-simple>
+  </ng-template>
+  <!-- End .product -->
+</owl-carousel-o>
+
+<owl-carousel-o
+  class="carousel-equal-height carousel-with-shadow"
+  [options]="customOptions"
+  *ngIf="type === 'verticalActions'"
+>
+  <ng-template carouselSlide *ngFor="let product of products">
+    <app-product-card-vert-actions></app-product-card-vert-actions>
+  </ng-template>
+  <!-- End .product -->
+</owl-carousel-o>
+<!-- End .owl-carousel -->

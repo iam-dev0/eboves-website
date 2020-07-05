@@ -1,0 +1,25 @@
+{
+  "banners": {
+    "mainSlider": [
+      {
+        "title": "Find Comfort That Suits You.",
+        "subtitle": "Bedroom Furniture",
+        "image": "assets/images/demos/demo-2/slider/slide-1.jpg"
+      },
+      {
+        "title": "Ypperlig Coffee Table",
+        "subtitle": "Deals and Promotions",
+        "image": "assets/images/demos/demo-2/slider/slide-2.jpg",
+        "price": 49.99,
+        "priceRange": false
+      },
+      {
+        "title": " Make Your Living Room Work For You.",
+        "subtitle": "Living Room",
+        "image": "assets/images/demos/demo-2/slider/slide-3.jpg",
+        "price": 9.99,
+        "priceRange": true
+      }
+    ]
+  }
+}

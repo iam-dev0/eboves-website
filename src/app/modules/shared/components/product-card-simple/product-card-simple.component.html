@@ -1,0 +1,58 @@
+<div class="product product-11 text-center">
+  <figure class="product-media">
+    <span [ngClass]="getTagClasses()" *ngIf="product.tag !== ''">{{
+      product.tag
+    }}</span>
+    <a href="product.html">
+      <img
+        [src]="product.images[0]"
+        alt="Product image"
+        class="product-image"
+      />
+      <img
+        [src]="product.images[1]"
+        alt="Product image"
+        class="product-image-hover"
+      />
+    </a>
+
+    <div class="product-action-vertical">
+      <a href="#" class="btn-product-icon btn-wishlist"
+        ><span>add to wishlist</span></a
+      >
+    </div>
+    <!-- End .product-action-vertical -->
+  </figure>
+  <!-- End .product-media -->
+
+  <div class="product-body">
+    <h3 class="product-title">
+      <a href="product.html">{{ product.name }}</a>
+    </h3>
+    <!-- End .product-title -->
+    <div class="product-price">
+      <span [ngClass]="{ 'new-price': product.oldPrice !== null }">{{
+        product.price | currency: "USD":"symbol":"1.0-0"
+      }}</span>
+      <span class="old-price" *ngIf="product.oldPrice !== null"
+        >Was {{ product.oldPrice | currency: "USD":"symbol":"1.0-0" }}</span
+      >
+    </div>
+    <!-- End .product-price -->
+
+    <div class="product-nav product-nav-dots">
+      <a href="#" class="active" style="background: #1f1e18;"
+        ><span class="sr-only">Color name</span></a
+      >
+      <a href="#" style="background: #e8e8e8;"
+        ><span class="sr-only">Color name</span></a
+      >
+    </div>
+    <!-- End .product-nav -->
+  </div>
+  <!-- End .product-body -->
+  <div class="product-action">
+    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+  </div>
+  <!-- End .product-action -->
+</div>

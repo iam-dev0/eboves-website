@@ -1,0 +1,189 @@
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+.modal-dialog {
+  max-width: 90%;
+}
+
+.modal-content {
+  background: transparent;
+  box-shadow: none;
+}
+
+.btn-close span {
+  color: #565656;
+  font-size: 32px;
+  line-height: 30px;
+  font-weight: 200;
+}
+
+.btn-close {
+  width: 30px;
+  height: 30px;
+  background: #ffffff91;
+  border-radius: 15px;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 100;
+}
+
+.container.newsletter-popup-container {
+  width: 1188px;
+  max-width: 100%;
+}
+
+.newsletter-popup-container {
+  position: relative;
+
+  .newsletter-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .banner-content-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .banner-content {
+    position: static;
+    transform: translateY(0);
+    padding-top: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    flex: 0 0 calc((100% + 20px) / 6 * 4);
+    max-width: calc((100% + 20px) / 6 * 4);
+  }
+
+  .banner-title {
+    font-size: 4.6rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #222;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    line-height: 1.4em;
+    span {
+      color: $primary-color;
+      font-weight: 700;
+    }
+    .light {
+      font-weight: 400;
+    }
+  }
+
+  p {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin-bottom: 3.3rem;
+    line-height: 1.75em;
+  }
+
+  .logo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 0;
+  }
+
+  .form-control {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-radius: 0;
+    height: 4.6rem;
+    background-clip: border-box;
+    color: #666;
+
+    &::placeholder {
+      color: #666;
+    }
+
+    &:focus {
+      border-color: #f5f5f5;
+    }
+  }
+
+  .input-group {
+    border: none;
+    .btn {
+      min-width: 7rem;
+      background-color: #222;
+      color: #fff;
+      border-radius: 0;
+      text-transform: uppercase;
+
+      &:hover,
+      &:focus {
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  .custom-control {
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+
+    flex: 0 0 calc((100% + 20px) * 0.5 + 20px);
+    max-width: calc((100% + 20px) * 0.5 + 20px);
+  }
+
+  .custom-control-label {
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    padding-left: 4.4rem;
+
+    &:before,
+    &:after {
+      left: -0.5rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 0.2rem;
+    }
+  }
+
+  .newsletter-popup-content {
+    box-shadow: 0 10px 20px rgba(34, 34, 34, 0.3);
+  }
+
+  .mfp-close {
+    top: 1rem;
+    right: calc(100% / 12 + 2rem);
+    font-size: 2rem;
+    background-color: #fff;
+    border-radius: 50%;
+
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .newsletter-img {
+    display: none;
+  }
+
+  .newsletter-popup-container .banner-content {
+    padding-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 591px) {
+  .newsletter-popup-container .banner-content {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}

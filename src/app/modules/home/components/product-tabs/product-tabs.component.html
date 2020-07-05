@@ -1,0 +1,87 @@
+<div class="container">
+  <ul
+    class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3"
+    role="tablist"
+  >
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="products-featured-link"
+        data-toggle="tab"
+        href="#products-featured-tab"
+        role="tab"
+        aria-controls="products-featured-tab"
+        aria-selected="true"
+        >Featured</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="products-sale-link"
+        data-toggle="tab"
+        href="#products-sale-tab"
+        role="tab"
+        aria-controls="products-sale-tab"
+        aria-selected="false"
+        >On Sale</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="products-top-link"
+        data-toggle="tab"
+        href="#products-top-tab"
+        role="tab"
+        aria-controls="products-top-tab"
+        aria-selected="false"
+        >Top Rated</a
+      >
+    </li>
+  </ul>
+</div>
+<!-- End .container -->
+
+<div class="container-fluid">
+  <div class="tab-content tab-content-carousel">
+    <div
+      class="tab-pane p-0 fade show active"
+      id="products-featured-tab"
+      role="tabpanel"
+      aria-labelledby="products-featured-link"
+    >
+      <app-product-carousel
+        type="verticalActions"
+        [products]="featuredProducts"
+      ></app-product-carousel>
+    </div>
+    <!-- .End .tab-pane -->
+    <div
+      class="tab-pane p-0 fade"
+      id="products-sale-tab"
+      role="tabpanel"
+      aria-labelledby="products-sale-link"
+    >
+      <app-product-carousel
+        type="verticalActions"
+        [products]="onSaleProducts"
+      ></app-product-carousel>
+    </div>
+    <!-- .End .tab-pane -->
+    <div
+      class="tab-pane p-0 fade"
+      id="products-top-tab"
+      role="tabpanel"
+      aria-labelledby="products-top-link"
+    >
+      <app-product-carousel
+        type="verticalActions"
+        [products]="topRatedProducts"
+      ></app-product-carousel>
+    </div>
+    <!-- .End .tab-pane -->
+  </div>
+  <!-- End .tab-content -->
+</div>
+<!-- End .container-fluid -->

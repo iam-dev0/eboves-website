@@ -1,0 +1,75 @@
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+:host::ng-deep .owl-dots {
+  .owl-dot span {
+    background: transparent;
+    border: 0.1rem solid #d7d7d7;
+    width: 8px;
+    height: 8px;
+    margin: 5px 6px;
+    transition: all 0.3s ease;
+  }
+
+  .owl-dot.active span {
+    background: #ccc;
+    border-color: #ccc;
+    width: 18px;
+  }
+
+  .owl-dot:hover span {
+    background: #ccc;
+    border-color: #ccc;
+  }
+
+  .owl-dot.active:hover span {
+    background: #ccc;
+    border-color: #ccc;
+  }
+}
+
+:host::ng-deep .owl-item {
+  justify-content: center;
+}
+
+// product-tab
+
+.nav.nav-pills .nav-link {
+  font-size: 1.6rem;
+}
+
+.carousel-with-shadow {
+  .owl-stage-outer {
+    padding: 0 1rem 2rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-top: -3rem;
+    padding-top: 3rem;
+  }
+
+  &.owl-simple .owl-nav [class*="owl-"] {
+    margin-top: -31px;
+  }
+}
+
+// category
+:host::ng-deep .carousel-equal-height {
+  .owl-stage,
+  .owl-item {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .product {
+    width: 100%;
+  }
+
+  .owl-stage {
+    margin-bottom: 20px;
+  }
+}

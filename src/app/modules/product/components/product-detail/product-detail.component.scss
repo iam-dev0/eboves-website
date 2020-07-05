@@ -1,0 +1,129 @@
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+.product-details-tab {
+  margin-bottom: 5rem;
+
+  .nav.nav-pills {
+    .nav-link {
+      color: #333333;
+      font-size: 1.6rem;
+      padding: 0.55rem 3rem;
+      border-bottom-width: 0.2rem;
+      text-transform: capitalize;
+
+      &:hover,
+      &:focus {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+      }
+    }
+
+    .nav-item {
+      & + .nav-item {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  .tab-content {
+    border: 0.1rem solid #dadada;
+    margin-top: -0.1rem;
+    border-radius: 0.3rem;
+
+    .tab-pane {
+      padding: 2.7rem 3rem;
+    }
+  }
+}
+
+@include mq("sm", "max") {
+  .breadcrumb-nav .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .product-pager {
+    margin-right: auto;
+    margin-top: 1rem;
+  }
+
+  .product-details-tab .nav.nav-pills .nav-item + .nav-item {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .product-details-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-action-wrapper {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .product-details-action .btn-cart {
+    min-width: 198px;
+  }
+
+  .product-details-tab {
+    .nav.nav-pills .nav-item {
+      & + .nav-item {
+        margin-left: 1rem;
+      }
+
+      .nav-link {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .product-details-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-action-wrapper {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .product-details-footer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .social-icons {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  .review {
+    .row {
+      flex-direction: column;
+    }
+  }
+
+  .details-filter-row .select-custom {
+    margin-right: 1.5rem;
+  }
+
+  .product-details-action .btn-cart,
+  .product-details-centered .product-details-action .btn-cart {
+    min-width: 198px;
+  }
+
+  .product-details-sidebar .details-action-col .btn-product {
+    min-width: 168px;
+  }
+}

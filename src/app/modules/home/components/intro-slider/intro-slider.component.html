@@ -1,0 +1,38 @@
+<div class="intro-slider-container">
+  <owl-carousel-o class="" [options]="carouselOptions">
+    <ng-template carouselSlide *ngFor="let banner of banners">
+      <div class="intro-slide" [style]="getBannerStyle(banner)">
+        <div class="container intro-content">
+          <h3 class="intro-subtitle">{{ banner.subtitle }}</h3>
+          <!-- End .h3 intro-subtitle -->
+          <h1 class="intro-title">
+            {{ banner.title }} <br />
+            <span class="text-primary" *ngIf="banner.price">
+              <sup
+                *ngIf="banner.priceRange"
+                class="text-white font-weight-light"
+                >from</sup
+              ><sup>$</sup>{{ banner.price }}
+            </span>
+          </h1>
+          <!-- End .intro-title -->
+
+          <a href="category.html" class="btn btn-primary">
+            <span>Shop Now</span>
+            <i class="icon-long-arrow-right"></i>
+          </a>
+        </div>
+        <!-- End .container intro-content -->
+      </div>
+      <!-- End .intro-slide -->
+    </ng-template>
+  </owl-carousel-o>
+
+  <!-- <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
+      
+  </div>End .owl-carousel owl-simple -->
+
+  <!-- <span class="slider-loader text-white"></span> -->
+  <!-- End .slider-loader -->
+</div>
+<!-- End .intro-slider-container -->

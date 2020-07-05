@@ -1,0 +1,128 @@
+// reviews
+
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+.reviews {
+  h3 {
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 2.3rem;
+  }
+}
+
+.review {
+  padding-bottom: 1.3rem;
+  margin-bottom: 2rem;
+  border-bottom: 0.1rem solid #ebebeb;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .col-auto {
+    width: 120px;
+    padding-right: 2rem;
+  }
+
+  h4 {
+    color: #333;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.8rem;
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .ratings-container {
+    padding-top: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .review-date {
+    color: #ccc;
+  }
+}
+
+.review-content {
+  margin-bottom: 0.8rem;
+}
+
+.review-action {
+  font-size: 1.2rem;
+
+  a {
+    color: #777;
+    transition: all 0.35s ease;
+
+    &:hover,
+    &:focus {
+      color: $primary-color;
+      box-shadow: 0 1px 0 $primary-color;
+    }
+  }
+
+  a + a {
+    margin-left: 1.6rem;
+  }
+
+  i {
+    font-size: 1.4rem;
+    margin-right: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .product-details-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-action-wrapper {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .product-details-footer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .social-icons {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  .review {
+    .row {
+      flex-direction: column;
+    }
+  }
+
+  .details-filter-row .select-custom {
+    margin-right: 1.5rem;
+  }
+
+  .product-details-action .btn-cart,
+  .product-details-centered .product-details-action .btn-cart {
+    min-width: 198px;
+  }
+
+  .product-details-sidebar .details-action-col .btn-product {
+    min-width: 168px;
+  }
+}
