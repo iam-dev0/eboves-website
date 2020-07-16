@@ -6,6 +6,12 @@ import { CommonModule } from '@angular/common';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HeaderTopComponent } from './components/header/components/header-top/header-top.component';
+import { HeaderMiddleComponent } from './components/header/components/header-middle/header-middle.component';
+import { HeaderBottomComponent } from './components/header/components/header-bottom/header-bottom.component';
+import { HeaderSearchComponent } from './components/header/components/header-search/header-search.component';
+import { CategoryDropdownComponent } from './components/header/components/category-dropdown/category-dropdown.component';
+import { MegaMenuComponent } from './components/header/components/mega-menu/mega-menu.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +21,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AboutUsComponent,
     ComingSoonComponent,
     NotFoundComponent,
+    HeaderTopComponent,
+    HeaderMiddleComponent,
+    HeaderBottomComponent,
+    HeaderSearchComponent,
+    CategoryDropdownComponent,
+    MegaMenuComponent,
   ],
   imports: [CommonModule],
   exports: [
