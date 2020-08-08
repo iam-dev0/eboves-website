@@ -1,6 +1,6 @@
 import { Product } from '../../../models/product.model';
 
-export const featuredProducts: Product[] = [
+export const featuredProducts = [
   {
     id: 1,
     name: 'Butler Stool Ladder',
@@ -86,7 +86,7 @@ export const featuredProducts: Product[] = [
     oldPrice: null,
   },
 ];
-export const topRatedProducts: Product[] = [
+export const topRatedProducts = [
   {
     id: 1,
     name: 'Petite Table Lamp',
@@ -100,7 +100,7 @@ export const topRatedProducts: Product[] = [
     oldPrice: null,
   },
 ];
-export const onSaleProducts: Product[] = [
+export const onSaleProducts = [
   {
     id: 1,
     name: 'Octo 4240',

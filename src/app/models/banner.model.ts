@@ -1,7 +1,8 @@
 export interface Banner {
+  id: number;
   title: string;
-  subtitle: string;
   image: string;
-  price?: number;
-  priceRange?: boolean;
+  href: string;
+  type: string;
+  active: boolean;
 }

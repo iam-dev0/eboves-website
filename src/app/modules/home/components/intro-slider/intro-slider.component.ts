@@ -1,5 +1,7 @@
-import { Banner } from './../../../../models/banner.model';
-import { Component, OnInit } from '@angular/core';
+import { Banners } from '@models/api-responses/banners.model';
+import { Response } from '@models/api-responses/response.model';
+import { Banner } from '@models/banner.model';
+import { Component, OnInit, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../../services/api.service';
 
@@ -21,15 +23,11 @@ export class IntroSliderComponent implements OnInit {
     autoplayTimeout: 15000,
   };
 
-  banners: Banner[] = [];
+  @Input() banners: Banner[] = [];
 
   constructor(private service: ApiService) {}
 
-  ngOnInit(): void {
-    this.service.getBanners().subscribe((data: any) => {
-      this.banners = data.mainSlider;
-    });
-  }
+  ngOnInit(): void {}
 
   getBannerStyle(banner: any): string {
     return `background-image: url(${banner.image});`;

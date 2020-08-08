@@ -5,6 +5,8 @@ import { SignInModalComponent } from './components/sign-in-modal/sign-in-modal.c
 import { ProductCardVertActionsComponent } from './components/product-card-vert-actions/product-card-vert-actions.component';
 import { ProductCardSimpleComponent } from './components/product-card-simple/product-card-simple.component';
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
+import { ProductGridComponent } from './components/product-grid/product-grid.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,8 @@ import { ProductCarouselComponent } from './components/product-carousel/product-
     ProductCardVertActionsComponent,
     ProductCardSimpleComponent,
     ProductCarouselComponent,
+    ProductGridComponent,
+    TabsComponent,
   ],
   imports: [CommonModule, CarouselModule],
   exports: [
@@ -20,6 +24,8 @@ import { ProductCarouselComponent } from './components/product-carousel/product-
     ProductCardSimpleComponent,
     ProductCardSimpleComponent,
     ProductCarouselComponent,
+    ProductGridComponent,
+    TabsComponent,
   ],
 })
 export class SharedModule {}

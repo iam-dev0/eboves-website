@@ -1,0 +1,68 @@
+<div class="heading heading-center mb-3">
+  <ul
+    class="nav nav-pills nav-border-anim justify-content-center"
+    role="tablist"
+  >
+    <li class="nav-item" *ngFor="let tab of tabs; let i = index">
+      <a
+        [class]="i === 0 ? 'nav-link active' : 'nav-link'"
+        id="top-all-link"
+        data-toggle="tab"
+        [href]="'#top-' + tab.name + '-tab'"
+        role="tab"
+        [attr.aria-controls]="'top-' + tab.name + '-tab'"
+        aria-selected="true"
+        >{{ tab.name }}</a
+      >
+    </li>
+    <!-- <li class="nav-item">
+          <a
+            class="nav-link"
+            id="top-fur-link"
+            data-toggle="tab"
+            href="#top-fur-tab"
+            role="tab"
+            aria-controls="top-fur-tab"
+            aria-selected="false"
+            >Furniture</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="top-decor-link"
+            data-toggle="tab"
+            href="#top-decor-tab"
+            role="tab"
+            aria-controls="top-decor-tab"
+            aria-selected="false"
+            >Decoration</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="top-light-link"
+            data-toggle="tab"
+            href="#top-light-tab"
+            role="tab"
+            aria-controls="top-light-tab"
+            aria-selected="false"
+            >Lighting</a
+          >
+        </li> -->
+  </ul>
+</div>
+
+<div class="tab-content" *ngFor="let tab of tabs">
+  <div
+    class="tab-pane p-0 fade show active"
+    id="top-all-tab"
+    role="tabpanel"
+    aria-labelledby="top-all-link"
+  >
+    <app-product-grid [products]="tab.products"></app-product-grid>
+  </div>
+  <!-- .End .tab-pane -->
+</div>
+<!-- End .tab-content -->

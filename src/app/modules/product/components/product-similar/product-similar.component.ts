@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-similar.component.scss'],
 })
 export class ProductSimilarComponent implements OnInit {
-  products: Product[] = featuredProducts;
+  products = featuredProducts;
 
   customOptions: OwlOptions = {
     nav: false,

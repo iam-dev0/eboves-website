@@ -12,6 +12,7 @@ import { HeaderBottomComponent } from './components/header/components/header-bot
 import { HeaderSearchComponent } from './components/header/components/header-search/header-search.component';
 import { CategoryDropdownComponent } from './components/header/components/category-dropdown/category-dropdown.component';
 import { MegaMenuComponent } from './components/header/components/mega-menu/mega-menu.component';
+import { FaqsComponent } from './components/faqs/faqs.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MegaMenuComponent } from './components/header/components/mega-menu/mega
     HeaderSearchComponent,
     CategoryDropdownComponent,
     MegaMenuComponent,
+    FaqsComponent,
   ],
   imports: [CommonModule],
   exports: [

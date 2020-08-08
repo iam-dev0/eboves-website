@@ -15,7 +15,9 @@
   *ngIf="type === 'verticalActions'"
 >
   <ng-template carouselSlide *ngFor="let product of products">
-    <app-product-card-vert-actions></app-product-card-vert-actions>
+    <app-product-card-vert-actions
+      [product]="product"
+    ></app-product-card-vert-actions>
   </ng-template>
   <!-- End .product -->
 </owl-carousel-o>

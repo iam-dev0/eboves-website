@@ -58,18 +58,18 @@
 }
 
 // category
-:host::ng-deep .carousel-equal-height {
-  .owl-stage,
-  .owl-item {
-    display: flex;
-    align-items: stretch;
-  }
+// :host::ng-deep .carousel-equal-height {
+//   .owl-stage,
+//   .owl-item {
+//     display: flex;
+//     align-items: stretch;
+//   }
 
-  .product {
-    width: 100%;
-  }
+//   .product {
+//     width: 100%;
+//   }
 
-  .owl-stage {
-    margin-bottom: 20px;
-  }
-}
+//   .owl-stage {
+//     margin-bottom: 20px;
+//   }
+// }

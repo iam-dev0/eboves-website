@@ -1,43 +1,7 @@
 <owl-carousel-o class="brands-border" [options]="customOptions">
-  <ng-template carouselSlide>
+  <ng-template carouselSlide *ngFor="let brand of featuredBrands$ | async">
     <a href="#" class="brand">
-      <img src="assets/images/brands/1.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/2.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/3.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/4.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/5.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/6.png" alt="Brand Name" />
-    </a>
-  </ng-template>
-
-  <ng-template carouselSlide>
-    <a href="#" class="brand">
-      <img src="assets/images/brands/7.png" alt="Brand Name" />
+      <img [src]="brand.logo" [alt]="brand.name" />
     </a>
   </ng-template>
 </owl-carousel-o>

@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { Product } from '../../models/product.model';
 import * as ProductActions from '../actions/product.actions';
 
-const initState: Product = {
+const initState = {
   id: 0,
   name: '',
   images: [],
@@ -13,7 +13,7 @@ const initState: Product = {
 };
 
 export function productReducer(
-  state: Product[] = [initState],
+  state: Product[] = [],
   action: ProductActions.Actions
 ) {
   switch (action.type) {

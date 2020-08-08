@@ -1,4 +1,4 @@
-import { Product } from './../../../../models/product.model';
+import { Product } from '@models/product.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -13,13 +13,13 @@ export class ProductCardSimpleComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getTagClasses() {
-    if (this.product.tag === 'New') {
-      return 'product-label label-circle label-new';
-    } else if (this.product.tag === 'Sale') {
-      return 'product-label label-circle label-sale';
-    } else {
-      return 'product-label label-circle';
-    }
-  }
+  // getTagClasses() {
+  //   if (this.product.tag === 'New') {
+  //     return 'product-label label-circle label-new';
+  //   } else if (this.product.tag === 'Sale') {
+  //     return 'product-label label-circle label-sale';
+  //   } else {
+  //     return 'product-label label-circle';
+  //   }
+  // }
 }

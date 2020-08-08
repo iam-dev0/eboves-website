@@ -1,17 +1,14 @@
 <div class="product product-11 text-center">
   <figure class="product-media">
-    <span [ngClass]="getTagClasses()" *ngIf="product.tag !== ''">{{
-      product.tag
-    }}</span>
-    <a href="product.html">
+    <a href="product">
       <img
-        [src]="product.images[0]"
-        alt="Product image"
+        [src]="product.mainImage"
+        [alt]="product.name"
         class="product-image"
       />
       <img
-        [src]="product.images[1]"
-        alt="Product image"
+        [src]="product.mainImage"
+        [alt]="product.name"
         class="product-image-hover"
       />
     </a>
@@ -26,29 +23,20 @@
   <!-- End .product-media -->
 
   <div class="product-body">
+    <div class="product-cat">
+      <a href="shop/subcategory">{{
+        product.category ? product.category.name : ""
+      }}</a>
+    </div>
+    <!-- End .product-cat -->
     <h3 class="product-title">
-      <a href="product.html">{{ product.name }}</a>
+      <a href="product">{{ product.name }}</a>
     </h3>
     <!-- End .product-title -->
     <div class="product-price">
-      <span [ngClass]="{ 'new-price': product.oldPrice !== null }">{{
-        product.price | currency: "USD":"symbol":"1.0-0"
-      }}</span>
-      <span class="old-price" *ngIf="product.oldPrice !== null"
-        >Was {{ product.oldPrice | currency: "USD":"symbol":"1.0-0" }}</span
-      >
+      $401,00
     </div>
     <!-- End .product-price -->
-
-    <div class="product-nav product-nav-dots">
-      <a href="#" class="active" style="background: #1f1e18;"
-        ><span class="sr-only">Color name</span></a
-      >
-      <a href="#" style="background: #e8e8e8;"
-        ><span class="sr-only">Color name</span></a
-      >
-    </div>
-    <!-- End .product-nav -->
   </div>
   <!-- End .product-body -->
   <div class="product-action">
@@ -56,3 +44,8 @@
   </div>
   <!-- End .product-action -->
 </div>
+<!-- End .product -->
+
+<!-- <span class="old-price" *ngIf="product.oldPrice !== null"
+        >Was {{ product.oldPrice | currency: "USD":"symbol":"1.0-0" }}</span
+      > -->

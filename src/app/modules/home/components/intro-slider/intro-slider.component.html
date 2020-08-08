@@ -3,17 +3,17 @@
     <ng-template carouselSlide *ngFor="let banner of banners">
       <div class="intro-slide" [style]="getBannerStyle(banner)">
         <div class="container intro-content">
-          <h3 class="intro-subtitle">{{ banner.subtitle }}</h3>
+          <h3 class="intro-subtitle">Sub-Title</h3>
           <!-- End .h3 intro-subtitle -->
           <h1 class="intro-title">
-            {{ banner.title }} <br />
-            <span class="text-primary" *ngIf="banner.price">
+            Title <br />
+            <!-- <span class="text-primary" *ngIf="banner.price">
               <sup
                 *ngIf="banner.priceRange"
                 class="text-white font-weight-light"
                 >from</sup
               ><sup>$</sup>{{ banner.price }}
-            </span>
+            </span> -->
           </h1>
           <!-- End .intro-title -->
 

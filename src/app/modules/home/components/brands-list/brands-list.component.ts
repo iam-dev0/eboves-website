@@ -1,5 +1,9 @@
+import { Response } from '@models/api-responses/response.model';
+import { Observable } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '@modules/home/services/api.service';
+import { Brand } from '@models/brand.model';
 
 @Component({
   selector: 'app-brands-list',
@@ -7,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./brands-list.component.scss'],
 })
 export class BrandsListComponent implements OnInit {
+  featuredBrands$: Observable<Brand[]>;
+
   customOptions: OwlOptions = {
     nav: false,
     dots: false,
@@ -34,7 +40,9 @@ export class BrandsListComponent implements OnInit {
     },
   };
 
-  constructor() {}
+  constructor(private service: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.featuredBrands$ = this.service.getFeaturedBrands();
+  }
 }

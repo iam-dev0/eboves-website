@@ -1,10 +1,10 @@
 <div class="product product-7 text-center">
   <figure class="product-media">
     <span class="product-label label-new">New</span>
-    <a href="product.html">
+    <a href="product">
       <img
-        src="assets/images/products/product-4.jpg"
-        alt="Product image"
+        [src]="product.mainImage"
+        [alt]="product.name"
         class="product-image"
       />
     </a>
@@ -19,9 +19,9 @@
         title="Quick view"
         ><span>Quick view</span></a
       >
-      <a href="#" class="btn-product-icon btn-compare" title="Compare"
+      <!-- <a href="#" class="btn-product-icon btn-compare" title="Compare"
         ><span>Compare</span></a
-      >
+      > -->
     </div>
     <!-- End .product-action-vertical -->
 
@@ -34,11 +34,11 @@
 
   <div class="product-body">
     <div class="product-cat">
-      <a href="#">Women</a>
+      <a href="shop/brand">{{ product.brand ? product.brand.name : "" }}</a>
     </div>
     <!-- End .product-cat -->
     <h3 class="product-title">
-      <a href="product.html">Brown paperbag waist <br />pencil skirt</a>
+      <a href="product">{{ product.name }}</a>
     </h3>
     <!-- End .product-title -->
     <div class="product-price">
@@ -55,7 +55,7 @@
     </div>
     <!-- End .rating-container -->
 
-    <div class="product-nav product-nav-thumbs">
+    <!-- <div class="product-nav product-nav-thumbs">
       <a href="#" class="active">
         <img
           src="assets/images/products/product-4-thumb.jpg"
@@ -75,7 +75,7 @@
           alt="product desc"
         />
       </a>
-    </div>
+    </div> -->
     <!-- End .product-nav -->
   </div>
   <!-- End .product-body -->
