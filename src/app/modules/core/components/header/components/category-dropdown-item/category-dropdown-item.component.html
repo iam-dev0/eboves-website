@@ -1,0 +1,40 @@
+<ul class="menu-vertical sf-arrows">
+  <!-- <li class="item-lead"><a href="shop/category">Daily offers</a></li>
+  <li class="item-lead"><a href="shop/category">Gift Ideas</a></li> -->
+  <li class="dropdown" *ngFor="let category of categories">
+    <a
+      class="dropdown-toggle"
+      role="button"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      [routerLink]="['/shop/category', category.slug]"
+      >{{ category.name }}</a
+    >
+    <app-category-dropdown-item
+      class="dropdown-menu"
+      *ngIf="category.childrens && category.childrens.length > 0"
+      [categories]="category.childrens"
+    ></app-category-dropdown-item>
+  </li>
+</ul>
+
+<!-- <a [routerLink]="['/shop/category', category.slug]">{{ category.name }}</a>
+<ul class="menu-vertical sf-arrows">
+  <li><a>Action 1</a></li>
+  <li><a>Action 2</a></li>
+  <li><a>Action 3</a></li>
+</ul> -->
+
+<!-- <a [routerLink]="[baseLink, category.slug]">{{ category.name }}</a>
+<ul
+  *ngIf="category.childrens && category.childrens.length > 0"
+  class="menu-vertical sf-arrows"
+>
+  <li *ngFor="let child of category.childrens">
+    <app-category-dropdown-item
+      [category]="child"
+      [baseLink]="baseLink + '/' + category.slug"
+    ></app-category-dropdown-item>
+  </li>
+</ul> -->

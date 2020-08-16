@@ -8,8 +8,15 @@ import { Product } from '@models/product.model';
 })
 export class ProductCardVertActionsComponent implements OnInit {
   @Input() product: Product;
+  tagLabel: string = '';
+  tagClass: string = '';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.product.topRated) {
+      this.tagClass = 'label-top';
+      this.tagLabel = 'Top';
+    }
+  }
 }

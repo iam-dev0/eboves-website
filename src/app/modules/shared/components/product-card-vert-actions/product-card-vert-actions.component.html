@@ -1,6 +1,10 @@
 <div class="product product-7 text-center">
   <figure class="product-media">
-    <span class="product-label label-new">New</span>
+    <span
+      *ngIf="tagLabel && tagLabel !== ''"
+      class="product-label {{ tagClass }}"
+      >{{ tagLabel }}</span
+    >
     <a href="product">
       <img
         [src]="product.mainImage"
@@ -10,9 +14,9 @@
     </a>
 
     <div class="product-action-vertical">
-      <a href="#" class="btn-product-icon btn-wishlist btn-expandable"
+      <!-- <a href="#" class="btn-product-icon btn-wishlist btn-expandable"
         ><span>add to wishlist</span></a
-      >
+      > -->
       <a
         href="popup/quickView.html"
         class="btn-product-icon btn-quickview"

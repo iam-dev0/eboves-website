@@ -1,12 +1,39 @@
-<div class="products">
-  <div class="row justify-content-center">
-    <div
-      class="col-6 col-md-4 col-lg-3 col-xl-5col"
-      *ngFor="let product of products"
-    >
-      <app-product-card-simple [product]="product"></app-product-card-simple>
+<ng-container *ngIf="cardType === 'vertActions'; else elseTemplate">
+  <div class="products {{ customClasses }}">
+    <div class="row justify-content-center">
+      <div
+        class="col-6 col-md-4 col-lg-4 col-xl-3"
+        *ngFor="
+          let product of products
+            | paginate: { itemsPerPage: 10, currentPage: page }
+        "
+      >
+        <app-product-card-vert-actions
+          [product]="product"
+        ></app-product-card-vert-actions>
+      </div>
     </div>
+    <!-- End .row -->
   </div>
-  <!-- End .row -->
-</div>
-<!-- End .products -->
+  <!-- End .products -->
+  <pagination-controls
+    (pageChange)="page = $event"
+    nextLabel="Next"
+    previousLabel="Prev"
+    responsive="true"
+  ></pagination-controls>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="products {{ customClasses }}">
+    <div class="row justify-content-center">
+      <div
+        class="col-6 col-md-4 col-lg-4 col-xl-3"
+        *ngFor="let product of products"
+      >
+        <app-product-card-simple [product]="product"></app-product-card-simple>
+      </div>
+    </div>
+    <!-- End .row -->
+  </div>
+  <!-- End .products -->
+</ng-template>

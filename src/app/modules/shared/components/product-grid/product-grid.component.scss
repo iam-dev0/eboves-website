@@ -1,0 +1,75 @@
+:host::ng-deep .ngx-pagination {
+  text-align: center;
+
+  .current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 4rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1;
+    background-color: transparent;
+    color: #a6c76c;
+    border: 0.1rem solid transparent;
+    border-color: #ebebeb;
+    border-radius: 0.3rem;
+    padding: 0 0.3rem;
+  }
+
+  .pagination-previous {
+    margin-right: 1.7rem;
+
+    a {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    ::before {
+      margin-right: 1rem;
+    }
+  }
+
+  .pagination-next {
+    margin-left: 1.7rem;
+
+    a {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    ::after {
+      margin-left: 1rem;
+    }
+  }
+
+  li {
+    margin-left: 0.4rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .disabled {
+    color: #eaeaea;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 4rem;
+    background-color: transparent !important;
+    padding: 0 0.3rem;
+    border: 0.1rem solid transparent;
+    color: #706f6c;
+  }
+
+  a:hover {
+    color: #a6c76c;
+    border-color: #ebebeb !important;
+    border-radius: 0.3rem;
+  }
+}

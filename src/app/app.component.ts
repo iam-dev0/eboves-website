@@ -1,16 +1,27 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { CategoriesService } from '@services/categories.service';
+import { Category } from '@models/category.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'eboves-Angular';
   showScrollTop: boolean = false;
+  categories$: Observable<Category[]>;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private categoriesService: CategoriesService
+  ) {}
+
+  ngOnInit(): void {
+    this.categories$ = this.categoriesService.getCategories();
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {

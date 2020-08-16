@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev:ssr",
+      "problemMatcher": [],
+      "label": "npm: dev:ssr",
+      "detail": "ng run eboves-Angular:serve-ssr"
+    }
+  ]
+}

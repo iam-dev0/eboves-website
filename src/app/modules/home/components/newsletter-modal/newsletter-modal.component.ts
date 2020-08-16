@@ -22,10 +22,10 @@ export class NewsletterModalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        this.subscriptionModal.nativeElement.click();
-      }, 5000);
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   setTimeout(() => {
+    //     this.subscriptionModal.nativeElement.click();
+    //   }, 5000);
+    // }
   }
 }

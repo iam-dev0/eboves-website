@@ -5,16 +5,41 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ShopComponent } from './shop.component';
+import { BrandsResolver } from '@services/resolvers/brands.resolver';
+import { CategoriesResolver } from '@services/resolvers/categories.resolver';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ShopComponent,
+    path: 'category',
     children: [
-      { path: 'category', component: CategoryComponent },
-      { path: 'subcategory', component: SubcategoryComponent },
-      { path: 'brand', component: BrandComponent },
+      {
+        path: ':catSlug',
+        children: [
+          {
+            path: '',
+            component: CategoryComponent,
+            resolve: { category: CategoriesResolver },
+            pathMatch: 'full',
+          },
+          {
+            path: ':subCatSlug',
+            children: [
+              {
+                path: '',
+                component: SubcategoryComponent,
+                resolve: { subcategory: CategoriesResolver },
+                pathMatch: 'full',
+              },
+            ],
+          },
+        ],
+      },
     ],
+  },
+  {
+    path: 'brand/:brandSlug',
+    component: BrandComponent,
+    resolve: { brand: BrandsResolver },
   },
 ];
 

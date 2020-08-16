@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +14,7 @@ import { HeaderSearchComponent } from './components/header/components/header-sea
 import { CategoryDropdownComponent } from './components/header/components/category-dropdown/category-dropdown.component';
 import { MegaMenuComponent } from './components/header/components/mega-menu/mega-menu.component';
 import { FaqsComponent } from './components/faqs/faqs.component';
+import { CategoryDropdownItemComponent } from './components/header/components/category-dropdown-item/category-dropdown-item.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { FaqsComponent } from './components/faqs/faqs.component';
     CategoryDropdownComponent,
     MegaMenuComponent,
     FaqsComponent,
+    CategoryDropdownItemComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [
     HeaderComponent,
     FooterComponent,

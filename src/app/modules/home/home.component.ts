@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.service.getBanners().subscribe((response: Response<Banners>) => {
       this.banners = response.data;
-      console.log('response');
     });
   }
 }

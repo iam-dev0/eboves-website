@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder:eboves-Angular}/dist/eboves-Angular/server/main.js",
+      "skipFiles": ["node_modules/**/*.js"],
+      "args": [],
+      "cwd": "${workspaceFolder:eboves-Angular}",
+      "preLaunchTask": "npm: dev:ssr",
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder:eboves-Angular}/dist/eboves-Angular/**/*.js"
+      ]
+    },
+    {
+      "name": "Attach",
+      "type": "node",
+      "request": "attach",
+      "port": 4200,
+      "address": "localhost",
+      "restart": false,
+      "sourceMaps": false,
+      "outFiles": [],
+      "localRoot": "${workspaceFolder:eboves-Angular}",
+      "remoteRoot": null
+    }
+  ]
+}

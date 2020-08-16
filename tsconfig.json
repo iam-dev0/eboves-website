@@ -6,7 +6,8 @@
       "@environment/*": ["./src/environments/*"],
       "@models/*": ["./src/app/models/*"],
       "@modules/*": ["./src/app/modules/*"],
-      "@store/*": ["./src/app/store/*"]
+      "@store/*": ["./src/app/store/*"],
+      "@services/*": ["./src/app/services/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

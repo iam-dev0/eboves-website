@@ -6,4 +6,7 @@ export interface Brand {
   logo?: string;
   image?: string;
   slug?: string;
+  metaTitle: string;
+  metaKeywords: string;
+  metaDescription: string;
 }

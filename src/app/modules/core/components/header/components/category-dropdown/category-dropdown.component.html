@@ -15,17 +15,46 @@
   <div class="dropdown-menu">
     <nav class="side-nav">
       <ul class="menu-vertical sf-arrows">
-        <li class="item-lead"><a href="shop/category">Daily offers</a></li>
-        <li class="item-lead"><a href="shop/category">Gift Ideas</a></li>
-        <li><a href="shop/category">Beds</a></li>
-        <li><a href="shop/category">Lighting</a></li>
-        <li><a href="shop/category">Sofas & Sleeper sofas</a></li>
-        <li><a href="shop/category">Storage</a></li>
-        <li><a href="shop/category">Armchairs & Chaises</a></li>
-        <li><a href="shop/category">Decoration </a></li>
-        <li><a href="shop/category">Kitchen Cabinets</a></li>
-        <li><a href="shop/category">Coffee & Tables</a></li>
-        <li><a href="shop/category">Outdoor Furniture </a></li>
+        <!-- <li class="item-lead"><a href="shop/category">Daily offers</a></li>
+        <li class="item-lead"><a href="shop/category">Gift Ideas</a></li> -->
+        <li *ngFor="let category of categories">
+          <a [routerLink]="['/shop/category', category.slug]">{{
+            category.name
+          }}</a>
+          <ul
+            *ngIf="category.childrens && category.childrens.length > 0"
+            class="menu-vertical sf-arrows"
+          >
+            <li *ngFor="let subcategory of category.childrens">
+              <a
+                [routerLink]="[
+                  '/shop/category',
+                  category.slug,
+                  subcategory.slug
+                ]"
+                >{{ subcategory.name }}</a
+              >
+              <ul
+                *ngIf="
+                  subcategory.childrens && subcategory.childrens.length > 0
+                "
+                class="menu-vertical sf-arrows"
+              >
+                <li *ngFor="let subsubcategory of subcategory.childrens">
+                  <a
+                    [routerLink]="[
+                      '/shop/category',
+                      category.slug,
+                      subcategory.slug
+                    ]"
+                    [queryParams]="{ part: subsubcategory.slug }"
+                    >{{ subsubcategory.name }}</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
       <!-- End .menu-vertical -->
     </nav>

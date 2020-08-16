@@ -1,6 +1,6 @@
 <owl-carousel-o class="brands-border" [options]="customOptions">
   <ng-template carouselSlide *ngFor="let brand of featuredBrands$ | async">
-    <a href="#" class="brand">
+    <a routerLink="/shop/brand/{{ brand.slug }}" class="brand">
       <img [src]="brand.logo" [alt]="brand.name" />
     </a>
   </ng-template>
