@@ -1,7 +1,7 @@
 <main class="main">
   <div
     class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg');"
+    style="background-image: url('assets/images/page-header-bg.jpg')"
   >
     <div class="container">
       <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
@@ -28,111 +28,18 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-9">
-            <table class="table table-cart table-mobile">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td class="product-col">
-                    <div class="product">
-                      <figure class="product-media">
-                        <a href="#">
-                          <img
-                            src="assets/images/products/table/product-1.jpg"
-                            alt="Product image"
-                          />
-                        </a>
-                      </figure>
-
-                      <h3 class="product-title">
-                        <a href="#">Beige knitted elastic runner shoes</a>
-                      </h3>
-                      <!-- End .product-title -->
-                    </div>
-                    <!-- End .product -->
-                  </td>
-                  <td class="price-col">$84.00</td>
-                  <td class="quantity-col">
-                    <div class="cart-product-quantity">
-                      <input
-                        type="number"
-                        class="form-control"
-                        value="1"
-                        min="1"
-                        max="10"
-                        step="1"
-                        data-decimals="0"
-                        required
-                      />
-                    </div>
-                    <!-- End .cart-product-quantity -->
-                  </td>
-                  <td class="total-col">$84.00</td>
-                  <td class="remove-col">
-                    <button class="btn-remove">
-                      <i class="icon-close"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="product-col">
-                    <div class="product">
-                      <figure class="product-media">
-                        <a href="#">
-                          <img
-                            src="assets/images/products/table/product-2.jpg"
-                            alt="Product image"
-                          />
-                        </a>
-                      </figure>
-
-                      <h3 class="product-title">
-                        <a href="#">Blue utility pinafore denim dress</a>
-                      </h3>
-                      <!-- End .product-title -->
-                    </div>
-                    <!-- End .product -->
-                  </td>
-                  <td class="price-col">$76.00</td>
-                  <td class="quantity-col">
-                    <div class="cart-product-quantity">
-                      <input
-                        type="number"
-                        class="form-control"
-                        value="1"
-                        min="1"
-                        max="10"
-                        step="1"
-                        data-decimals="0"
-                        required
-                      />
-                    </div>
-                    <!-- End .cart-product-quantity -->
-                  </td>
-                  <td class="total-col">$76.00</td>
-                  <td class="remove-col">
-                    <button class="btn-remove">
-                      <i class="icon-close"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <app-cart-list
+              [cartList]="(cart$ | async)?.items"
+              (onRemoveItem)="removeFromCart($event)"
+              (onUpdateQty)="updateQty($event)"
+            ></app-cart-list>
             <!-- End .table table-wishlist -->
 
-            <div class="cart-bottom">
-              <div class="cart-discount">
-                <form action="#">
-                  <div class="input-group">
-                    <input
+            <!-- <div class="cart-bottom"> -->
+            <!-- <div class="cart-discount"> -->
+            <!-- <form action="#"> -->
+            <!-- <div class="input-group"> -->
+            <!-- <input
                       type="text"
                       class="form-control"
                       required
@@ -142,18 +49,18 @@
                       <button class="btn btn-outline-primary-2" type="submit">
                         <i class="icon-long-arrow-right"></i>
                       </button>
-                    </div>
-                    <!-- .End .input-group-append -->
-                  </div>
-                  <!-- End .input-group -->
-                </form>
-              </div>
-              <!-- End .cart-discount -->
+                    </div> -->
+            <!-- .End .input-group-append -->
+            <!-- </div> -->
+            <!-- End .input-group -->
+            <!-- </form> -->
+            <!-- </div> -->
+            <!-- End .cart-discount -->
 
-              <a href="#" class="btn btn-outline-dark-2"
+            <!-- <a href="#" class="btn btn-outline-dark-2"
                 ><span>UPDATE CART</span><i class="icon-refresh"></i
-              ></a>
-            </div>
+              ></a> -->
+            <!-- </div> -->
             <!-- End .cart-bottom -->
           </div>
           <!-- End .col-lg-9 -->
@@ -166,7 +73,12 @@
                 <tbody>
                   <tr class="summary-subtotal">
                     <td>Subtotal:</td>
-                    <td>$160.00</td>
+                    <td>
+                      {{
+                        (cart$ | async)?.total
+                          | currency: "PKR":"symbol":"1.2-2"
+                      }}
+                    </td>
                   </tr>
                   <!-- End .summary-subtotal -->
                   <tr class="summary-shipping">
@@ -182,6 +94,10 @@
                           id="free-shipping"
                           name="shipping"
                           class="custom-control-input"
+                          (change)="
+                            handleShippingChange($event, shippingTypes.FREE)
+                          "
+                          [checked]="selectedShipping === shippingTypes.FREE"
                         />
                         <label class="custom-control-label" for="free-shipping"
                           >Free Shipping</label
@@ -189,7 +105,11 @@
                       </div>
                       <!-- End .custom-control -->
                     </td>
-                    <td>$0.00</td>
+                    <td>
+                      {{
+                        shippingCharges.FREE | currency: "PKR":"symbol":"1.2-2"
+                      }}
+                    </td>
                   </tr>
                   <!-- End .summary-shipping-row -->
 
@@ -198,19 +118,30 @@
                       <div class="custom-control custom-radio">
                         <input
                           type="radio"
-                          id="standart-shipping"
+                          id="standard-shipping"
                           name="shipping"
                           class="custom-control-input"
+                          (change)="
+                            handleShippingChange($event, shippingTypes.STANDARD)
+                          "
+                          [checked]="
+                            selectedShipping === shippingTypes.STANDARD
+                          "
                         />
                         <label
                           class="custom-control-label"
-                          for="standart-shipping"
-                          >Standart:</label
+                          for="standard-shipping"
+                          >Standard:</label
                         >
                       </div>
                       <!-- End .custom-control -->
                     </td>
-                    <td>$10.00</td>
+                    <td>
+                      {{
+                        shippingCharges.STANDARD
+                          | currency: "PKR":"symbol":"1.2-2"
+                      }}
+                    </td>
                   </tr>
                   <!-- End .summary-shipping-row -->
 
@@ -222,6 +153,10 @@
                           id="express-shipping"
                           name="shipping"
                           class="custom-control-input"
+                          (change)="
+                            handleShippingChange($event, shippingTypes.EXPRESS)
+                          "
+                          [checked]="selectedShipping === shippingTypes.EXPRESS"
                         />
                         <label
                           class="custom-control-label"
@@ -231,22 +166,33 @@
                       </div>
                       <!-- End .custom-control -->
                     </td>
-                    <td>$20.00</td>
+                    <td>
+                      {{
+                        shippingCharges.EXPRESS
+                          | currency: "PKR":"symbol":"1.2-2"
+                      }}
+                    </td>
                   </tr>
                   <!-- End .summary-shipping-row -->
 
-                  <tr class="summary-shipping-estimate">
+                  <!-- <tr class="summary-shipping-estimate">
                     <td>
                       Estimate for Your Country<br />
                       <a href="dashboard.html">Change address</a>
                     </td>
                     <td>&nbsp;</td>
-                  </tr>
+                  </tr> -->
                   <!-- End .summary-shipping-estimate -->
 
                   <tr class="summary-total">
                     <td>Total:</td>
-                    <td>$160.00</td>
+                    <td>
+                      {{
+                        (cart$ | async)?.total +
+                          shippingCharges[selectedShipping]
+                          | currency: "PKR":"symbol":"1.2-2"
+                      }}
+                    </td>
                   </tr>
                   <!-- End .summary-total -->
                 </tbody>

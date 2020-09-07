@@ -1,3 +1,11 @@
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
 :host::ng-deep .ngx-pagination {
   text-align: center;
 
@@ -71,5 +79,149 @@
     color: #a6c76c;
     border-color: #ebebeb !important;
     border-radius: 0.3rem;
+  }
+}
+
+.toolbox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  @include clearfix();
+
+  .select-custom {
+    margin-bottom: 0;
+
+    &::after {
+      right: 0.9rem;
+      font-size: 1rem;
+    }
+
+    .form-control {
+      font-size: 1.3rem;
+      padding-right: 2rem;
+      max-width: 140px;
+      min-width: 140px;
+      background-color: #fff;
+      border-color: #e4e4e4;
+    }
+  }
+
+  label {
+    font-weight: 400;
+    color: $dark-text;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .form-control {
+    color: $light-text;
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding: 0.45rem 1rem;
+    height: 30px;
+    margin-bottom: 0;
+
+    &:not(:focus) {
+      border-color: #d7d7d7;
+    }
+  }
+
+  select.form-control:not([size]):not([multiple]) {
+    height: 30px;
+  }
+}
+
+.toolbox-left,
+.toolbox-right {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+}
+
+.toolbox-center {
+  margin-top: 1rem;
+  flex: 0 1 auto;
+}
+
+.toolbox-right {
+  margin-top: 1rem;
+  flex-direction: column;
+}
+
+.toolbox-info {
+  color: #ccc;
+
+  span {
+    color: $dark-text;
+  }
+}
+
+.toolbox-sort {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 1.6rem;
+  }
+}
+
+.toolbox-layout {
+  margin-top: 1rem;
+}
+
+.btn-layout {
+  display: inline-flex;
+  padding: 0.5rem;
+
+  & + .btn-layout {
+    margin-left: 0.5rem;
+  }
+
+  svg {
+    fill: #dadada;
+    transition: fill 0.35s;
+  }
+
+  &:hover,
+  &:focus,
+  &.active {
+    svg {
+      fill: #333;
+    }
+  }
+}
+
+@include mq("sm") {
+  .toolbox-right {
+    flex-direction: row;
+  }
+
+  .toolbox-layout {
+    margin-top: 0;
+    margin-right: -0.5rem;
+    margin-left: 1rem;
+  }
+}
+
+@include mq("md") {
+  .toolbox {
+    flex-direction: row;
+  }
+
+  .toolbox-center {
+    margin-top: 0;
+  }
+
+  .toolbox-right {
+    margin-top: 0;
+    justify-content: flex-end;
   }
 }

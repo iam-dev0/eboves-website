@@ -1,0 +1,71 @@
+<table class="table table-cart table-mobile">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of cartList">
+      <td class="product-col">
+        <div class="product">
+          <figure class="product-media">
+            <a
+              [routerLink]="['/product', item.productSlug]"
+              [queryParams]="{ varSlug: item.variation.slug }"
+            >
+              <img [src]="item.variation.mainImage" alt="Product image" />
+            </a>
+          </figure>
+
+          <h3 class="product-title">
+            <a
+              [routerLink]="['/product', item.productSlug]"
+              [queryParams]="{ varSlug: item.variation.slug }"
+              >{{ item.productName }}</a
+            >
+          </h3>
+          <!-- End .product-title -->
+        </div>
+        <!-- End .product -->
+      </td>
+      <td class="price-col">
+        {{ getPrice(item) | currency: "PKR":"symbol":"1.2-2" }}
+      </td>
+      <td class="quantity-col">
+        <div class="cart-product-quantity">
+          <button (click)="decrementQty(item)">
+            <i class="icon-minus"></i>
+          </button>
+          <input
+            type="number"
+            class="form-control"
+            [value]="item.qty"
+            min="1"
+            max="10"
+            step="1"
+            data-decimals="0"
+            required
+            disabled
+          />
+          <button (click)="incrementQty(item)">
+            <i class="icon-plus"></i>
+          </button>
+        </div>
+        <!-- End .cart-product-quantity -->
+      </td>
+      <td class="total-col">
+        {{ getItemTotal(item) | currency: "PKR":"symbol":"1.2-2" }}
+      </td>
+      <td class="remove-col">
+        <button class="btn-remove" (click)="removeItem(item)">
+          <i class="icon-close"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

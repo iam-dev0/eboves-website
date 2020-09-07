@@ -1,0 +1,31 @@
+<div class="product">
+  <div class="product-cart-details">
+    <h4 class="product-title">
+      <a
+        [routerLink]="['/product', item.productSlug]"
+        [queryParams]="{ varSlug: item.variation.slug }"
+        >{{ item.productName }}</a
+      >
+    </h4>
+
+    <span class="cart-product-info">
+      <span class="cart-product-qty">{{ item.qty }}</span>
+      x {{ item.variation.price | currency: "PKR":"symbol":"1.2-2" }}
+    </span>
+  </div>
+  <!-- End .product-cart-details -->
+
+  <figure class="product-image-container">
+    <a
+      [routerLink]="['/product', item.productSlug]"
+      [queryParams]="{ varSlug: item.variation.slug }"
+      class="product-image"
+    >
+      <img [src]="item.variation.mainImage" alt="product" />
+    </a>
+  </figure>
+  <div class="btn-remove" title="Remove Product" (click)="removeItem()">
+    <i class="icon-close"></i>
+  </div>
+</div>
+<!-- End .product -->

@@ -1,18 +1,24 @@
+import { ProductAttribute } from './product-attribute.model';
 export interface ProductVariation {
   id: number;
   mainImage: string;
+  mainBarcode?: string;
   slug?: string;
-  virtualQuantity: number;
-  price: string; //TODO: make it a number. change in API
+  availableQuantity: number;
+  sku: string;
+  price: number;
   bestSeller: boolean;
-  topRated?: boolean; //TODO: add in API
-  featured?: boolean; //TODO: add in API
+  topRated?: boolean;
+  featured?: boolean;
   discountPercentage: number;
-  discountPrice: string; //TODO: make it a number. change in API
+  discountPrice: number;
   discountStartTime: Date;
   discountEndTime: Date;
-  trending: boolean;
-  preOrder: boolean;
-  attributeValues: [];
-  images?: string[];
+  discountType: string;
+  discountReason: string;
+  trending?: boolean;
+  preOrder?: boolean;
+  attributes: ProductAttribute[];
+  images?: any[];
+  shortDescription?: string;
 }

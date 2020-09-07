@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ProductGridComponent,
     TabsComponent,
   ],
-  imports: [CommonModule, CarouselModule, NgxPaginationModule],
+  imports: [CommonModule, CarouselModule, NgxPaginationModule, RouterModule],
   exports: [
     SignInModalComponent,
     ProductCardVertActionsComponent,

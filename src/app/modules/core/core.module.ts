@@ -15,6 +15,8 @@ import { CategoryDropdownComponent } from './components/header/components/catego
 import { MegaMenuComponent } from './components/header/components/mega-menu/mega-menu.component';
 import { FaqsComponent } from './components/faqs/faqs.component';
 import { CategoryDropdownItemComponent } from './components/header/components/category-dropdown-item/category-dropdown-item.component';
+import { CartDropdownComponent } from './components/header/components/cart-dropdown/cart-dropdown.component';
+import { CartDropdownItemComponent } from './components/header/components/cart-dropdown-item/cart-dropdown-item.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { CategoryDropdownItemComponent } from './components/header/components/ca
     MegaMenuComponent,
     FaqsComponent,
     CategoryDropdownItemComponent,
+    CartDropdownComponent,
+    CartDropdownItemComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [

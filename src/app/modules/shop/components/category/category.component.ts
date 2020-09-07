@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from '@services/categories.service';
 import { SeoService } from '@services/seo.service';
 import { Category } from '@models/category.model';
+import { getMetaTags } from '@utils';
 
 @Component({
   selector: 'app-category',
@@ -59,13 +60,6 @@ export class CategoryComponent implements OnInit {
 
   setMetaData(category: Category) {
     this.seoService.setTitle(category.metaTitle);
-    this.seoService.setMetaTags(this.getTags(category));
-  }
-
-  getTags(category: Category): Map<string, string> {
-    const tags: Map<string, string> = new Map<string, string>();
-    tags.set('keywords', category.metaKeywords);
-    tags.set('descriptions', category.metaDescription);
-    return tags;
+    this.seoService.setMetaTags(getMetaTags(category));
   }
 }

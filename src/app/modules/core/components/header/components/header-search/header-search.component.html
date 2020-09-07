@@ -4,18 +4,20 @@
   <a href="#" class="search-toggle" role="button"
     ><i class="icon-search"></i
   ></a>
-  <form action="#" method="get">
+  <form>
     <div class="header-search-wrapper search-wrapper-wide">
       <label for="q" class="sr-only">Search</label>
       <input
-        type="search"
+        type="text"
         class="form-control"
         name="q"
         id="q"
         placeholder="Search product ..."
         required
+        (change)="onChange($event)"
+        (keydown)="onKeyDown($event)"
       />
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary" (click)="onSubmit($event)">
         <i class="icon-search"></i>
       </button>
     </div>

@@ -14,6 +14,7 @@ import { ProductShippingAndReturnsComponent } from './components/product-shippin
 import { ProductReviewsComponent } from './components/product-reviews/product-reviews.component';
 import { ProductSimilarComponent } from './components/product-similar/product-similar.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProductAttributeComponent } from './components/product-attribute/product-attribute.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     ProductShippingAndReturnsComponent,
     ProductReviewsComponent,
     ProductSimilarComponent,
+    ProductAttributeComponent,
   ],
   imports: [CommonModule, ProductRoutingModule, CarouselModule, SharedModule],
 })

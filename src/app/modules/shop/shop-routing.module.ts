@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopComponent } from './shop.component';
 import { BrandsResolver } from '@services/resolvers/brands.resolver';
 import { CategoriesResolver } from '@services/resolvers/categories.resolver';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'brand/:brandSlug',
     component: BrandComponent,
     resolve: { brand: BrandsResolver },
+  },
+  {
+    path: 'search/:value',
+    component: SearchComponent,
   },
 ];
 

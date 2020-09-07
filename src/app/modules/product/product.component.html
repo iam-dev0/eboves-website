@@ -39,12 +39,19 @@
       <div class="product-details-top">
         <div class="row">
           <div class="col-md-6">
-            <app-image-gallery></app-image-gallery>
+            <app-image-gallery [images]="galleryImages"></app-image-gallery>
           </div>
           <!-- End .col-md-6 -->
 
           <div class="col-md-6">
-            <app-product-features></app-product-features>
+            <app-product-features
+              [name]="product.name"
+              [price]="price"
+              [description]="shortDescription"
+              [attributes]="attributes"
+              [category]="product.category"
+              [brand]="product.brand"
+            ></app-product-features>
             <!-- End .product-details -->
           </div>
           <!-- End .col-md-6 -->
@@ -53,10 +60,10 @@
       </div>
       <!-- End .product-details-top -->
 
-      <app-product-detail></app-product-detail>
+      <app-product-detail [product]="product"></app-product-detail>
       <!-- End .product-details-tab -->
 
-      <app-product-similar></app-product-similar>
+      <!-- <app-product-similar></app-product-similar> -->
     </div>
     <!-- End .container -->
   </div>
@@ -65,7 +72,7 @@
 <!-- End .main -->
 
 <!-- Sticky Bar -->
-<app-product-sticky-bar></app-product-sticky-bar>
+<!-- <app-product-sticky-bar></app-product-sticky-bar> -->
 <!-- End .sticky-bar -->
 
 <!-- Plugins JS File -->

@@ -1,0 +1,105 @@
+<main class="main">
+  <div
+    class="page-header text-center"
+    style="background-image: url('assets/images/page-header-bg.jpg')"
+  >
+    <div class="container">
+      <h1 class="page-title">Grid 4 Columns<span>Shop</span></h1>
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-header -->
+  <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Grid 4 Columns
+        </li>
+      </ol>
+    </div>
+    <!-- End .container -->
+  </nav>
+  <!-- End .breadcrumb-nav -->
+
+  <div class="page-content">
+    <div class="container">
+      <app-product-listing
+        [products]="filteredProducts"
+        [showBrandFilter]="true"
+      >
+        <div class="sidebar sidebar-shop" categoriesFilter>
+          <div class="widget widget-collapsible">
+            <h3 class="widget-title">
+              <a
+                data-toggle="collapse"
+                href="#widget-1"
+                role="button"
+                aria-expanded="true"
+                aria-controls="widget-1"
+              >
+                Category
+              </a>
+            </h3>
+            <!-- End .widget-title -->
+
+            <div class="collapse show" id="widget-1">
+              <div class="widget-body">
+                <div class="filter-items filter-items-count">
+                  <div class="filter-item" *ngFor="let category of categories">
+                    <div class="custom-control custom-checkbox">
+                      <a
+                        [routerLink]="['/shop/search', searchValue]"
+                        [queryParams]="{ catSlug: category.slug }"
+                      >
+                        <label
+                          class="custom-control-label {{
+                            isActive(category.slug) ? 'active' : ''
+                          }}"
+                          >{{ category.name }}</label
+                        ></a
+                      >
+                    </div>
+                    <!-- End .custom-checkbox -->
+                    <!-- <span class="item-count">{{ part.productCount }}</span> -->
+                  </div>
+                  <!-- End .filter-item -->
+                </div>
+                <!-- End .filter-items -->
+              </div>
+              <!-- End .widget-body -->
+            </div>
+            <!-- End .collapse -->
+          </div>
+          <!-- End .widget -->
+        </div>
+      </app-product-listing>
+    </div>
+    <!-- End .container -->
+  </div>
+  <!-- End .page-content -->
+</main>
+<!-- End .main -->
+
+<!-- Plugins JS File -->
+<!-- <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/superfish.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wNumb.js"></script>
+    <script src="assets/js/bootstrap-input-spinner.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/nouislider.min.js"></script> -->
+<!-- Main JS File -->
+<!-- <script src="assets/js/main.js"></script> -->
+
+<!-- Plugins CSS File -->
+<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+<!-- Main CSS File -->
+<!-- <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css"> -->

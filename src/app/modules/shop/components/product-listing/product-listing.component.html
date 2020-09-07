@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-lg-9">
+    <app-product-grid
+      [products]="products$ | async"
+      customClasses="mb-3"
+      cardType="vertActions"
+    ></app-product-grid>
+  </div>
+  <!-- End .products -->
+  <aside class="col-lg-3 order-lg-first">
+    <div class="sidebar sidebar-shop">
+      <div class="widget widget-clean">
+        <label>Filters:</label>
+        <a class="sidebar-filter-clear" (click)="resetFilters()">Clean All</a>
+      </div>
+      <!-- End .widget widget-clean -->
+
+      <ng-content select="[categoriesFilter]"></ng-content>
+
+      <div class="widget widget-collapsible" *ngIf="showBrandFilter">
+        <h3 class="widget-title">
+          <a
+            data-toggle="collapse"
+            href="#widget-4"
+            role="button"
+            aria-expanded="true"
+            aria-controls="widget-4"
+          >
+            Brand
+          </a>
+        </h3>
+        <!-- End .widget-title -->
+
+        <div class="collapse show" id="widget-4">
+          <div class="widget-body">
+            <div class="filter-items">
+              <div class="filter-item" *ngFor="let brand of brands">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    (change)="onBrandsSelectionChange($event, brand)"
+                    [id]="brand.id"
+                  />
+                  <label class="custom-control-label" [for]="brand.id">{{
+                    brand.name
+                  }}</label>
+                </div>
+                <!-- End .custom-checkbox -->
+              </div>
+              <!-- End .filter-item -->
+            </div>
+          </div>
+          <!-- End .widget-body -->
+        </div>
+        <!-- End .collapse -->
+      </div>
+      <!-- End .widget -->
+
+      <div class="widget widget-collapsible">
+        <h3 class="widget-title">
+          <a
+            data-toggle="collapse"
+            href="#widget-5"
+            role="button"
+            aria-expanded="true"
+            aria-controls="widget-5"
+          >
+            Price
+          </a>
+        </h3>
+        <!-- End .widget-title -->
+
+        <div class="collapse show" id="widget-5">
+          <div class="widget-body">
+            <div class="filter-price">
+              <ng5-slider
+                *ngIf="isBrowser"
+                [value]="priceRangeStart"
+                [highValue]="priceRangeEnd"
+                [options]="priceRangeOptions"
+                (userChange)="onPriceRangeChange($event)"
+              ></ng5-slider>
+            </div>
+            <!-- End .filter-price -->
+          </div>
+          <!-- End .widget-body -->
+        </div>
+        <!-- End .collapse -->
+      </div>
+      <!-- End .widget -->
+    </div>
+    <!-- End .sidebar sidebar-shop -->
+  </aside>
+  <!-- End .col-lg-3 -->
+</div>
+<!-- End .row -->

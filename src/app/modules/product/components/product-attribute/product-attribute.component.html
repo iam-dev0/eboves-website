@@ -1,0 +1,39 @@
+<ng-container
+  *ngIf="attribute.type === 'image'; then thenTemplate; else elseTemplate"
+></ng-container>
+<ng-template #thenTemplate>
+  <div class="details-filter-row details-row-size">
+    <label>{{ attribute.name | titlecase }}:</label>
+
+    <div class="product-nav product-nav-thumbs">
+      <a
+        (click)="updateSelectedValue(value)"
+        class="{{ isActive(value) ? 'active' : '' }}"
+        *ngFor="let value of values"
+      >
+        <img [src]="value.value" [alt]="value.alt" />
+      </a>
+    </div>
+    <!-- End .product-nav -->
+  </div>
+  <!-- End .details-filter-row -->
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="details-filter-row details-row-size">
+    <label for="size">{{ attribute.name | titlecase }}:</label>
+    <div class="select-custom">
+      <select name="size" id="size" class="form-control">
+        <option value="#" selected="selected">
+          Select {{ attribute.name | titlecase }}
+        </option>
+        <option *ngFor="let value of values" value="{{ value.value }}">
+          {{ value.value | titlecase }}
+        </option>
+      </select>
+    </div>
+    <!-- End .select-custom -->
+
+    <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
+  </div>
+  <!-- End .details-filter-row -->
+</ng-template>

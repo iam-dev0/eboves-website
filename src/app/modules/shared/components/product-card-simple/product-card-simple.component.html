@@ -24,24 +24,20 @@
 
   <div class="product-body">
     <div class="product-cat">
-      <a href="shop/subcategory">{{
-        product.category ? product.category.name : ""
-      }}</a>
+      <a>{{ product.category ? product.category.name : "" }}</a>
     </div>
     <!-- End .product-cat -->
     <h3 class="product-title">
-      <a href="product">{{ product.name }}</a>
+      <a [routerLink]="['/product', product.slug]">{{ product.name }}</a>
     </h3>
     <!-- End .product-title -->
-    <div class="product-price">
-      $401,00
-    </div>
+    <div class="product-price">$401,00</div>
     <!-- End .product-price -->
   </div>
   <!-- End .product-body -->
-  <div class="product-action">
+  <!-- <div class="product-action">
     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-  </div>
+  </div> -->
   <!-- End .product-action -->
 </div>
 <!-- End .product -->

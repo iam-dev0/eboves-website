@@ -1,11 +1,38 @@
 <ng-container *ngIf="cardType === 'vertActions'; else elseTemplate">
+  <div class="toolbox" toolbox>
+    <div class="toolbox-left">
+      <div class="toolbox-info">
+        Total <span>{{ products?.length }}</span> Products
+      </div>
+      <!-- End .toolbox-info -->
+    </div>
+    <!-- End .toolbox-left -->
+
+    <div class="toolbox-right">
+      <div class="toolbox-sort">
+        <label for="sortby">Sort by:</label>
+        <div class="select-custom">
+          <select name="sortby" id="sortby" class="form-control">
+            <option value="popularity" selected="selected">Most Popular</option>
+            <option value="rating">Most Rated</option>
+            <option value="date">Date</option>
+          </select>
+        </div>
+      </div>
+      <!-- End .toolbox-sort -->
+      <!-- End .toolbox-layout -->
+    </div>
+    <!-- End .toolbox-right -->
+  </div>
+  <!-- End .toolbox -->
+
   <div class="products {{ customClasses }}">
     <div class="row justify-content-center">
       <div
         class="col-6 col-md-4 col-lg-4 col-xl-3"
         *ngFor="
           let product of products
-            | paginate: { itemsPerPage: 10, currentPage: page }
+            | paginate: { itemsPerPage: itemsPerPage, currentPage: page }
         "
       >
         <app-product-card-vert-actions
@@ -16,19 +43,42 @@
     <!-- End .row -->
   </div>
   <!-- End .products -->
-  <pagination-controls
-    (pageChange)="page = $event"
-    nextLabel="Next"
-    previousLabel="Prev"
-    responsive="true"
-  ></pagination-controls>
 </ng-container>
 <ng-template #elseTemplate>
+  <div class="toolbox" toolbox>
+    <div class="toolbox-left">
+      <div class="toolbox-info">
+        Total <span>{{ products?.length }}</span> Products
+      </div>
+      <!-- End .toolbox-info -->
+    </div>
+    <!-- End .toolbox-left -->
+
+    <div class="toolbox-right">
+      <div class="toolbox-sort">
+        <label for="sortby">Sort by:</label>
+        <div class="select-custom">
+          <select name="sortby" id="sortby" class="form-control">
+            <option value="popularity" selected="selected">Most Popular</option>
+            <option value="rating">Most Rated</option>
+            <option value="date">Date</option>
+          </select>
+        </div>
+      </div>
+      <!-- End .toolbox-sort -->
+      <!-- End .toolbox-layout -->
+    </div>
+    <!-- End .toolbox-right -->
+  </div>
+  <!-- End .toolbox -->
   <div class="products {{ customClasses }}">
     <div class="row justify-content-center">
       <div
         class="col-6 col-md-4 col-lg-4 col-xl-3"
-        *ngFor="let product of products"
+        *ngFor="
+          let product of products
+            | paginate: { itemsPerPage: itemsPerPage, currentPage: page }
+        "
       >
         <app-product-card-simple [product]="product"></app-product-card-simple>
       </div>
@@ -37,3 +87,10 @@
   </div>
   <!-- End .products -->
 </ng-template>
+<pagination-controls
+  *ngIf="!isMobile"
+  (pageChange)="page = $event"
+  nextLabel="Next"
+  previousLabel="Prev"
+  responsive="true"
+></pagination-controls>

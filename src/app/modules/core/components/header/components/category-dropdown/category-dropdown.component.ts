@@ -13,26 +13,4 @@ export class CategoryDropdownComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
-
-  getHTML() {
-    return this.sanitizer.bypassSecurityTrustHtml(`<li>
-    <a>Main 1</a>
-    <ul class="menu-vertical sf-arrows">
-      <li><a>Action 1</a></li>
-      <li>
-        <a>Action 2</a>
-        <ul class="menu-vertical sf-arrows">
-          <li><a>SubAction 1</a></li>
-          <li>
-            <a>SubAction 2</a>
-          </li>
-          <li><a>SubAction 3</a></li>
-        </ul>
-      </li>
-      <li><a>Action 3</a></li>
-    </ul>
-  </li>
-  <li><a>Main 2</a></li>
-  <li><a>Main 3</a></li>`);
-  }
 }
