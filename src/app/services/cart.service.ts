@@ -1,5 +1,5 @@
 import { ProductVariation } from '@models/product-variation.model';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Response } from '@models/api-responses/response.model';
 import { SHIPPING_TYPES, ORDER_SOURCE } from 'src/constants';
 import { environment } from '@environment/environment';
@@ -16,6 +16,7 @@ import { CART_KEY } from '../../constants';
 import { BillingForm } from '@models/billing-form.model';
 import { OrderRequest } from '@models/api-requests/order-request.model';
 import { OrderResponse } from '@models/api-responses/order-response.model';
+import { StockResponse } from '@models/api-responses/stock-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -160,5 +161,36 @@ export class CartService {
     }
 
     return of(null);
+  }
+
+  private getSlugs(): string {
+    return this.getCartList()
+      .map((item) => item.variation.slug)
+      .toString();
+  }
+
+  private updateStock(stocks: StockResponse[]) {
+    const cart: CartItem[] = this.getCartList().map((item) => {
+      const newStock = stocks.find(({ id }) => id === item.variation.id);
+      return {
+        ...item,
+        variation: {
+          ...item.variation,
+          availableQuantity: newStock?.availableQuantity,
+        },
+      };
+    });
+    this.updateCart(cart);
+  }
+
+  checkStock() {
+    this.client
+      .get<Response<StockResponse[]>>(
+        `${environment.apiUrl}/products/get-stock?slugs=${this.getSlugs()}`
+      )
+      .pipe(
+        map(({ data }) => data),
+        tap((data) => this.updateStock(data))
+      );
   }
 }

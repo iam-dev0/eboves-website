@@ -23,6 +23,9 @@
           </figure>
 
           <h3 class="product-title">
+            <h6 class="error" *ngIf="!item.variation.availableQuantity">
+              OUT OF STOCK
+            </h6>
             <a
               [routerLink]="['/product', item.productSlug]"
               [queryParams]="{ varSlug: item.variation.slug }"
