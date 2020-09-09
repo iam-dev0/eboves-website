@@ -11,3 +11,13 @@ export const SHIPPING_TYPES = {
   EXPRESS: 'EXPRESS',
   FREE: 'FREE',
 };
+
+export const FORM_STATUS = {
+  VALID: 'VALID',
+  INVALID: 'INVALID',
+};
+
+export const ORDER_SOURCE = {
+  WEBSITE_DESKTOP: 'WEBSITE_DESKTOP',
+  WEBSITE_MOBILE: 'WEBSITE_MOBILE',
+};

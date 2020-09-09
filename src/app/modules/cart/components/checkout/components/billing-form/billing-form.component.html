@@ -1,0 +1,118 @@
+<form [formGroup]="billingForm">
+  <h2 class="checkout-title">Billing Details</h2>
+  <!-- End .checkout-title -->
+  <div class="row">
+    <div class="col-sm-6 form-field">
+      <label>First Name * </label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        formControlName="firstName"
+      />
+      <span
+        class="error"
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      >
+        First name must be at least 3 characters</span
+      >
+    </div>
+    <!-- End .col-sm-6 -->
+
+    <div class="col-sm-6 form-field">
+      <label>Last Name *</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        formControlName="lastName"
+      />
+      <span
+        class="error"
+        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+      >
+        Last name must be at least 3 characters</span
+      >
+    </div>
+    <!-- End .col-sm-6 -->
+  </div>
+  <!-- End .row -->
+
+  <div class="form-field">
+    <label>Phone *</label>
+    <input type="tel" class="form-control" required formControlName="phone" />
+    <span class="error" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+      Invalid Phone (03xxxxxxxxx)</span
+    >
+  </div>
+  <div class="form-field">
+    <label>Email *</label>
+    <input type="email" class="form-control" required formControlName="email" />
+    <span class="error" *ngIf="email.invalid && (email.dirty || email.touched)">
+      Invalid Email</span
+    >
+  </div>
+  <div class="form-field">
+    <label>Street address *</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="House number and Street name"
+      required
+      formControlName="addressLineOne"
+    />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Apartments, suite, unit etc ..."
+      formControlName="addressLineTwo"
+    />
+    <span
+      class="error"
+      *ngIf="
+        addressLineOne.invalid &&
+        (addressLineOne.dirty || addressLineOne.touched)
+      "
+    >
+      Must provide address</span
+    >
+  </div>
+  <div class="form-field">
+    <label>City *</label>
+    <input type="text" class="form-control" required formControlName="city" />
+    <span class="error" *ngIf="city.invalid && (city.dirty || city.touched)">
+      Must select a city</span
+    >
+  </div>
+  <!-- <div class="row">
+    <div class="col-sm-6">
+      
+    </div> -->
+  <!-- End .col-sm-6 -->
+
+  <!-- <div class="col-sm-6">
+      <label>State *</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        formControlName="state"
+      />
+    </div> -->
+  <!-- <div class="col-sm-6">
+      <label>Postcode / ZIP *</label>
+      <input type="text" class="form-control" required formControlName="zip" />
+    </div> -->
+  <!-- End .col-sm-6 -->
+  <!-- </div> -->
+  <!-- End .row -->
+
+  <!-- <label>Order notes (optional)</label>
+  <textarea
+    class="form-control"
+    cols="30"
+    rows="4"
+    placeholder="Notes about your order, e.g. special notes for delivery"
+    formControlName="notes"
+  ></textarea> -->
+</form>
