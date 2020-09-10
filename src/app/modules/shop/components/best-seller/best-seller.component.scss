@@ -7,6 +7,123 @@
 @import "../../../../../assets/sass/config/fonts";
 @import "../../../../../assets/sass/config/variables";
 
+.toolbox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  @include clearfix();
+
+  .select-custom {
+    margin-bottom: 0;
+
+    &::after {
+      right: 0.9rem;
+      font-size: 1rem;
+    }
+
+    .form-control {
+      font-size: 1.3rem;
+      padding-right: 2rem;
+      max-width: 140px;
+      min-width: 140px;
+      background-color: #fff;
+      border-color: #e4e4e4;
+    }
+  }
+
+  label {
+    font-weight: 400;
+    color: $dark-text;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .form-control {
+    color: $light-text;
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding: 0.45rem 1rem;
+    height: 30px;
+    margin-bottom: 0;
+
+    &:not(:focus) {
+      border-color: #d7d7d7;
+    }
+  }
+
+  select.form-control:not([size]):not([multiple]) {
+    height: 30px;
+  }
+}
+
+.toolbox-left,
+.toolbox-right {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+}
+
+.toolbox-center {
+  margin-top: 1rem;
+  flex: 0 1 auto;
+}
+
+.toolbox-right {
+  margin-top: 1rem;
+  flex-direction: column;
+}
+
+.toolbox-info {
+  color: #ccc;
+
+  span {
+    color: $dark-text;
+  }
+}
+
+.toolbox-sort {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 1.6rem;
+  }
+}
+
+.toolbox-layout {
+  margin-top: 1rem;
+}
+
+.btn-layout {
+  display: inline-flex;
+  padding: 0.5rem;
+
+  & + .btn-layout {
+    margin-left: 0.5rem;
+  }
+
+  svg {
+    fill: #dadada;
+    transition: fill 0.35s;
+  }
+
+  &:hover,
+  &:focus,
+  &.active {
+    svg {
+      fill: #333;
+    }
+  }
+}
+
 .products {
   > .row > [class*="col-"] {
     display: flex;
@@ -87,9 +204,15 @@
     font-weight: 400;
     color: $dark-text;
     cursor: pointer;
+    padding-left: 1rem;
+
+    &.active {
+      color: $primary-color;
+    }
 
     &::before {
       border-radius: 0.2rem;
+      display: none;
     }
   }
 }
@@ -97,7 +220,7 @@
 .widget-clean {
   display: flex;
   align-items: center;
-  padding-top: 1.2rem;
+  padding-top: 0.6rem;
   padding-bottom: 2.1rem;
 
   label {
@@ -273,108 +396,29 @@
   color: $primary-color;
 }
 
-// ng5-slider
-:host::ng-deep {
-  .ng5-slider {
-    margin: 0 0 15px;
+@include mq("sm") {
+  .toolbox-right {
+    flex-direction: row;
+  }
 
-    .ng5-slider-bar {
-      background: #ebebeb;
-      height: 3px;
-    }
-
-    .ng5-slider-selection {
-      background: #333;
-    }
-
-    .ng5-slider-pointer {
-      cursor: default;
-      width: 1.5rem;
-      height: 1.5rem;
-      top: auto;
-      bottom: -4px;
-      background-color: #fff;
-      border: 0.1rem solid #555555;
-      border-radius: 100%;
-    }
-
-    .ng5-slider-pointer:after {
-      display: none;
-    }
-
-    .ng5-slider-limit {
-      font-weight: bold;
-    }
-
-    .ng5-slider-bubble {
-      bottom: 0;
-      top: 10px;
-      color: #333333;
-      font-size: 1.4rem;
-      font-weight: 300;
-    }
+  .toolbox-layout {
+    margin-top: 0;
+    margin-right: -0.5rem;
+    margin-left: 1rem;
   }
 }
 
-.btn-filter {
-  font-size: 1.8rem;
-  font-weight: 400;
-  text-align: center;
-  border: 0.1rem solid transparent;
-  border-bottom-color: #d9e2da;
-  border-top-color: #d9e2da;
-  display: none;
-}
-
-.filter-close {
-  display: none;
-  width: 3rem;
-  padding-top: 1rem;
-  text-align: center;
-  font-size: 2rem;
-}
-
-@include mq("lg", "max") {
-  .btn-filter {
-    display: block;
+@include mq("md") {
+  .toolbox {
+    flex-direction: row;
   }
 
-  .filter-close {
-    display: block;
+  .toolbox-center {
+    margin-top: 0;
   }
 
-  .sidebar-overlay {
-    display: none;
-    background-color: #0000003b;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-
-    &.active {
-      display: block;
-    }
-  }
-
-  .order-lg-first {
-    position: fixed;
-    top: 0;
-    right: -50rem;
-    background-color: #f8f8f8;
-    max-width: 50rem;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    transition: right 0.4s ease;
-    visibility: hidden;
-    opacity: 0;
-
-    &.active {
-      overflow-y: auto;
-      right: 0;
-      visibility: visible;
-      opacity: 1;
-    }
+  .toolbox-right {
+    margin-top: 0;
+    justify-content: flex-end;
   }
 }

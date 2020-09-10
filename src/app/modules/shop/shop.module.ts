@@ -10,6 +10,8 @@ import { SubcategoryComponent } from './components/subcategory/subcategory.compo
 import { SharedModule } from '@modules/shared/shared.module';
 import { ProductListingComponent } from './components/product-listing/product-listing.component';
 import { SearchComponent } from './components/search/search.component';
+import { BestSellerComponent } from './components/best-seller/best-seller.component';
+import { Under999Component } from './components/under999/under999.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SearchComponent } from './components/search/search.component';
     SubcategoryComponent,
     ProductListingComponent,
     SearchComponent,
+    BestSellerComponent,
+    Under999Component,
   ],
   imports: [CommonModule, ShopRoutingModule, SharedModule, Ng5SliderModule],
 })

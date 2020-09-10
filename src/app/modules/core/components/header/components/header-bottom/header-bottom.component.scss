@@ -119,6 +119,10 @@
   }
 }
 
+.mega-menu {
+  flex: 1;
+}
+
 @include mq("lg", "max") {
   .header-bottom {
     display: none;

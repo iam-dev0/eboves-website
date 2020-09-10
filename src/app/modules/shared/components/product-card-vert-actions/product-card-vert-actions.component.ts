@@ -85,8 +85,8 @@ export class ProductCardVertActionsComponent implements OnInit {
   }
 
   setPrice() {
-    const priceRange = getPriceRange(this.product);
-    this.price = `Rs. ${priceRange.min} - Rs. ${priceRange.max}`;
+    const { min, max } = getPriceRange(this.product);
+    this.price = min === max ? `Rs. ${min}` : `Rs. ${min} - Rs. ${max}`;
   }
 
   changeVariation(attributeValue: AttributeValue) {

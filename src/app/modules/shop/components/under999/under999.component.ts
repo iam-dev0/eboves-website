@@ -1,22 +1,19 @@
-import { getCategoryTree, filterProducts } from '@utils';
-import { Category } from '@models/category.model';
-import { tap } from 'rxjs/operators';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Product } from '@models/product.model';
-import { Observable } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SearchService } from '@services/search.service';
+import { Product } from '@models/product.model';
+import { Category } from '@models/category.model';
 import { SubSink } from 'subsink';
+import { SearchService } from '@services/search.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { filterProducts, getCategoryTree } from '@utils';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-under999',
+  templateUrl: './under999.component.html',
+  styleUrls: ['./under999.component.scss'],
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class Under999Component implements OnInit, OnDestroy {
   products: Product[] = [];
   categories: Category[];
-  searchValue: string = '';
   filteredProducts: Product[] = [];
 
   private subscriptions = new SubSink();
@@ -27,22 +24,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.searchValue = this.route.snapshot.paramMap.get('value');
-    this.setupParamsSubscription();
+    this.subscriptions.sink = this.searchService
+      .getUnder999()
+      .subscribe((products) => {
+        this.categories = getCategoryTree(products);
+        this.products = products;
+        this.filteredProducts = products;
+      });
     this.setupQuerySubscription();
-  }
-
-  setupParamsSubscription() {
-    this.subscriptions.sink = this.route.params.subscribe((params) => {
-      this.searchValue = params.value;
-      this.subscriptions.sink = this.searchService
-        .search(params.value)
-        .subscribe((products) => {
-          this.categories = getCategoryTree(products);
-          this.products = products;
-          this.filteredProducts = products;
-        });
-    });
   }
 
   setupQuerySubscription() {
