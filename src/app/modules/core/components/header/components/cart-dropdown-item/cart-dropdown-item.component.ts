@@ -1,6 +1,6 @@
 import { CartItem } from '@models/cart-item.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { getDiscountedPrice } from '@utils';
+import { getDiscountedPrice, getVariationName } from '@utils';
 
 @Component({
   selector: 'app-cart-dropdown-item',

@@ -5,7 +5,11 @@ import { Category } from '@models/category.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductVariation } from '@models/product-variation.model';
-import { isDiscountAvailable, getDiscountedPrice } from '@utils';
+import {
+  isDiscountAvailable,
+  getDiscountedPrice,
+  getVariationName,
+} from '@utils';
 import { ProductService } from '@services/product.service';
 import { CART_ITEM_LIMIT } from 'src/constants';
 
@@ -68,6 +72,10 @@ export class ProductFeaturesComponent implements OnInit {
       qty: this.qty,
       productName: this.name,
       productSlug: this.getProductSlug(),
+      variationName: getVariationName(
+        this.selectedVariation.attributes,
+        this.name
+      ),
     });
   }
 

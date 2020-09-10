@@ -1,6 +1,6 @@
 import { CartItem } from '@models/cart-item.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { isDiscountAvailable, getDiscountedPrice } from '@utils';
+import { getDiscountedPrice } from '@utils';
 import { CART_ITEM_LIMIT } from 'src/constants';
 import { CartService } from '@services/cart.service';
 

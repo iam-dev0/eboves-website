@@ -4,6 +4,8 @@ import { ProductVariation } from '@models/product-variation.model';
 import { Category } from '@models/category.model';
 import { Product } from '@models/product.model';
 import { PriceRange } from '@models/pricae-range.model';
+import { ProductAttribute } from '@models/product-attribute.model';
+import { ATTRIBUTE_TYPES } from 'src/constants';
 
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
@@ -73,4 +75,17 @@ export const isDiscountAvailable = (variation: ProductVariation): boolean => {
     variation.discountPercentage > 0 &&
     moment().isBetween(variation.discountStartTime, variation.discountEndTime)
   );
+};
+
+export const getVariationName = (
+  variationAttributes: ProductAttribute[],
+  productName: string
+): string => {
+  return `${productName} (${variationAttributes.reduce(
+    (acc, cur, idx) =>
+      acc +
+      (cur.type === ATTRIBUTE_TYPES.IMAGE ? cur.value.alt : cur.value.value) +
+      (idx === variationAttributes.length - 1 ? '' : ' + '),
+    ''
+  )})`;
 };

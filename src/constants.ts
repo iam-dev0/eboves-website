@@ -21,3 +21,8 @@ export const ORDER_SOURCE = {
   WEBSITE_DESKTOP: 'WEBSITE_DESKTOP',
   WEBSITE_MOBILE: 'WEBSITE_MOBILE',
 };
+
+export const ATTRIBUTE_TYPES = {
+  IMAGE: 'image',
+  TEXT: 'text',
+};
