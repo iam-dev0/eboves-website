@@ -61,7 +61,10 @@
     role="tabpanel"
     aria-labelledby="top-all-link"
   >
-    <app-product-grid [products]="tab.products"></app-product-grid>
+    <app-product-grid
+      [products]="tab.products"
+      cardType="vertActions"
+    ></app-product-grid>
   </div>
   <!-- .End .tab-pane -->
 </div>

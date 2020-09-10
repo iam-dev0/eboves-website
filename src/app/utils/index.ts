@@ -49,22 +49,28 @@ export const getCategoryTree = (products: Product[]): Category[] => {
 
 export const getPriceRange = (product: Product): PriceRange => {
   const min = product.variations?.reduce((accumulator, current, index) => {
-    if (index === 0) return current.price;
-    return current.price < accumulator ? current.price : accumulator;
+    const price = getDiscountedPrice(current);
+    if (index === 0) return price;
+    return price < accumulator ? price : accumulator;
   }, 0);
 
-  const max = product.variations?.reduce(
-    (accumulator, current) =>
-      current.price > accumulator ? current.price : accumulator,
-    0
-  );
+  const max = product.variations?.reduce((accumulator, current) => {
+    const price = getDiscountedPrice(current);
+    return price > accumulator ? price : accumulator;
+  }, 0);
 
   return { min, max };
 };
 
+export const getDiscountedPrice = (variation: ProductVariation): number => {
+  const { price, discountPercentage } = variation;
+  if (!isDiscountAvailable(variation)) return price;
+  return price - (discountPercentage * price) / 100;
+};
+
 export const isDiscountAvailable = (variation: ProductVariation): boolean => {
   return (
-    variation.discountPrice > 0 &&
+    variation.discountPercentage > 0 &&
     moment().isBetween(variation.discountStartTime, variation.discountEndTime)
   );
 };

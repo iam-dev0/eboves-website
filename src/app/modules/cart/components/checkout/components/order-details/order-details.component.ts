@@ -1,11 +1,11 @@
-import { catchError } from 'rxjs/operators';
-import { Observable, empty } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CartService } from '@services/cart.service';
 import { SHIPPING_TYPES } from './../../../../../../../constants';
 import { Cart } from '@models/cart.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { SHIPPING_CHARGES } from 'src/constants';
-import { OrderResponse } from '@models/api-responses/order-response.model';
+import { CartItem } from '@models/cart-item.model';
+import { getDiscountedPrice } from '@utils';
 
 @Component({
   selector: 'app-order-details',
@@ -16,7 +16,6 @@ export class OrderDetailsComponent implements OnInit {
   @Input() cart: Cart;
   shippingCharges: number = 0;
   formStatus: Observable<string> = this.cartService.formStatus;
-  // private subscriptions = new SubSink();
 
   constructor(private cartService: CartService) {}
 
@@ -26,16 +25,12 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   placeOrder() {
-    this.cartService
-      .placeOrder()
-      .pipe(
-        catchError((error) => {
-          console.log(error);
-          return empty();
-        })
-      )
-      .subscribe((order) => {
-        console.log(order);
-      });
+    this.cartService.placeOrder().subscribe((order) => {
+      console.log(order);
+    });
+  }
+
+  getPrice({ variation, qty }: CartItem): number {
+    return getDiscountedPrice(variation) * qty;
   }
 }

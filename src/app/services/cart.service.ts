@@ -1,5 +1,5 @@
 import { ProductVariation } from '@models/product-variation.model';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { Response } from '@models/api-responses/response.model';
 import { SHIPPING_TYPES, ORDER_SOURCE } from 'src/constants';
 import { environment } from '@environment/environment';
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { FORM_STATUS } from './../../constants';
 import { LocalStorageService } from './local-storage.service';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, empty } from 'rxjs';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { CartItem } from '@models/cart-item.model';
@@ -17,6 +17,7 @@ import { BillingForm } from '@models/billing-form.model';
 import { OrderRequest } from '@models/api-requests/order-request.model';
 import { OrderResponse } from '@models/api-responses/order-response.model';
 import { StockResponse } from '@models/api-responses/stock-response.model';
+import { isDiscountAvailable, getDiscountedPrice } from '@utils';
 
 @Injectable({
   providedIn: 'root',
@@ -104,12 +105,7 @@ export class CartService {
 
   private getItemPrice(cartItem: CartItem): number {
     const { qty, variation } = cartItem;
-    return moment().isBetween(
-      variation.discountStartTime,
-      variation.discountEndTime
-    )
-      ? variation.discountPrice * qty
-      : variation.price * qty;
+    return getDiscountedPrice(variation) * qty;
   }
 
   private isFormValid(): boolean {
@@ -150,6 +146,10 @@ export class CartService {
     return this.isFormValid() && !this.isCartEmpty();
   }
 
+  private emptyCart() {
+    this.updateCart([]);
+  }
+
   placeOrder(): Observable<OrderResponse> {
     if (this.canPlaceOrder()) {
       return this.client
@@ -157,7 +157,14 @@ export class CartService {
           `${environment.apiUrl}/orders/place-order`,
           this.getOrder()
         )
-        .pipe(map(({ data }) => data));
+        .pipe(
+          catchError((error) => {
+            console.log(error);
+            return empty();
+          }),
+          map(({ data }) => data),
+          tap(() => this.emptyCart())
+        );
     }
 
     return of(null);

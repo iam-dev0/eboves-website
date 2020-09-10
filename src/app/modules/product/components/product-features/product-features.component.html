@@ -25,9 +25,7 @@
       <del>{{ price }}</del>
     </span>
     <span class="product-price">
-      {{
-        isDiscountAvailable ? "Rs. " + selectedVariation.discountPrice : price
-      }}
+      {{ isDiscountAvailable ? "Rs. " + discountedPrice : price }}
     </span>
   </div>
   <!-- End .product-price -->

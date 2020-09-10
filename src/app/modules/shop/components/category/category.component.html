@@ -274,6 +274,7 @@
           <app-product-carousel
             [products]="featuredProducts$ | async"
             [customOptions]="carouselOptions"
+            type="verticalActions"
           ></app-product-carousel>
           <!-- End .owl-carousel -->
 
@@ -297,9 +298,9 @@
                 <label for="sortby">Sort by:</label>
                 <div class="select-custom">
                   <select name="sortby" id="sortby" class="form-control">
-                    <option value="popularity" selected="selected"
-                      >Most Popular</option
-                    >
+                    <option value="popularity" selected="selected">
+                      Most Popular
+                    </option>
                     <option value="rating">Most Rated</option>
                     <option value="date">Date</option>
                   </select>
@@ -702,10 +703,7 @@
                       <label class="custom-control-label" for="cus-rating-1">
                         <span class="ratings-container">
                           <span class="ratings">
-                            <span
-                              class="ratings-val"
-                              style="width: 100%;"
-                            ></span
+                            <span class="ratings-val" style="width: 100%"></span
                             ><!-- End .ratings-val --> </span
                           ><!-- End .ratings -->
                           <span class="ratings-text">( 24 )</span> </span
@@ -726,7 +724,7 @@
                       <label class="custom-control-label" for="cus-rating-2">
                         <span class="ratings-container">
                           <span class="ratings">
-                            <span class="ratings-val" style="width: 80%;"></span
+                            <span class="ratings-val" style="width: 80%"></span
                             ><!-- End .ratings-val --> </span
                           ><!-- End .ratings -->
                           <span class="ratings-text">( 8 )</span> </span
@@ -747,7 +745,7 @@
                       <label class="custom-control-label" for="cus-rating-3">
                         <span class="ratings-container">
                           <span class="ratings">
-                            <span class="ratings-val" style="width: 60%;"></span
+                            <span class="ratings-val" style="width: 60%"></span
                             ><!-- End .ratings-val --> </span
                           ><!-- End .ratings -->
                           <span class="ratings-text">( 5 )</span> </span
@@ -768,7 +766,7 @@
                       <label class="custom-control-label" for="cus-rating-4">
                         <span class="ratings-container">
                           <span class="ratings">
-                            <span class="ratings-val" style="width: 40%;"></span
+                            <span class="ratings-val" style="width: 40%"></span
                             ><!-- End .ratings-val --> </span
                           ><!-- End .ratings -->
                           <span class="ratings-text">( 1 )</span> </span
@@ -789,7 +787,7 @@
                       <label class="custom-control-label" for="cus-rating-5">
                         <span class="ratings-container">
                           <span class="ratings">
-                            <span class="ratings-val" style="width: 20%;"></span
+                            <span class="ratings-val" style="width: 20%"></span
                             ><!-- End .ratings-val --> </span
                           ><!-- End .ratings -->
                           <span class="ratings-text">( 3 )</span> </span
@@ -812,28 +810,28 @@
 
               <div class="widget-body">
                 <div class="filter-colors">
-                  <a href="#" style="background: #b87145;"
+                  <a href="#" style="background: #b87145"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #f0c04a;"
+                  <a href="#" style="background: #f0c04a"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #333333;"
+                  <a href="#" style="background: #333333"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" class="selected" style="background: #cc3333;"
+                  <a href="#" class="selected" style="background: #cc3333"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #3399cc;"
+                  <a href="#" style="background: #3399cc"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #669933;"
+                  <a href="#" style="background: #669933"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #f2719c;"
+                  <a href="#" style="background: #f2719c"
                     ><span class="sr-only">Color Name</span></a
                   >
-                  <a href="#" style="background: #ebebeb;"
+                  <a href="#" style="background: #ebebeb"
                     ><span class="sr-only">Color Name</span></a
                   >
                 </div>

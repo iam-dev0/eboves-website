@@ -1,7 +1,8 @@
 import { CartItem } from '@models/cart-item.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { isDiscountAvailable } from '@utils';
+import { isDiscountAvailable, getDiscountedPrice } from '@utils';
 import { CART_ITEM_LIMIT } from 'src/constants';
+import { CartService } from '@services/cart.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -16,15 +17,12 @@ export class CartListComponent implements OnInit {
   }>();
   @Input() cartList: CartItem[] = [];
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {}
 
   getPrice(cartItem: CartItem): number {
-    const { variation } = cartItem;
-    return isDiscountAvailable(variation)
-      ? variation.discountPrice
-      : variation.price;
+    return getDiscountedPrice(cartItem.variation);
   }
 
   getItemTotal(cartItem: CartItem): number {

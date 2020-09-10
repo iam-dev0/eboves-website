@@ -16,7 +16,7 @@
           <td>
             <a>{{ item.productName }}</a>
           </td>
-          <td>{{ item.variation.price | currency: "PKR":"symbol":"1.2-2" }}</td>
+          <td>{{ getPrice(item) | currency: "PKR":"symbol":"1.2-2" }}</td>
         </tr>
 
         <tr class="summary-subtotal">

@@ -1,13 +1,9 @@
 <div class="product product-7 text-center">
   <figure class="product-media">
-    <span
-      *ngIf="tagLabel && tagLabel !== ''"
-      class="product-label {{ tagClass }}"
-      >{{ tagLabel }}</span
-    >
-    <span
-      *ngIf="selectedVariation && selectedVariation.preOrder"
-      class="product-label label-new"
+    <span *ngIf="tagLabel" class="product-label {{ tagClass }}">{{
+      tagLabel
+    }}</span>
+    <span *ngIf="checkIfPreOrder()" class="product-label label-new"
       >Pre-Order</span
     >
     <a [routerLink]="['/product', product.slug]">

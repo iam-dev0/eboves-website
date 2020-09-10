@@ -3,12 +3,9 @@ import { CartService } from './../../../../services/cart.service';
 import { Brand } from './../../../../models/brand.model';
 import { Category } from '@models/category.model';
 import { ProductAttribute } from '@models/product-attribute.model';
-import { Product } from '@models/product.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductVariation } from '@models/product-variation.model';
-import { getPriceRange, isDiscountAvailable } from '@utils';
-import { AttributeValue } from '@models/attribute-value.model';
-import { BehaviorSubject } from 'rxjs';
+import { isDiscountAvailable, getDiscountedPrice } from '@utils';
 import { ProductService } from '@services/product.service';
 import { CART_ITEM_LIMIT } from 'src/constants';
 
@@ -30,6 +27,7 @@ export class ProductFeaturesComponent implements OnInit {
   qtyLimit: number = 5;
   isOutOfStock: boolean = false;
   isDiscountAvailable: boolean = false;
+  discountedPrice: number = 0;
 
   constructor(
     private productService: ProductService,
@@ -42,6 +40,8 @@ export class ProductFeaturesComponent implements OnInit {
       this.selectedVariation = variation;
       this.isOutOfStock = variation.availableQuantity < 1;
       this.isDiscountAvailable = isDiscountAvailable(variation);
+      this.isDiscountAvailable &&
+        (this.discountedPrice = getDiscountedPrice(variation));
       this.qty = 1;
     });
   }
