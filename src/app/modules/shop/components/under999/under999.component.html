@@ -16,51 +16,10 @@
         [products]="filteredProducts"
         [showBrandFilter]="true"
       >
-        <div class="sidebar sidebar-shop" categoriesFilter>
-          <div class="widget widget-collapsible">
-            <h3 class="widget-title">
-              <a
-                data-toggle="collapse"
-                href="#widget-1"
-                role="button"
-                aria-expanded="true"
-                aria-controls="widget-1"
-              >
-                Category
-              </a>
-            </h3>
-            <!-- End .widget-title -->
-
-            <div class="collapse show" id="widget-1">
-              <div class="widget-body">
-                <div class="filter-items filter-items-count">
-                  <div class="filter-item" *ngFor="let category of categories">
-                    <div class="custom-control custom-checkbox">
-                      <a
-                        [routerLink]="['/shop/under999']"
-                        [queryParams]="{ catSlug: category.slug }"
-                      >
-                        <label
-                          class="custom-control-label {{
-                            isActive(category.slug) ? 'active' : ''
-                          }}"
-                          >{{ category.name }}</label
-                        ></a
-                      >
-                    </div>
-                    <!-- End .custom-checkbox -->
-                    <!-- <span class="item-count">{{ part.productCount }}</span> -->
-                  </div>
-                  <!-- End .filter-item -->
-                </div>
-                <!-- End .filter-items -->
-              </div>
-              <!-- End .widget-body -->
-            </div>
-            <!-- End .collapse -->
-          </div>
-          <!-- End .widget -->
-        </div>
+        <app-categories-filter
+          [categories]="categories"
+          categoriesFilter
+        ></app-categories-filter>
       </app-product-listing>
     </div>
     <!-- End .container -->

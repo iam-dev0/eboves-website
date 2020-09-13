@@ -18,9 +18,6 @@ export class BrandComponent implements OnInit, OnDestroy {
   filteredProducts: Product[] = [];
   brand: Brand;
   categories: Category[];
-  activeCategory: string;
-  activeSubCategory: string;
-  activePart: string;
 
   private subscriptions = new SubSink();
 

@@ -1,4 +1,4 @@
-/* Category */
+/* Brand */
 @import "../../../../../assets/sass/mixins/clearfix";
 @import "../../../../../assets/sass/mixins/breakpoints";
 @import "../../../../../assets/sass/mixins/lazy";
@@ -416,72 +416,5 @@
   .toolbox-right {
     margin-top: 0;
     justify-content: flex-end;
-  }
-}
-
-.mmenu-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 1rem;
-  top: 2rem;
-  z-index: 10;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.2rem;
-  color: #000;
-  margin-top: -1.5rem;
-  border-radius: 0;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  transition: color 0.35s;
-
-  &::after {
-    font-family: "molla";
-    content: "\f110";
-    height: 100%;
-    display: inline-block;
-    line-height: 1.2rem;
-    width: 5rem;
-    text-align: center;
-  }
-
-  &:hover,
-  &:focus {
-    color: $primary-color;
-  }
-}
-
-.sf-with-ul {
-  color: #000;
-
-  &.active {
-    color: $primary-color;
-  }
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: $primary-color;
-  }
-}
-
-.mmenu-btn[aria-expanded="true"]::after {
-  content: "\e802";
-}
-
-.filter-item {
-  .collapse-menu {
-    padding: 0;
-    padding-left: 2rem;
-    margin: 0;
-
-    li {
-      div {
-        position: relative;
-      }
-    }
   }
 }

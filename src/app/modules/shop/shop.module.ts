@@ -12,6 +12,7 @@ import { ProductListingComponent } from './components/product-listing/product-li
 import { SearchComponent } from './components/search/search.component';
 import { BestSellerComponent } from './components/best-seller/best-seller.component';
 import { Under999Component } from './components/under999/under999.component';
+import { CategoriesFilterComponent } from './components/categories-filter/categories-filter.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { Under999Component } from './components/under999/under999.component';
     SearchComponent,
     BestSellerComponent,
     Under999Component,
+    CategoriesFilterComponent,
   ],
   imports: [CommonModule, ShopRoutingModule, SharedModule, Ng5SliderModule],
 })
