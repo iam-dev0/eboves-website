@@ -88,11 +88,6 @@
   opacity: 0;
 }
 
-.mmenu-active .mobile-menu-overlay {
-  visibility: visible;
-  opacity: 1;
-}
-
 .mobile-nav {
   padding: 0;
   margin: 0 0 2.5rem;
@@ -137,7 +132,6 @@
     ul {
       margin: 0;
       padding: 0.7rem 0 0.9rem;
-      display: none;
       margin-bottom: 0;
       border-bottom: 0.1rem solid rgba(255, 255, 255, 0.08);
 
@@ -185,7 +179,7 @@
   justify-content: center;
   position: absolute;
   right: 1rem;
-  top: 50%;
+  top: 2rem;
   z-index: 10;
   width: 3rem;
   height: 3rem;
@@ -201,7 +195,11 @@
   &::after {
     font-family: "molla";
     content: "\f110";
+    height: 100%;
     display: inline-block;
+    line-height: 2.5rem;
+    width: 5rem;
+    text-align: center;
   }
 
   &:hover,
@@ -210,6 +208,16 @@
   }
 
   .open > a > &::after {
+    content: "\e802";
+  }
+}
+
+.mmenu-btn[aria-expanded="true"]::after {
+  content: "\e802";
+}
+
+a.sf-with-ul[aria-expanded="true"] {
+  span::after {
     content: "\e802";
   }
 }

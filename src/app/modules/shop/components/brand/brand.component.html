@@ -48,22 +48,85 @@
               <div class="widget-body">
                 <div class="filter-items filter-items-count">
                   <div class="filter-item" *ngFor="let category of categories">
-                    <div class="custom-control custom-checkbox">
+                    <div>
                       <a
-                        [routerLink]="['/shop/brand', brand.slug]"
+                        class="sf-with-ul {{
+                          category.slug === activeCategory ? 'active' : ''
+                        }}"
+                        [routerLink]="[]"
                         [queryParams]="{ catSlug: category.slug }"
-                      >
-                        <label
-                          class="custom-control-label {{
-                            isActive(category.slug) ? 'active' : ''
-                          }}"
-                          >{{ category.name }}</label
-                        ></a
-                      >
+                        >{{ category.name }}
+                      </a>
+                      <span
+                        class="mmenu-btn"
+                        data-toggle="collapse"
+                        attr.data-target="#catCollapse{{ category.id }}"
+                        [attr.aria-expanded]="category.slug === activeCategory"
+                        type="button"
+                        attr.aria-controls="catCollapse{{ category.id }}"
+                      ></span>
                     </div>
-                    <!-- End .custom-checkbox -->
-                    <!-- <span class="item-count">{{ part.productCount }}</span> -->
+                    <ul
+                      id="catCollapse{{ category.id }}"
+                      class="collapse collapse-menu {{
+                        category.slug === activeCategory ? 'show' : ''
+                      }}"
+                    >
+                      <li *ngFor="let subcategory of category.childrens">
+                        <div>
+                          <a
+                            class="sf-with-ul {{
+                              subcategory.slug === activeSubCategory
+                                ? 'active'
+                                : ''
+                            }}"
+                            [routerLink]="[]"
+                            [queryParams]="{
+                              catSlug: category.slug,
+                              subCatSlug: subcategory.slug
+                            }"
+                            >{{ subcategory.name }}
+                          </a>
+                          <span
+                            class="mmenu-btn"
+                            data-toggle="collapse"
+                            attr.data-target="#subCatCollapse{{
+                              subcategory.id
+                            }}"
+                            [attr.aria-expanded]="
+                              subcategory.slug === activeSubCategory
+                            "
+                            type="button"
+                            attr.aria-controls="subCatCollapse{{
+                              subcategory.id
+                            }}"
+                          ></span>
+                        </div>
+                        <ul
+                          id="subCatCollapse{{ subcategory.id }}"
+                          class="collapse collapse-menu {{
+                            subcategory.slug === activeSubCategory ? 'show' : ''
+                          }}"
+                        >
+                          <li *ngFor="let part of subcategory.childrens">
+                            <a
+                              class="sf-with-ul {{
+                                part.slug === activePart ? 'active' : ''
+                              }}"
+                              [routerLink]="[]"
+                              [queryParams]="{
+                                catSlug: category.slug,
+                                subCatSlug: subcategory.slug,
+                                partSlug: part.slug
+                              }"
+                              >{{ part.name }}
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
+                  <!-- End .custom-checkbox -->
                   <!-- End .filter-item -->
                 </div>
                 <!-- End .filter-items -->

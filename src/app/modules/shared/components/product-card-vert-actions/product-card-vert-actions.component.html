@@ -73,7 +73,7 @@
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let value of values">
         <a class="active" (click)="changeVariation(value)">
-          <img [src]="value.value" [alt]="value.alt" />
+          <img [src]="value?.value" [alt]="value?.alt" />
         </a>
       </ng-template>
     </owl-carousel-o>

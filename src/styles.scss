@@ -19,3 +19,10 @@
 body.noscroll {
   overflow: hidden;
 }
+
+.mmenu-active {
+  .mobile-menu-overlay {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}

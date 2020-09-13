@@ -1,11 +1,9 @@
 import { SubSink } from 'subsink';
 import { Category } from '@models/category.model';
-import { tap } from 'rxjs/operators';
 import { Brand } from '@models/brand.model';
-import { Observable } from 'rxjs';
 import { Product } from '@models/product.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BrandsService } from '@services/brands.service';
 import { SeoService } from '@services/seo.service';
 import { getMetaTags, getCategoryTree, filterProducts } from '@utils';
@@ -20,6 +18,9 @@ export class BrandComponent implements OnInit, OnDestroy {
   filteredProducts: Product[] = [];
   brand: Brand;
   categories: Category[];
+  activeCategory: string;
+  activeSubCategory: string;
+  activePart: string;
 
   private subscriptions = new SubSink();
 
@@ -59,21 +60,25 @@ export class BrandComponent implements OnInit, OnDestroy {
   handleQueryChange(query: Params) {
     for (const field in query) {
       if (Object.prototype.hasOwnProperty.call(query, field)) {
+        const slug = query[field];
         switch (field) {
           case 'catSlug':
             this.filteredProducts = filterProducts(this.products, {
-              catSlug: query[field],
+              catSlug: slug,
             });
+            this.activeCategory = slug;
             break;
           case 'subCatSlug':
             this.filteredProducts = filterProducts(this.products, {
-              subCatSlug: query[field],
+              subCatSlug: slug,
             });
+            this.activeSubCategory = slug;
             break;
           case 'partSlug':
             this.filteredProducts = filterProducts(this.products, {
-              partSlug: query[field],
+              partSlug: slug,
             });
+            this.activePart = slug;
             break;
           default:
             break;
