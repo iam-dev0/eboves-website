@@ -19,4 +19,20 @@ export class SearchService {
       )
       .pipe(map(({ data }) => data));
   }
+
+  getBestSeller(): Observable<Product[]> {
+    return this.client
+      .get<Response<Product[]>>(
+        `${environment.apiUrl}products?bestSeller=true&pageSize=100`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  getUnder999(): Observable<Product[]> {
+    return this.client
+      .get<Response<Product[]>>(
+        `${environment.apiUrl}products?pricelte=1000&pricegte=0&pageSize=100`
+      )
+      .pipe(map(({ data }) => data));
+  }
 }

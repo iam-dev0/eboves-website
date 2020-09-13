@@ -1,13 +1,14 @@
+import { BestSellerComponent } from './components/best-seller/best-seller.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ShopComponent } from './shop.component';
 import { BrandsResolver } from '@services/resolvers/brands.resolver';
 import { CategoriesResolver } from '@services/resolvers/categories.resolver';
 import { SearchComponent } from './components/search/search.component';
+import { Under999Component } from './components/under999/under999.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,14 @@ const routes: Routes = [
   {
     path: 'search/:value',
     component: SearchComponent,
+  },
+  {
+    path: 'best-seller',
+    component: BestSellerComponent,
+  },
+  {
+    path: 'under999',
+    component: Under999Component,
   },
 ];
 

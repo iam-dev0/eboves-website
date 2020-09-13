@@ -12,7 +12,7 @@ export class ProductAttributeComponent implements OnInit {
   @Output() onChange = new EventEmitter<ProductAttribute>();
   @Input() attribute: ProductAttribute;
   @Input() values: AttributeValue[];
-  private selectedValue: AttributeValue;
+  selectedValue: AttributeValue;
 
   constructor(private productService: ProductService) {}
 
@@ -37,11 +37,20 @@ export class ProductAttributeComponent implements OnInit {
     return false;
   }
 
-  updateSelectedValue(value: AttributeValue) {
-    this.selectedValue = value;
+  updateSelectedImageValue(value: AttributeValue) {
     this.onChange.emit({
       ...this.attribute,
       value,
     });
+  }
+
+  updateSelectedTextValue(value: string) {
+    const attributeValue = this.values.find((v) => v.value === value);
+    if (attributeValue) {
+      this.onChange.emit({
+        ...this.attribute,
+        value: attributeValue,
+      });
+    }
   }
 }

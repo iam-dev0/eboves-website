@@ -49,17 +49,19 @@ export class CategoryComponent implements OnInit {
     this.category = this.route.snapshot.data.category;
     // console.log(this.route.snapshot.data.category);
     this.setMetaData(this.category);
-    this.featuredProducts$ = this.categoriesService.getFeatured(
-      this.category.slug,
-      15
-    );
-    this.bestSellerProducts$ = this.categoriesService.getBestSeller(
-      this.category.slug
-    );
+    if (this.category) {
+      this.featuredProducts$ = this.categoriesService.getFeatured(
+        this.category.slug,
+        15
+      );
+      this.bestSellerProducts$ = this.categoriesService.getBestSeller(
+        this.category.slug
+      );
+    }
   }
 
   setMetaData(category: Category) {
-    this.seoService.setTitle(category.metaTitle);
+    this.seoService.setTitle(category?.metaTitle);
     this.seoService.setMetaTags(getMetaTags(category));
   }
 }

@@ -1,5 +1,3 @@
-import { ProductVariation } from '@models/product-variation.model';
-import { AttributeValue } from '@models/attribute-value.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Product } from '@models/product.model';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +6,8 @@ import { SeoService } from '@services/seo.service';
 import { getMetaTags, getPriceRange } from '@utils';
 import { ProductService } from '@services/product.service';
 import { PriceRange } from '@models/pricae-range.model';
+
+import { getAttributesWithValues } from '@utils';
 
 @Component({
   selector: 'app-product',
@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.product = this.route.snapshot.data.product;
     this.galleryImages = this.getProductImages(this.product);
-    this.attributes = this.getAttributesWithValues(this.product);
+    this.attributes = getAttributesWithValues(this.product);
     this.price = this.getProductPriceRange(this.product);
 
     this.setMetaData(this.route.snapshot.data.product);
@@ -43,35 +43,7 @@ export class ProductComponent implements OnInit {
   }
 
   getProductImages(product: Product): string[] {
-    return [product?.mainImage, ...product?.images];
-  }
-
-  getAttributesWithValues(product: Product): ProductAttribute[] {
-    return product.attributes.map((attribute) => {
-      return {
-        ...attribute,
-        attributeValues: this.getAttributeValues(product.variations, attribute),
-      };
-    });
-  }
-
-  getAttributeValues(
-    variations: ProductVariation[],
-    attribute: ProductAttribute
-  ): AttributeValue[] {
-    const values: AttributeValue[] = [];
-    variations.forEach(({ attributes }) => {
-      attributes.forEach(({ id, name, type, value }) => {
-        if (
-          id === attribute.id &&
-          name === attribute.name &&
-          type === attribute.type
-        ) {
-          if (!values.find(({ id }) => id === value.id)) values.push(value);
-        }
-      });
-    });
-    return values;
+    return [product?.mainImage];
   }
 
   getProductPriceRange(product: Product): string {

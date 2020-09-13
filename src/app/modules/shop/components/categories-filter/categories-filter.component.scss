@@ -1,0 +1,203 @@
+@import "../../../../../assets/sass/mixins/clearfix";
+@import "../../../../../assets/sass/mixins/breakpoints";
+@import "../../../../../assets/sass/mixins/lazy";
+@import "../../../../../assets/sass/mixins/buttons";
+
+@import "../../../../../assets/sass/config/fonts";
+@import "../../../../../assets/sass/config/variables";
+
+.sidebar-shop {
+  .widget {
+    color: $dark-text;
+    margin: 0 0 2rem;
+    border-bottom: 0.1rem solid #ebebeb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .widget-title {
+    color: $dark-text;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.7rem;
+  }
+
+  .custom-control {
+    padding-left: 2.7rem;
+    margin: 0;
+  }
+
+  .custom-control-label {
+    font-weight: 400;
+    color: $dark-text;
+    cursor: pointer;
+    padding-left: 1rem;
+
+    &.active {
+      color: $primary-color;
+    }
+
+    &::before {
+      border-radius: 0.2rem;
+      display: none;
+    }
+  }
+}
+
+.widget-clean {
+  display: flex;
+  align-items: center;
+  padding-top: 0.6rem;
+  padding-bottom: 2.1rem;
+
+  label {
+    color: inherit;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  a {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-left: auto;
+  }
+}
+
+.widget-collapsible {
+  .widget-title {
+    a {
+      position: relative;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      padding-right: 3rem;
+
+      &:after {
+        color: $dark-text;
+        content: "\f110";
+        display: block;
+        font-family: "molla";
+        font-size: 1.4rem;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        right: 1.6rem;
+        margin-top: -0.7rem;
+      }
+
+      &.collapsed {
+        &:after {
+          content: "\e802";
+        }
+      }
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+  }
+
+  .widget-body {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.filter-item {
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+
+.filter-items-count {
+  .item-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    min-width: 2.5rem;
+    height: 2rem;
+    margin-top: -1rem;
+    font-weight: 300;
+    font-size: 1.3rem;
+    line-height: 1;
+    border-radius: 0.6rem;
+    color: #777;
+    background-color: #f8f8f8;
+  }
+}
+
+.mmenu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  color: #000;
+  margin-top: -1.5rem;
+  border-radius: 0;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.35s;
+
+  &::after {
+    font-family: "molla";
+    content: "\f110";
+    height: 100%;
+    display: inline-block;
+    line-height: 1.2rem;
+    width: 5rem;
+    text-align: center;
+  }
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}
+
+.sf-with-ul {
+  color: #000;
+
+  &.active {
+    color: $primary-color;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $primary-color;
+  }
+}
+
+.mmenu-btn[aria-expanded="true"]::after {
+  content: "\e802";
+}
+
+.filter-item {
+  .collapse-menu {
+    padding: 0;
+    padding-left: 2rem;
+    margin: 0;
+
+    li {
+      div {
+        position: relative;
+      }
+    }
+  }
+}

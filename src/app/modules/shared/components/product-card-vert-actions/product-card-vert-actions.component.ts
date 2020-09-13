@@ -1,6 +1,6 @@
 import { ProductVariation } from '@models/product-variation.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 import { AttributeValue } from '@models/attribute-value.model';
@@ -14,6 +14,7 @@ import { getPriceRange } from '@utils';
   styleUrls: ['./product-card-vert-actions.component.scss'],
 })
 export class ProductCardVertActionsComponent implements OnInit {
+  @Output() onQuickViewClick = new EventEmitter<string>();
   @Input() product: Product;
   tagLabel: string = '';
   tagClass: string = '';
@@ -85,8 +86,8 @@ export class ProductCardVertActionsComponent implements OnInit {
   }
 
   setPrice() {
-    const priceRange = getPriceRange(this.product);
-    this.price = `Rs. ${priceRange.min} - Rs. ${priceRange.max}`;
+    const { min, max } = getPriceRange(this.product);
+    this.price = min === max ? `Rs. ${min}` : `Rs. ${min} - Rs. ${max}`;
   }
 
   changeVariation(attributeValue: AttributeValue) {
@@ -100,5 +101,9 @@ export class ProductCardVertActionsComponent implements OnInit {
         ) > -1
     );
     this.image = this.selectedVariation?.mainImage;
+  }
+
+  handleQuickViewClick() {
+    this.onQuickViewClick.emit(this.product.slug);
   }
 }

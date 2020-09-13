@@ -15,3 +15,14 @@
 
 // $primary-color: #a6c76c;
 // $secondary-color: #92b25a;
+
+body.noscroll {
+  overflow: hidden;
+}
+
+.mmenu-active {
+  .mobile-menu-overlay {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}

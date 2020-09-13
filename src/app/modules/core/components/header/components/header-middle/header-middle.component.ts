@@ -19,5 +19,6 @@ export class HeaderMiddleComponent implements OnInit {
   toggleMobileDrawer() {
     this.mobileDrawerOpen = !this.mobileDrawerOpen;
     this.renderer.addClass(this.document.body, 'mmenu-active');
+    this.renderer.addClass(this.document.body, 'noscroll');
   }
 }

@@ -16,7 +16,7 @@ export interface Product {
   commentsCount: number;
   brand?: Brand;
   variations: ProductVariation[];
-  images?: any[];
+  images?: string[];
   category?: Category;
   description?: string;
   additionalInformation?: string;
