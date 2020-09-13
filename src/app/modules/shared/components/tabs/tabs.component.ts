@@ -8,8 +8,15 @@ import { Tab } from '@models/tab.model';
 })
 export class TabsComponent implements OnInit {
   @Input() tabs: Tab[];
+  selectedTab: Tab;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedTab = this.tabs[0];
+  }
+
+  onTabChange(tab: Tab) {
+    this.selectedTab = tab;
+  }
 }

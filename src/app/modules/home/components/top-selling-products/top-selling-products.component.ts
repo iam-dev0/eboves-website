@@ -1,8 +1,10 @@
+import { Category } from '@models/category.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '@modules/home/services/api.service';
 import { Product } from '@models/product.model';
 import { Tab } from '@models/tab.model';
+import { filterProducts } from '@utils';
 
 @Component({
   selector: 'app-top-selling-products',
@@ -23,6 +25,24 @@ export class TopSellingProductsComponent implements OnInit {
   }
 
   getTabs(data: Product[]): Tab[] {
-    return [{ name: 'All', products: data }];
+    const categories: Category[] = this.getMainCategories(data);
+    return [
+      { name: 'All', products: data, id: 0 },
+      ...categories.map(({ slug, name, id }) => ({
+        id,
+        name,
+        products: filterProducts(data, { catSlug: slug }),
+      })),
+    ];
+  }
+
+  getMainCategories(products: Product[]): Category[] {
+    const categories: Category[] = products.map(
+      ({ category }) => category?.parent?.parent
+    );
+    return categories.filter(
+      (category, index) =>
+        categories.findIndex(({ slug }) => category.slug === slug) === index
+    );
   }
 }

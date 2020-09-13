@@ -19,6 +19,6 @@ export interface ProductVariation {
   trending?: boolean;
   preOrder?: boolean;
   attributes: ProductAttribute[];
-  images?: any[];
+  images?: string[];
   shortDescription?: string;
 }

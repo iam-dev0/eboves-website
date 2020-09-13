@@ -1,3 +1,4 @@
+import { AttributeValue } from '@models/attribute-value.model';
 import * as moment from 'moment';
 
 import { ProductVariation } from '@models/product-variation.model';
@@ -5,6 +6,7 @@ import { Category } from '@models/category.model';
 import { Product } from '@models/product.model';
 import { PriceRange } from '@models/pricae-range.model';
 import { FilterOptions } from '@models/filter-options.model';
+import { ProductAttribute } from '@models/product-attribute.model';
 
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
@@ -99,4 +101,35 @@ export const filterProducts = (
     );
   }
   return products;
+};
+
+export const getAttributesWithValues = (
+  product: Product
+): ProductAttribute[] => {
+  return product.attributes?.map((attribute) => {
+    return {
+      ...attribute,
+      attributeValues: getAttributeValues(product.variations, attribute),
+    };
+  });
+};
+
+const getAttributeValues = (
+  variations: ProductVariation[],
+  attribute: ProductAttribute
+): AttributeValue[] => {
+  const values: AttributeValue[] = [];
+  variations.forEach(({ attributes }) => {
+    attributes.forEach(({ id, name, type, value: attributeValue }) => {
+      if (
+        id === attribute.id &&
+        name === attribute.name &&
+        type === attribute.type
+      ) {
+        if (!values.find(({ value }) => value === attributeValue.value))
+          values.push(attributeValue);
+      }
+    });
+  });
+  return values;
 };

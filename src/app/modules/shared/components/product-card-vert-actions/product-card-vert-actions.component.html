@@ -21,7 +21,12 @@
       <!-- <a href="#" class="btn-product-icon btn-wishlist btn-expandable"
         ><span>add to wishlist</span></a
       > -->
-      <a class="btn-product-icon btn-quickview" title="Quick view"
+      <a
+        data-toggle="modal"
+        data-target="#quick-view-modal"
+        class="btn-product-icon btn-quickview"
+        title="Quick view"
+        (click)="handleQuickViewClick()"
         ><span>Quick view</span></a
       >
       <!-- <a href="#" class="btn-product-icon btn-compare" title="Compare"
