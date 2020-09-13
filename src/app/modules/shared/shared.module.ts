@@ -9,6 +9,10 @@ import { ProductCardSimpleComponent } from './components/product-card-simple/pro
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
 import { ProductGridComponent } from './components/product-grid/product-grid.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ProductQuickViewComponent } from './components/product-quick-view/product-quick-view.component';
+import { ProductFeaturesComponent } from './components/product-features/product-features.component';
+import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
+import { ProductAttributeComponent } from './components/product-attribute/product-attribute.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ProductCarouselComponent,
     ProductGridComponent,
     TabsComponent,
+    ProductQuickViewComponent,
+    ProductFeaturesComponent,
+    ImageGalleryComponent,
+    ProductAttributeComponent,
   ],
   imports: [CommonModule, CarouselModule, NgxPaginationModule, RouterModule],
   exports: [
@@ -28,6 +36,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ProductCarouselComponent,
     ProductGridComponent,
     TabsComponent,
+    ProductFeaturesComponent,
+    ImageGalleryComponent,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,54 @@
+<div
+  class="modal fade"
+  id="quick-view-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"><i class="icon-close"></i></span>
+        </button>
+        <div class="container quickView-container">
+          <div class="quickView-content">
+            <div class="product-details-top">
+              <div class="row">
+                <div class="col-md-6">
+                  <app-image-gallery
+                    [images]="galleryImages"
+                  ></app-image-gallery>
+                </div>
+                <!-- End .col-md-6 -->
+
+                <div class="col-md-6">
+                  <app-product-features
+                    [name]="product?.name"
+                    [price]="price"
+                    [description]="shortDescription"
+                    [attributes]="attributes"
+                    [category]="product?.category"
+                    [brand]="product?.brand"
+                  ></app-product-features>
+                  <!-- End .product-details -->
+                </div>
+                <!-- End .col-md-6 -->
+              </div>
+              <!-- End .row -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End .modal-body -->
+    </div>
+    <!-- End .modal-content -->
+  </div>
+  <!-- End .modal-dialog -->
+</div>
+<!-- End .modal -->

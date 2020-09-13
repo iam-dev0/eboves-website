@@ -1,4 +1,4 @@
-import { getCategoryTree } from '@utils';
+import { getCategoryTree, filterProducts } from '@utils';
 import { Category } from '@models/category.model';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -58,17 +58,17 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (Object.prototype.hasOwnProperty.call(query, field)) {
         switch (field) {
           case 'catSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
+            this.filteredProducts = filterProducts(this.products, {
               catSlug: query[field],
             });
             break;
           case 'subCatSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
+            this.filteredProducts = filterProducts(this.products, {
               subCatSlug: query[field],
             });
             break;
           case 'partSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
+            this.filteredProducts = filterProducts(this.products, {
               partSlug: query[field],
             });
             break;
@@ -77,36 +77,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         }
       }
     }
-  }
-
-  filterProducts(
-    products: Product[],
-    { catSlug = '', subCatSlug = '', partSlug = '' }
-  ): Product[] {
-    if (partSlug) {
-      return products.filter(({ category: { slug } }) => slug === partSlug);
-    }
-    if (subCatSlug) {
-      return products.filter(
-        ({
-          category: {
-            parent: { slug },
-          },
-        }) => slug === subCatSlug
-      );
-    }
-    if (catSlug) {
-      return products.filter(
-        ({
-          category: {
-            parent: {
-              parent: { slug },
-            },
-          },
-        }) => slug === catSlug
-      );
-    }
-    return products;
   }
 
   isActive(slug: string): boolean {

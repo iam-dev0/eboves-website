@@ -1,14 +1,12 @@
 import { SubSink } from 'subsink';
 import { Category } from '@models/category.model';
-import { tap } from 'rxjs/operators';
 import { Brand } from '@models/brand.model';
-import { Observable } from 'rxjs';
 import { Product } from '@models/product.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BrandsService } from '@services/brands.service';
 import { SeoService } from '@services/seo.service';
-import { getMetaTags, getCategoryTree } from '@utils';
+import { getMetaTags, getCategoryTree, filterProducts } from '@utils';
 
 @Component({
   selector: 'app-brand',
@@ -59,57 +57,31 @@ export class BrandComponent implements OnInit, OnDestroy {
   handleQueryChange(query: Params) {
     for (const field in query) {
       if (Object.prototype.hasOwnProperty.call(query, field)) {
+        const slug = query[field];
         switch (field) {
           case 'catSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
-              catSlug: query[field],
+            this.filteredProducts = filterProducts(this.products, {
+              catSlug: slug,
             });
+            this.activeCategory = slug;
             break;
           case 'subCatSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
-              subCatSlug: query[field],
+            this.filteredProducts = filterProducts(this.products, {
+              subCatSlug: slug,
             });
+            this.activeSubCategory = slug;
             break;
           case 'partSlug':
-            this.filteredProducts = this.filterProducts(this.products, {
-              partSlug: query[field],
+            this.filteredProducts = filterProducts(this.products, {
+              partSlug: slug,
             });
+            this.activePart = slug;
             break;
           default:
             break;
         }
       }
     }
-  }
-
-  filterProducts(
-    products: Product[],
-    { catSlug = '', subCatSlug = '', partSlug = '' }
-  ): Product[] {
-    if (partSlug) {
-      return products.filter(({ category: { slug } }) => slug === partSlug);
-    }
-    if (subCatSlug) {
-      return products.filter(
-        ({
-          category: {
-            parent: { slug },
-          },
-        }) => slug === subCatSlug
-      );
-    }
-    if (catSlug) {
-      return products.filter(
-        ({
-          category: {
-            parent: {
-              parent: { slug },
-            },
-          },
-        }) => slug === catSlug
-      );
-    }
-    return products;
   }
 
   setMetaData(brand: Brand) {

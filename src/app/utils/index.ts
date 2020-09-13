@@ -1,11 +1,17 @@
+import { AttributeValue } from '@models/attribute-value.model';
 import * as moment from 'moment';
 
 import { ProductVariation } from '@models/product-variation.model';
 import { Category } from '@models/category.model';
 import { Product } from '@models/product.model';
 import { PriceRange } from '@models/pricae-range.model';
+<<<<<<< HEAD
 import { ProductAttribute } from '@models/product-attribute.model';
 import { ATTRIBUTE_TYPES } from 'src/constants';
+=======
+import { FilterOptions } from '@models/filter-options.model';
+import { ProductAttribute } from '@models/product-attribute.model';
+>>>>>>> develop
 
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
@@ -77,6 +83,7 @@ export const isDiscountAvailable = (variation: ProductVariation): boolean => {
   );
 };
 
+<<<<<<< HEAD
 export const getVariationName = (
   variationAttributes: ProductAttribute[],
   productName: string
@@ -88,4 +95,66 @@ export const getVariationName = (
       (idx === variationAttributes.length - 1 ? '' : ' + '),
     ''
   )})`;
+=======
+export const filterProducts = (
+  products: Product[],
+  options: FilterOptions
+): Product[] => {
+  const { catSlug = '', subCatSlug = '', partSlug = '' } = options;
+  if (partSlug) {
+    return products.filter(({ category: { slug } }) => slug === partSlug);
+  }
+  if (subCatSlug) {
+    return products.filter(
+      ({
+        category: {
+          parent: { slug },
+        },
+      }) => slug === subCatSlug
+    );
+  }
+  if (catSlug) {
+    return products.filter(
+      ({
+        category: {
+          parent: {
+            parent: { slug },
+          },
+        },
+      }) => slug === catSlug
+    );
+  }
+  return products;
+};
+
+export const getAttributesWithValues = (
+  product: Product
+): ProductAttribute[] => {
+  return product.attributes?.map((attribute) => {
+    return {
+      ...attribute,
+      attributeValues: getAttributeValues(product.variations, attribute),
+    };
+  });
+};
+
+const getAttributeValues = (
+  variations: ProductVariation[],
+  attribute: ProductAttribute
+): AttributeValue[] => {
+  const values: AttributeValue[] = [];
+  variations.forEach(({ attributes }) => {
+    attributes.forEach(({ id, name, type, value: attributeValue }) => {
+      if (
+        id === attribute.id &&
+        name === attribute.name &&
+        type === attribute.type
+      ) {
+        if (!values.find(({ value }) => value === attributeValue.value))
+          values.push(attributeValue);
+      }
+    });
+  });
+  return values;
+>>>>>>> develop
 };

@@ -1,4 +1,8 @@
 <div class="row">
+  <div class="container py-1 btn-filter">
+    <i class="icon-angle-down"></i>
+    <span class="ml-3" (click)="toggleIsFilterDrawerOpen()">Filters</span>
+  </div>
   <div class="col-lg-9">
     <app-product-grid
       [products]="products$ | async"
@@ -7,7 +11,16 @@
     ></app-product-grid>
   </div>
   <!-- End .products -->
-  <aside class="col-lg-3 order-lg-first">
+  <div
+    class="sidebar-overlay {{ isFiltersDrawerOpen ? 'active' : '' }}"
+    (click)="toggleIsFilterDrawerOpen()"
+  ></div>
+  <aside
+    class="col-lg-3 order-lg-first {{ isFiltersDrawerOpen ? 'active' : '' }}"
+  >
+    <span class="filter-close" (click)="toggleIsFilterDrawerOpen()">
+      <i class="icon-close"></i>
+    </span>
     <div class="sidebar sidebar-shop">
       <div class="widget widget-clean">
         <label>Filters:</label>

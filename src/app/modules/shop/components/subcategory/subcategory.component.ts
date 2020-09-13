@@ -1,24 +1,24 @@
-import { BehaviorSubject } from 'rxjs';
-import { Brand } from '@models/brand.model';
 import { Product } from '@models/product.model';
 import { Category } from '@models/category.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@services/seo.service';
 import { CategoriesService } from '@services/categories.service';
-import { PaginationService } from '@services/pagination.service';
 import { getMetaTags } from '@utils';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-subcategory',
   templateUrl: './subcategory.component.html',
   styleUrls: ['./subcategory.component.scss'],
 })
-export class SubcategoryComponent implements OnInit {
+export class SubcategoryComponent implements OnInit, OnDestroy {
   subcategory: Category;
   products: Product[] = [];
   filteredProducts: Product[] = [];
   parts: PartsListItem[] = [];
+
+  private subscriptions = new SubSink();
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +34,14 @@ export class SubcategoryComponent implements OnInit {
   }
 
   setupParamsSubscription() {
-    this.route.params.subscribe((params) => {
-      this.categoriesService
+    this.subscriptions.sink = this.route.params.subscribe((params) => {
+      this.subscriptions.sink = this.categoriesService
+        .getCategoryInfo(params.subCatSlug)
+        .subscribe((category) => {
+          this.subcategory = category;
+          this.setMetaData(category);
+        });
+      this.subscriptions.sink = this.categoriesService
         .getSubCategoryProducts(params.subCatSlug)
         .subscribe((response) => {
           this.products = response;
@@ -50,7 +56,7 @@ export class SubcategoryComponent implements OnInit {
   }
 
   setupQueryParamsSubscription() {
-    this.route.queryParams.subscribe((query) => {
+    this.subscriptions.sink = this.route.queryParams.subscribe((query) => {
       if (query.part) {
         this.filteredProducts = this.filterPartProducts(
           this.products,
@@ -92,6 +98,10 @@ export class SubcategoryComponent implements OnInit {
 
   isActive(slug: string): boolean {
     return this.route.snapshot.queryParamMap.get('part') === slug;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
 

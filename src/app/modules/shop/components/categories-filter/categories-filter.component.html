@@ -1,0 +1,102 @@
+<div class="sidebar sidebar-shop">
+  <div class="widget widget-collapsible">
+    <h3 class="widget-title">
+      <a
+        data-toggle="collapse"
+        href="#widget-1"
+        role="button"
+        aria-expanded="true"
+        aria-controls="widget-1"
+      >
+        Category
+      </a>
+    </h3>
+    <!-- End .widget-title -->
+
+    <div class="collapse show" id="widget-1">
+      <div class="widget-body">
+        <div class="filter-items filter-items-count">
+          <div class="filter-item" *ngFor="let category of categories">
+            <div>
+              <a
+                class="sf-with-ul {{
+                  category.slug === activeCategory ? 'active' : ''
+                }}"
+                [routerLink]="[]"
+                [queryParams]="{ catSlug: category.slug }"
+                >{{ category.name }}
+              </a>
+              <span
+                class="mmenu-btn"
+                data-toggle="collapse"
+                attr.data-target="#catCollapse{{ category.id }}"
+                [attr.aria-expanded]="category.slug === activeCategory"
+                type="button"
+                attr.aria-controls="catCollapse{{ category.id }}"
+              ></span>
+            </div>
+            <ul
+              id="catCollapse{{ category.id }}"
+              class="collapse collapse-menu {{
+                category.slug === activeCategory ? 'show' : ''
+              }}"
+            >
+              <li *ngFor="let subcategory of category.childrens">
+                <div>
+                  <a
+                    class="sf-with-ul {{
+                      subcategory.slug === activeSubCategory ? 'active' : ''
+                    }}"
+                    [routerLink]="[]"
+                    [queryParams]="{
+                      catSlug: category.slug,
+                      subCatSlug: subcategory.slug
+                    }"
+                    >{{ subcategory.name }}
+                  </a>
+                  <span
+                    class="mmenu-btn"
+                    data-toggle="collapse"
+                    attr.data-target="#subCatCollapse{{ subcategory.id }}"
+                    [attr.aria-expanded]="
+                      subcategory.slug === activeSubCategory
+                    "
+                    type="button"
+                    attr.aria-controls="subCatCollapse{{ subcategory.id }}"
+                  ></span>
+                </div>
+                <ul
+                  id="subCatCollapse{{ subcategory.id }}"
+                  class="collapse collapse-menu {{
+                    subcategory.slug === activeSubCategory ? 'show' : ''
+                  }}"
+                >
+                  <li *ngFor="let part of subcategory.childrens">
+                    <a
+                      class="sf-with-ul {{
+                        part.slug === activePart ? 'active' : ''
+                      }}"
+                      [routerLink]="[]"
+                      [queryParams]="{
+                        catSlug: category.slug,
+                        subCatSlug: subcategory.slug,
+                        partSlug: part.slug
+                      }"
+                      >{{ part.name }}
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- End .custom-checkbox -->
+          <!-- End .filter-item -->
+        </div>
+        <!-- End .filter-items -->
+      </div>
+      <!-- End .widget-body -->
+    </div>
+    <!-- End .collapse -->
+  </div>
+  <!-- End .widget -->
+</div>

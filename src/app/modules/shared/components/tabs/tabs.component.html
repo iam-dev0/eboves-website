@@ -3,67 +3,38 @@
     class="nav nav-pills nav-border-anim justify-content-center"
     role="tablist"
   >
-    <li class="nav-item" *ngFor="let tab of tabs; let i = index">
+    <li class="nav-item" *ngFor="let tab of tabs" (click)="onTabChange(tab)">
       <a
-        [class]="i === 0 ? 'nav-link active' : 'nav-link'"
-        id="top-all-link"
+        class="nav-link {{ selectedTab?.id === tab.id ? 'active' : '' }}"
+        id="top-{{ tab.id }}-link"
         data-toggle="tab"
-        [href]="'#top-' + tab.name + '-tab'"
+        href="#top-{{ tab.id }}-tab"
         role="tab"
-        [attr.aria-controls]="'top-' + tab.name + '-tab'"
+        attr.aria-controls="top-{{ tab.id }}-tab"
         aria-selected="true"
         >{{ tab.name }}</a
       >
     </li>
-    <!-- <li class="nav-item">
-          <a
-            class="nav-link"
-            id="top-fur-link"
-            data-toggle="tab"
-            href="#top-fur-tab"
-            role="tab"
-            aria-controls="top-fur-tab"
-            aria-selected="false"
-            >Furniture</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            id="top-decor-link"
-            data-toggle="tab"
-            href="#top-decor-tab"
-            role="tab"
-            aria-controls="top-decor-tab"
-            aria-selected="false"
-            >Decoration</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            id="top-light-link"
-            data-toggle="tab"
-            href="#top-light-tab"
-            role="tab"
-            aria-controls="top-light-tab"
-            aria-selected="false"
-            >Lighting</a
-          >
-        </li> -->
   </ul>
 </div>
 
 <div class="tab-content" *ngFor="let tab of tabs">
   <div
-    class="tab-pane p-0 fade show active"
-    id="top-all-tab"
+    class="tab-pane p-0 fade {{
+      selectedTab?.id === tab.id ? 'show active' : ''
+    }}"
+    id="top-{{ tab.id }}-tab"
     role="tabpanel"
-    aria-labelledby="top-all-link"
+    attr.aria-labelledby="top-{{ tab.id }}-link"
   >
     <app-product-grid
       [products]="tab.products"
       cardType="vertActions"
+<<<<<<< HEAD
+=======
+      [pagination]="false"
+      [showToolbox]="false"
+>>>>>>> develop
     ></app-product-grid>
   </div>
   <!-- .End .tab-pane -->

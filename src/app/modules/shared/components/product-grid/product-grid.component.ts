@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Product } from '@models/product.model';
-import { PaginationService } from '@services/pagination.service';
 
 @Component({
   selector: 'app-product-grid',
@@ -18,15 +17,18 @@ export class ProductGridComponent implements OnInit, OnChanges {
   @Input() products: Product[] = [];
   @Input() customClasses: string = '';
   @Input() cardType: string = 'simple';
+  @Input() pagination: boolean = true;
+  @Input() showToolbox: boolean = true;
   page: number = 1;
   isMobile: boolean = false;
   itemsPerPage: number = 10;
+  selectedProductSlug: string = '';
 
   constructor(private device: DeviceDetectorService) {}
 
   ngOnInit(): void {
     this.isMobile = this.device.isMobile();
-    if (this.isMobile) {
+    if (this.isMobile || !this.pagination) {
       this.itemsPerPage = this.products.length;
     }
   }
@@ -45,5 +47,9 @@ export class ProductGridComponent implements OnInit, OnChanges {
 
   resetPage() {
     this.page = 1;
+  }
+
+  openQuickViewModal(productSlug: string) {
+    this.selectedProductSlug = productSlug;
   }
 }

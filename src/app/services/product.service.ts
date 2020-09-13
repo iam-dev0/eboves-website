@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { ActivatedRoute, Router } from '@angular/router';
+import { cloneObject } from '@utils';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class ProductService {
     private router: Router
   ) {}
 
-  getProduct(slug: string, varSlug: string): Observable<Product> {
+  getProduct(slug: string, varSlug?: string): Observable<Product> {
     return this.client
       .get<Response<Product>>(`${environment.apiUrl}products/${slug}`)
       .pipe(
@@ -35,9 +36,20 @@ export class ProductService {
             ? this.getVariation(product, varSlug)
             : product.variations[0];
           this.selectedVariation$.next(selectedVariation);
+<<<<<<< HEAD
           this.updateUrl(selectedVariation);
+=======
+          this.setSelectedAttributes(selectedVariation.attributes);
+          // this.updateUrl(selectedVariation);
+>>>>>>> develop
         })
       );
+  }
+
+  setSelectedAttributes(attributes: ProductAttribute[]) {
+    const newAttributes: ProductAttribute[] = [];
+    attributes.forEach((attr) => newAttributes.push(cloneObject(attr)));
+    this.selectedAttributes = newAttributes;
   }
 
   getSelectedVariation(): Observable<ProductVariation> {
@@ -49,22 +61,21 @@ export class ProductService {
   }
 
   updateAttributeValue(attribute: ProductAttribute) {
+    const attr = cloneObject(attribute);
     const index = this.selectedAttributes.findIndex(
       ({ id, name, type }) =>
-        id === attribute.id &&
-        name === attribute.name &&
-        type === attribute.type
+        id === attr.id && name === attr.name && type === attr.type
     );
     if (index > -1) {
-      this.selectedAttributes.splice(index, 1, attribute);
+      this.selectedAttributes.splice(index, 1, attr);
     } else {
-      this.selectedAttributes.push(attribute);
+      this.selectedAttributes.push(attr);
     }
-    this.updateSelectedVariation();
+    this.updateSelectedVariation(attr);
   }
 
-  updateSelectedVariation() {
-    const selectedVariation: ProductVariation = this.product.variations.find(
+  updateSelectedVariation(attribute: ProductAttribute) {
+    let selectedVariation: ProductVariation = this.product.variations.find(
       ({ attributes }) => {
         let foundAll = true;
         attributes.forEach((av) => {
@@ -85,8 +96,21 @@ export class ProductService {
       }
     );
 
+    if (!selectedVariation) {
+      selectedVariation = this.product.variations.find(
+        ({ attributes }) =>
+          !!attributes.find(
+            (attr) =>
+              attr.id === attribute.id &&
+              attr.type === attribute.type &&
+              attr.name === attribute.name &&
+              attr.value.value === attribute.value.value
+          )
+      );
+      this.setSelectedAttributes(selectedVariation.attributes);
+    }
     this.selectedVariation$.next(selectedVariation);
-    this.updateUrl(selectedVariation);
+    // this.updateUrl(selectedVariation);
   }
 
   updateUrl(selectedVariation: ProductVariation) {

@@ -283,6 +283,7 @@
 
   // Menu with arrows
   &.sf-arrows {
+    justify-content: space-evenly;
     > li {
       > .sf-with-ul {
         padding-right: 2rem;
@@ -291,18 +292,6 @@
 
     .sf-with-ul {
       position: relative;
-
-      &::after {
-        font-family: "molla";
-        content: "\f110";
-        position: absolute;
-        right: 0;
-        top: 50%;
-        display: block;
-        font-size: 1rem;
-        line-height: 1;
-        margin-top: -0.5rem;
-      }
     }
 
     ul {
