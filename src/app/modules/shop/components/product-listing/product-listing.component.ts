@@ -17,7 +17,7 @@ import { SubSink } from 'subsink';
 
 import { Product } from '@models/product.model';
 import { Brand } from '@models/brand.model';
-import { PriceRange } from '@models/pricae-range.model';
+import { PriceRange } from '@models/price-range.model';
 
 @Component({
   selector: 'app-product-listing',

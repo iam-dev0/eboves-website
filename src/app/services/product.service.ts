@@ -36,12 +36,8 @@ export class ProductService {
             ? this.getVariation(product, varSlug)
             : product.variations[0];
           this.selectedVariation$.next(selectedVariation);
-<<<<<<< HEAD
-          this.updateUrl(selectedVariation);
-=======
           this.setSelectedAttributes(selectedVariation.attributes);
           // this.updateUrl(selectedVariation);
->>>>>>> develop
         })
       );
   }

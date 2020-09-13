@@ -5,15 +5,11 @@ import { Category } from '@models/category.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductVariation } from '@models/product-variation.model';
-<<<<<<< HEAD:src/app/modules/product/components/product-features/product-features.component.ts
 import {
   isDiscountAvailable,
   getDiscountedPrice,
   getVariationName,
 } from '@utils';
-=======
-import { isDiscountAvailable } from '@utils';
->>>>>>> develop:src/app/modules/shared/components/product-features/product-features.component.ts
 import { ProductService } from '@services/product.service';
 import { CART_ITEM_LIMIT } from 'src/constants';
 

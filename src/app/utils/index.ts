@@ -4,14 +4,10 @@ import * as moment from 'moment';
 import { ProductVariation } from '@models/product-variation.model';
 import { Category } from '@models/category.model';
 import { Product } from '@models/product.model';
-import { PriceRange } from '@models/pricae-range.model';
-<<<<<<< HEAD
+import { PriceRange } from '@models/price-range.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { ATTRIBUTE_TYPES } from 'src/constants';
-=======
 import { FilterOptions } from '@models/filter-options.model';
-import { ProductAttribute } from '@models/product-attribute.model';
->>>>>>> develop
 
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
@@ -83,7 +79,6 @@ export const isDiscountAvailable = (variation: ProductVariation): boolean => {
   );
 };
 
-<<<<<<< HEAD
 export const getVariationName = (
   variationAttributes: ProductAttribute[],
   productName: string
@@ -95,7 +90,8 @@ export const getVariationName = (
       (idx === variationAttributes.length - 1 ? '' : ' + '),
     ''
   )})`;
-=======
+};
+
 export const filterProducts = (
   products: Product[],
   options: FilterOptions
@@ -156,5 +152,4 @@ const getAttributeValues = (
     });
   });
   return values;
->>>>>>> develop
 };
