@@ -399,3 +399,78 @@
 .error {
   color: red;
 }
+
+// Add to cart modal
+
+.modal-dialog {
+  justify-content: center;
+
+  .modal-content {
+    display: flex;
+    align-items: center;
+    width: auto;
+    padding: 3rem 0;
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      font-size: 2.5rem;
+    }
+
+    .modal-body {
+      padding: 1rem 3rem;
+      text-align: center;
+
+      .cart-modal-head {
+        margin-bottom: 2rem;
+
+        .headline {
+          color: $secondary-color;
+          font-size: 1.7rem;
+        }
+
+        .product-name {
+          font-weight: 500;
+          color: $dark-text;
+        }
+      }
+
+      img {
+        width: 30rem;
+      }
+
+      .cart-modal-price {
+        margin-top: 2rem;
+        font-size: 1.4rem;
+
+        span {
+          color: $primary-color;
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .btn-wrap {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.5rem;
+
+      a {
+        width: 83%;
+      }
+    }
+
+    .btn-link {
+      font-size: 1.3rem;
+      text-decoration: underline;
+      color: $secondary-color-dark;
+      border: none;
+
+      &:hover {
+        border: none;
+      }
+    }
+  }
+}

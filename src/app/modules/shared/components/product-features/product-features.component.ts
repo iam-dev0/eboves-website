@@ -32,6 +32,7 @@ export class ProductFeaturesComponent implements OnInit {
   isOutOfStock: boolean = false;
   isDiscountAvailable: boolean = false;
   discountedPrice: number = 0;
+  variationName: string = '';
 
   constructor(
     private productService: ProductService,
@@ -42,6 +43,7 @@ export class ProductFeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getSelectedVariation().subscribe((variation) => {
       this.selectedVariation = variation;
+      this.variationName = getVariationName(variation.attributes, this.name);
       this.isOutOfStock = variation.availableQuantity < 1;
       this.isDiscountAvailable = isDiscountAvailable(variation);
       this.isDiscountAvailable &&

@@ -63,19 +63,16 @@ export class BrandComponent implements OnInit, OnDestroy {
             this.filteredProducts = filterProducts(this.products, {
               catSlug: slug,
             });
-            this.activeCategory = slug;
             break;
           case 'subCatSlug':
             this.filteredProducts = filterProducts(this.products, {
               subCatSlug: slug,
             });
-            this.activeSubCategory = slug;
             break;
           case 'partSlug':
             this.filteredProducts = filterProducts(this.products, {
               partSlug: slug,
             });
-            this.activePart = slug;
             break;
           default:
             break;

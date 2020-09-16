@@ -3,7 +3,7 @@ import { ProductVariation } from '@models/product-variation.model';
 import { map, tap } from 'rxjs/operators';
 import { Response } from '@models/api-responses/response.model';
 import { Product } from '@models/product.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
@@ -14,7 +14,7 @@ import { cloneObject } from '@utils';
   providedIn: 'root',
 })
 export class ProductService {
-  private selectedVariation$ = new Subject<ProductVariation>();
+  private selectedVariation$ = new ReplaySubject<ProductVariation>();
 
   private product: Product;
   private selectedAttributes: ProductAttribute[] = [];

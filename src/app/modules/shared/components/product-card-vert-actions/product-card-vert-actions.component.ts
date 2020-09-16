@@ -55,8 +55,7 @@ export class ProductCardVertActionsComponent implements OnInit {
     if (this.selectionAttribute) {
       this.values = this.product.variations.map(
         ({ attributes }) =>
-          attributes.find(({ type }) => type === 'image')
-            ?.ProductVariationAttributeValues
+          attributes.find(({ type }) => type === 'image')?.value
       );
     }
   }
@@ -121,9 +120,8 @@ export class ProductCardVertActionsComponent implements OnInit {
       ({ attributes }) =>
         attributes.findIndex(
           (attr) =>
-            attr?.ProductVariationAttributeValues.id === attributeValue.id &&
-            attr?.ProductVariationAttributeValues?.value ===
-              attributeValue?.value
+            attr?.value.id === attributeValue.id &&
+            attr?.value?.value === attributeValue?.value
         ) > -1
     );
     this.image = this.selectedVariation?.mainImage;
