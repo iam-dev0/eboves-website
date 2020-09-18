@@ -1,4 +1,3 @@
-import { ProductVariation } from '@models/product-variation.model';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Response } from '@models/api-responses/response.model';
 import { SHIPPING_TYPES, ORDER_SOURCE } from 'src/constants';
@@ -7,9 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { FORM_STATUS } from './../../constants';
 import { LocalStorageService } from './local-storage.service';
-import { BehaviorSubject, Observable, of, empty } from 'rxjs';
+import { BehaviorSubject, Observable, of, EMPTY, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
 import { CartItem } from '@models/cart-item.model';
 import { Cart } from '@models/cart.model';
 import { CART_KEY } from '../../constants';
@@ -17,7 +15,7 @@ import { BillingForm } from '@models/billing-form.model';
 import { OrderRequest } from '@models/api-requests/order-request.model';
 import { OrderResponse } from '@models/api-responses/order-response.model';
 import { StockResponse } from '@models/api-responses/stock-response.model';
-import { isDiscountAvailable, getDiscountedPrice } from '@utils';
+import { getDiscountedPrice } from '@utils';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +28,9 @@ export class CartService {
 
   private formValues$ = new BehaviorSubject<BillingForm>({});
   formValues: Observable<BillingForm> = this.formValues$.asObservable();
+
+  private isOrderPlaced$ = new Subject<boolean>();
+  isOrderPlaced: Observable<boolean> = this.isOrderPlaced$.asObservable();
 
   constructor(
     private localStorage: LocalStorageService,
@@ -160,10 +161,13 @@ export class CartService {
         .pipe(
           catchError((error) => {
             console.log(error);
-            return empty();
+            return EMPTY;
           }),
           map(({ data }) => data),
-          tap(() => this.emptyCart())
+          tap(() => {
+            this.emptyCart();
+            this.isOrderPlaced$.next(true);
+          })
         );
     }
 

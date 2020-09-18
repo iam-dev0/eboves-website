@@ -36,3 +36,43 @@
   <!-- End .page-content -->
 </main>
 <!-- End .main -->
+
+<div
+  class="modal fade"
+  id="thankYouModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="thankYouModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body">
+        <div class="header"><span>Your order has been placed</span></div>
+        <div class="btn-wrap">
+          <a routerLink="/home" class="btn btn-outline-primary">
+            <span>Continue Shopping</span>
+          </a>
+        </div>
+        <div class="footer">
+          <span>We will contact you shortly for order confirmation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button
+  data-toggle="modal"
+  data-target="#thankYouModal"
+  data-backdrop="false"
+  [hidden]="true"
+  #thankYouModal
+></button>

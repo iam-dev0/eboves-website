@@ -135,7 +135,7 @@
           <span class="product-name">{{ variationName }}</span>
         </div>
         <figure>
-          <img [src]="selectedVariation.mainImage" [alt]="variationName" />
+          <img [src]="selectedVariation?.mainImage" [alt]="variationName" />
         </figure>
         <h6 class="cart-modal-price">
           {{ qty }} x <span>{{ price }}</span>

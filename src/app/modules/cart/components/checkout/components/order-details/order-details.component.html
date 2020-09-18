@@ -80,7 +80,7 @@
 
     <button
       type="submit"
-      [disabled]="cart.items.length || (formStatus | async) !== 'VALID'"
+      [disabled]="!cart.items.length || (formStatus | async) !== 'VALID'"
       class="btn btn-outline-primary-2 btn-order btn-block"
       (click)="placeOrder()"
     >
