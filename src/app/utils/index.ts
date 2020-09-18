@@ -4,9 +4,10 @@ import * as moment from 'moment';
 import { ProductVariation } from '@models/product-variation.model';
 import { Category } from '@models/category.model';
 import { Product } from '@models/product.model';
-import { PriceRange } from '@models/pricae-range.model';
-import { FilterOptions } from '@models/filter-options.model';
+import { PriceRange } from '@models/price-range.model';
 import { ProductAttribute } from '@models/product-attribute.model';
+import { ATTRIBUTE_TYPES } from 'src/constants';
+import { FilterOptions } from '@models/filter-options.model';
 
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
@@ -52,24 +53,43 @@ export const getCategoryTree = (products: Product[]): Category[] => {
 
 export const getPriceRange = (product: Product): PriceRange => {
   const min = product.variations?.reduce((accumulator, current, index) => {
-    if (index === 0) return current.price;
-    return current.price < accumulator ? current.price : accumulator;
+    const price = getDiscountedPrice(current);
+    if (index === 0) return price;
+    return price < accumulator ? price : accumulator;
   }, 0);
 
-  const max = product.variations?.reduce(
-    (accumulator, current) =>
-      current.price > accumulator ? current.price : accumulator,
-    0
-  );
+  const max = product.variations?.reduce((accumulator, current) => {
+    const price = getDiscountedPrice(current);
+    return price > accumulator ? price : accumulator;
+  }, 0);
 
   return { min, max };
 };
 
+export const getDiscountedPrice = (variation: ProductVariation): number => {
+  const { price, discountPercentage } = variation;
+  if (!isDiscountAvailable(variation)) return price;
+  return price - (discountPercentage * price) / 100;
+};
+
 export const isDiscountAvailable = (variation: ProductVariation): boolean => {
   return (
-    variation.discountPrice > 0 &&
+    variation.discountPercentage > 0 &&
     moment().isBetween(variation.discountStartTime, variation.discountEndTime)
   );
+};
+
+export const getVariationName = (
+  variationAttributes: ProductAttribute[],
+  productName: string
+): string => {
+  return `${productName} (${variationAttributes.reduce(
+    (acc, cur, idx) =>
+      acc +
+      (cur.type === ATTRIBUTE_TYPES.IMAGE ? cur.value.alt : cur.value.value) +
+      (idx === variationAttributes.length - 1 ? '' : ' + '),
+    ''
+  )})`;
 };
 
 export const filterProducts = (

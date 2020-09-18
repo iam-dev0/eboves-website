@@ -86,7 +86,7 @@
                     <td>&nbsp;</td>
                   </tr>
 
-                  <tr class="summary-shipping-row">
+                  <!-- <tr class="summary-shipping-row">
                     <td>
                       <div class="custom-control custom-radio">
                         <input
@@ -102,15 +102,15 @@
                         <label class="custom-control-label" for="free-shipping"
                           >Free Shipping</label
                         >
-                      </div>
-                      <!-- End .custom-control -->
-                    </td>
+                      </div> -->
+                  <!-- End .custom-control -->
+                  <!-- </td>
                     <td>
                       {{
                         shippingCharges.FREE | currency: "PKR":"symbol":"1.2-2"
                       }}
                     </td>
-                  </tr>
+                  </tr> -->
                   <!-- End .summary-shipping-row -->
 
                   <tr class="summary-shipping-row">
@@ -145,7 +145,7 @@
                   </tr>
                   <!-- End .summary-shipping-row -->
 
-                  <tr class="summary-shipping-row">
+                  <!-- <tr class="summary-shipping-row">
                     <td>
                       <div class="custom-control custom-radio">
                         <input
@@ -163,16 +163,16 @@
                           for="express-shipping"
                           >Express:</label
                         >
-                      </div>
-                      <!-- End .custom-control -->
-                    </td>
+                      </div> -->
+                  <!-- End .custom-control -->
+                  <!-- </td>
                     <td>
                       {{
                         shippingCharges.EXPRESS
                           | currency: "PKR":"symbol":"1.2-2"
                       }}
                     </td>
-                  </tr>
+                  </tr> -->
                   <!-- End .summary-shipping-row -->
 
                   <!-- <tr class="summary-shipping-estimate">
@@ -200,16 +200,14 @@
               <!-- End .table table-summary -->
 
               <a
-                href="checkout.html"
+                routerLink="checkout"
                 class="btn btn-outline-primary-2 btn-order btn-block"
                 >PROCEED TO CHECKOUT</a
               >
             </div>
             <!-- End .summary -->
 
-            <a
-              href="category.html"
-              class="btn btn-outline-dark-2 btn-block mb-3"
+            <a routerLink="/home" class="btn btn-outline-dark-2 btn-block mb-3"
               ><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i
             ></a>
           </aside>

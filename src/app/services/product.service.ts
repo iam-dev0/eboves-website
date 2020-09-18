@@ -53,7 +53,7 @@ export class ProductService {
   }
 
   getVariation(product: Product, varSlug: string) {
-    return product?.variations?.find(({ slug }) => slug === varSlug);
+    return product.variations.find(({ slug }) => slug === varSlug);
   }
 
   updateAttributeValue(attribute: ProductAttribute) {

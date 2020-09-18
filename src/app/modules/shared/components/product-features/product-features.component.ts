@@ -5,7 +5,11 @@ import { Category } from '@models/category.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductVariation } from '@models/product-variation.model';
-import { isDiscountAvailable } from '@utils';
+import {
+  isDiscountAvailable,
+  getDiscountedPrice,
+  getVariationName,
+} from '@utils';
 import { ProductService } from '@services/product.service';
 import { CART_ITEM_LIMIT } from 'src/constants';
 
@@ -27,6 +31,8 @@ export class ProductFeaturesComponent implements OnInit {
   qtyLimit: number = 5;
   isOutOfStock: boolean = false;
   isDiscountAvailable: boolean = false;
+  discountedPrice: number = 0;
+  variationName: string = '';
 
   constructor(
     private productService: ProductService,
@@ -37,8 +43,11 @@ export class ProductFeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getSelectedVariation().subscribe((variation) => {
       this.selectedVariation = variation;
+      this.variationName = getVariationName(variation.attributes, this.name);
       this.isOutOfStock = variation.availableQuantity < 1;
       this.isDiscountAvailable = isDiscountAvailable(variation);
+      this.isDiscountAvailable &&
+        (this.discountedPrice = getDiscountedPrice(variation));
       this.qty = 1;
     });
   }
@@ -65,6 +74,10 @@ export class ProductFeaturesComponent implements OnInit {
       qty: this.qty,
       productName: this.name,
       productSlug: this.getProductSlug(),
+      variationName: getVariationName(
+        this.selectedVariation.attributes,
+        this.name
+      ),
     });
   }
 

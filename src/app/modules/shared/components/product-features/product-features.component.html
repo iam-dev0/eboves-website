@@ -22,12 +22,10 @@
 
   <div class="price">
     <span class="discount-price" *ngIf="isDiscountAvailable">
-      <del>{{ price }}</del>
+      <del>{{ price | currency: "PKR":"symbol":"1.2-2" }}</del>
     </span>
     <span class="product-price">
-      {{
-        isDiscountAvailable ? "Rs. " + selectedVariation.discountPrice : price
-      }}
+      {{ isDiscountAvailable ? "Rs. " + discountedPrice : price }}
     </span>
   </div>
   <!-- End .product-price -->
@@ -74,6 +72,8 @@
       class="btn-product btn-cart"
       *ngIf="!isOutOfStock"
       (click)="addToCart()"
+      data-toggle="modal"
+      data-target="#addToCartModal"
     >
       <span>add to cart</span>
     </div>
@@ -109,4 +109,44 @@
     </div>
   </div>
   <!-- End .product-details-footer -->
+</div>
+
+<div
+  class="modal fade"
+  id="addToCartModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addToCartModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body">
+        <div class="cart-modal-head">
+          <h6 class="headline">1 item(s) added to your cart</h6>
+          <span class="product-name">{{ variationName }}</span>
+        </div>
+        <figure>
+          <img [src]="selectedVariation?.mainImage" [alt]="variationName" />
+        </figure>
+        <h6 class="cart-modal-price">
+          {{ qty }} x <span>{{ price }}</span>
+        </h6>
+      </div>
+      <div class="btn-wrap">
+        <a routerLink="/cart" class="btn btn-outline-primary"
+          ><span>Go to cart</span><i class="icon-long-arrow-right"></i
+        ></a>
+      </div>
+      <button class="btn btn-link" data-dismiss="modal">Button Text</button>
+    </div>
+  </div>
 </div>

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@services/seo.service';
 import { getMetaTags, getPriceRange } from '@utils';
 import { ProductService } from '@services/product.service';
-import { PriceRange } from '@models/pricae-range.model';
+import { PriceRange } from '@models/price-range.model';
 
 import { getAttributesWithValues } from '@utils';
 

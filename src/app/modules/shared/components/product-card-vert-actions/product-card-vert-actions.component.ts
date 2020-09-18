@@ -55,10 +55,16 @@ export class ProductCardVertActionsComponent implements OnInit {
     if (this.selectionAttribute) {
       this.values = this.product.variations.map(
         ({ attributes }) =>
-          attributes.find(({ type }) => type === 'image')
-            ?.ProductVariationAttributeValues
+          attributes.find(({ type }) => type === 'image')?.value
       );
     }
+  }
+
+  checkIfPreOrder(): boolean {
+    return this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.preOrder),
+      true
+    );
   }
 
   setLabel() {
@@ -76,12 +82,31 @@ export class ProductCardVertActionsComponent implements OnInit {
         : discounts.length === 1
         ? `${discounts[0]}%`
         : '';
-    if (discountRange) {
+    const isBestSeller: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.bestSeller),
+      true
+    );
+    const isTopRated: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.topRated),
+      true
+    );
+    const isOutOfStock: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : !cur.availableQuantity),
+      true
+    );
+    const isPreOrder: boolean = this.checkIfPreOrder();
+    if (isOutOfStock && !isPreOrder) {
+      this.tagClass = 'label-out';
+      this.tagLabel = `Out Of Stock`;
+    } else if (discountRange) {
       this.tagClass = 'label-sale';
       this.tagLabel = `${discountRange} Off`;
-    } else if (this.product.topRated) {
+    } else if (isTopRated) {
       this.tagClass = 'label-top';
       this.tagLabel = 'Top';
+    } else if (isBestSeller) {
+      this.tagClass = 'label-sale';
+      this.tagLabel = `Best Seller`;
     }
   }
 
@@ -95,9 +120,8 @@ export class ProductCardVertActionsComponent implements OnInit {
       ({ attributes }) =>
         attributes.findIndex(
           (attr) =>
-            attr?.ProductVariationAttributeValues.id === attributeValue.id &&
-            attr?.ProductVariationAttributeValues?.value ===
-              attributeValue?.value
+            attr?.value.id === attributeValue.id &&
+            attr?.value?.value === attributeValue?.value
         ) > -1
     );
     this.image = this.selectedVariation?.mainImage;
