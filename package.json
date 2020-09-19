@@ -19,8 +19,7 @@
     "serve:ssr": "node dist/eboves-Angular/server/main.js",
     "build:prod:ssr": "ng build --configuration=production && ng run eboves-Angular:server:production",
     "build:dev:ssr": "ng build --configuration=development && ng run eboves-Angular:server:development",
-    "prerender": "ng run eboves-Angular:prerender",
-    "postinstall": "yarn build:ssr"
+    "prerender": "ng run eboves-Angular:prerender"
   },
   "private": true,
   "dependencies": {

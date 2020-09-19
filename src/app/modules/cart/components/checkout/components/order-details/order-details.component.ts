@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { CartService } from '@services/cart.service';
 import { SHIPPING_TYPES } from './../../../../../../../constants';
 import { Cart } from '@models/cart.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { SHIPPING_CHARGES } from 'src/constants';
 import { CartItem } from '@models/cart-item.model';
 import { getDiscountedPrice } from '@utils';

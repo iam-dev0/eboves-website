@@ -6,11 +6,9 @@ import {
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { productReducer } from './store/reducers/product.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorsProvider } from '@services/http-interceptors';
 import { NotifierConfig, NotifierModule } from 'angular-notifier';
@@ -64,9 +62,6 @@ const notifierConfig: NotifierConfig = {
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    StoreModule.forRoot({
-      product: productReducer,
-    }),
     HttpClientModule,
     BrowserTransferStateModule,
     NotifierModule.withConfig(notifierConfig),
