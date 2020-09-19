@@ -2,8 +2,7 @@
   "name": "eboves-angular",
   "version": "0.0.0",
   "engines": {
-    "node": "12.16.1",
-    "npm": "6.13.4"
+    "node": ">=12.16.1"
   },
   "scripts": {
     "ng": "ng",
