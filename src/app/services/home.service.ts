@@ -1,12 +1,7 @@
 import { Response } from '@models/api-responses/response.model';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {
-  featuredProducts,
-  onSaleProducts,
-  topRatedProducts,
-} from './mock-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { Banners } from '@models/api-responses/banners.model';
@@ -17,7 +12,7 @@ import { Product } from '@models/product.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class HomeService {
   constructor(private client: HttpClient) {}
 
   getBanners(): Observable<Response<Banners>> {

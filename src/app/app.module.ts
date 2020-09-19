@@ -36,7 +36,7 @@ const notifierConfig: NotifierConfig = {
     overlap: 150,
   },
   behaviour: {
-    autoHide: false,
+    autoHide: 6000,
     onClick: false,
     onMouseover: false,
     showDismissButton: true,

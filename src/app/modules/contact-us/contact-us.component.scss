@@ -178,3 +178,22 @@
     height: 492px;
   }
 }
+
+.error {
+  color: #ff0000;
+  font-size: 1rem;
+}
+
+.form-control {
+  margin-bottom: 0;
+  margin-top: 2rem;
+
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    border-color: #ff0000;
+  }
+}
+
+.form-field {
+  margin-bottom: 1.2rem;
+}
