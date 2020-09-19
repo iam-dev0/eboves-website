@@ -74,20 +74,11 @@
                 >Brands<span class="mmenu-btn"></span
               ></a>
               <ul class="collapse" id="brandCollapse">
-                <li><a href="product.html">Default</a></li>
-                <li><a href="product-centered.html">Centered</a></li>
-                <li>
-                  <a href="product-extended.html"
-                    ><span
-                      >Extended Info<span class="tip tip-new">New</span></span
-                    ></a
-                  >
+                <li *ngFor="let brand of brands">
+                  <a [routerLink]="['/shop/brand', brand.slug]">{{
+                    brand.name
+                  }}</a>
                 </li>
-                <li><a href="product-gallery.html">Gallery</a></li>
-                <li><a href="product-sticky.html">Sticky Info</a></li>
-                <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                <li><a href="product-fullwidth.html">Full Width</a></li>
-                <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
               </ul>
             </li>
             <li (click)="closeMobileDrawer()">

@@ -1,15 +1,10 @@
+import { BrandsService } from '@services/brands.service';
 import { Observable } from 'rxjs';
-import {
-  Component,
-  HostListener,
-  Inject,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { CategoriesService } from '@services/categories.service';
 import { Category } from '@models/category.model';
-import { LoaderService } from '@services/loader.service';
+import { Brand } from '@models/brand.model';
 
 @Component({
   selector: 'app-root',
@@ -20,14 +15,17 @@ export class AppComponent implements OnInit {
   title = 'eboves-Angular';
   showScrollTop: boolean = false;
   categories$: Observable<Category[]>;
+  brands$: Observable<Brand[]>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private brandsService: BrandsService
   ) {}
 
   ngOnInit(): void {
     this.categories$ = this.categoriesService.getCategories();
+    this.brands$ = this.brandsService.getBrands();
   }
 
   @HostListener('window:scroll', ['$event'])

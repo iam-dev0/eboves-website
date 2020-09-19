@@ -213,6 +213,20 @@
       padding: 0;
       min-width: 0;
     }
+
+    .brands-list {
+      max-height: 28rem;
+      overflow: hidden;
+      display: flex !important;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      a {
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.3rem;
+      }
+    }
   }
 
   ul,

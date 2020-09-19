@@ -1,5 +1,8 @@
 <div class="page-wrapper">
-  <app-header [categories]="categories$ | async"></app-header>
+  <app-header
+    [categories]="categories$ | async"
+    [brands]="brands$ | async"
+  ></app-header>
 
   <router-outlet></router-outlet>
 
@@ -17,7 +20,10 @@
 </button>
 
 <!-- Mobile Menu -->
-<app-mobile-nav [categories]="categories$ | async"></app-mobile-nav>
+<app-mobile-nav
+  [categories]="categories$ | async"
+  [brands]="brands$ | async"
+></app-mobile-nav>
 
 <!-- Sign in / Register Modal -->
 <app-sign-in-modal></app-sign-in-modal>
