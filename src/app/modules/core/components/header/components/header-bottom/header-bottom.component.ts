@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Brand } from '@models/brand.model';
 import { Category } from '@models/category.model';
 
 @Component({
@@ -8,6 +9,7 @@ import { Category } from '@models/category.model';
 })
 export class HeaderBottomComponent implements OnInit {
   @Input() categories: Category[] = [];
+  @Input() brands: Brand[] = [];
 
   constructor() {}
 

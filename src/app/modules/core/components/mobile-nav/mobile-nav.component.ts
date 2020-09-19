@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '@models/category.model';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Inject, Renderer2, Input } from '@angular/core';
+import { Brand } from '@models/brand.model';
 
 @Component({
   selector: 'app-mobile-nav',
@@ -10,6 +11,7 @@ import { Component, OnInit, Inject, Renderer2, Input } from '@angular/core';
 })
 export class MobileNavComponent implements OnInit {
   @Input() categories: Category[] = [];
+  @Input() brands: Brand[] = [];
   searchValue: string = '';
 
   constructor(

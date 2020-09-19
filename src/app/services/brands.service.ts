@@ -26,4 +26,10 @@ export class BrandsService {
       .get<Response<Brand>>(`${environment.apiUrl}brands/${brandSlug}`)
       .pipe(map(({ data }) => data));
   }
+
+  getBrands(): Observable<Brand[]> {
+    return this.client
+      .get<Response<Brand[]>>(`${environment.apiUrl}brands`)
+      .pipe(map(({ data }) => data));
+  }
 }

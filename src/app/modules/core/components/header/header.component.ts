@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Renderer2, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Category } from '@models/category.model';
+import { Brand } from '@models/brand.model';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { Category } from '@models/category.model';
 export class HeaderComponent implements OnInit {
   mobileDrawerOpen: boolean = false;
   @Input() categories: Category[] = [];
+  @Input() brands: Brand[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
