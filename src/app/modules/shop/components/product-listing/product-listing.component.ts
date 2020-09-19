@@ -43,7 +43,7 @@ export class ProductListingComponent implements OnInit, OnChanges, OnDestroy {
   private subscriptions = new SubSink();
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId,
+    @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {

@@ -1,8 +1,15 @@
 import { Observable } from 'rxjs';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CategoriesService } from '@services/categories.service';
 import { Category } from '@models/category.model';
+import { LoaderService } from '@services/loader.service';
 
 @Component({
   selector: 'app-root',
