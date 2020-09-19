@@ -2,13 +2,14 @@
   "name": "eboves-angular",
   "version": "0.0.0",
   "engines": {
-    "node": "12.16.1",
-    "npm": "6.13.4"
+    "node": ">=12.16.1",
+    "npm": ">=6.13.4"
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "yarn serve:ssr",
+    "build": "yarn build:dev:ssr",
+    "build:prod": "yarn build:prod:ssr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -19,7 +20,7 @@
     "build:prod:ssr": "ng build --configuration=production && ng run eboves-Angular:server:production",
     "build:dev:ssr": "ng build --configuration=development && ng run eboves-Angular:server:development",
     "prerender": "ng run eboves-Angular:prerender",
-    "postinstall": "npm run build:ssr"
+    "postinstall": "yarn build:ssr"
   },
   "private": true,
   "dependencies": {
@@ -32,9 +33,7 @@
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/platform-server": "~9.1.4",
     "@angular/router": "~9.1.4",
-    "@ngrx/store": "^9.2.0",
     "@nguniversal/express-engine": "^9.1.1",
-    "angular-ez-plus": "^1.2.1",
     "angular-notifier": "^6.0.1",
     "bootstrap": "^4.5.0",
     "express": "^4.15.2",
@@ -43,10 +42,8 @@
     "moment": "^2.27.0",
     "ng5-slider": "^1.2.4",
     "ngx-device-detector": "^2.0.0",
-    "ngx-infinite-scroll": "^9.0.0",
     "ngx-owl-carousel-o": "^3.0.0",
     "ngx-pagination": "^5.0.0",
-    "ngx-spinner": "^10.0.1",
     "rxjs": "~6.5.4",
     "subsink": "^1.0.1",
     "tslib": "^1.10.0",
