@@ -1582,6 +1582,13 @@ angular-ez-plus@^1.2.1:
     ez-plus "~1.2.1"
     jquery ">=2.1.4"
 
+angular-notifier@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/angular-notifier/-/angular-notifier-6.0.1.tgz#54111ba4fab70b3b3600dbc87ed2dd63a4847aab"
+  integrity sha512-eC312pNkHfjBU1nflOxtRKbkuxZGthZj23wK1unZ9u+sIhdrUm2Fd2j4Tud8+5z9wQX+ec59v4pBfayO3AFx+Q==
+  dependencies:
+    tslib "^1.9.0"
+
 angular@~1.3.4:
   version "1.3.20"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.3.20.tgz#b23a3d7c5e7f99f7d95b9b4d49b9ac355269baee"
