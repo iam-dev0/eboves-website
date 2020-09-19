@@ -23,6 +23,7 @@ export class ProductCardVertActionsComponent implements OnInit {
   selectionAttribute: ProductAttribute;
   image: string = '';
   selectedVariation: ProductVariation;
+  campaignName: string = '';
 
   customOptions: OwlOptions = {
     nav: true,
@@ -49,6 +50,9 @@ export class ProductCardVertActionsComponent implements OnInit {
     this.setLabel();
     this.setPrice();
     this.image = this.product.mainImage;
+    this.campaignName = this.product?.variations.find(
+      ({ discountReason }) => !!discountReason
+    )?.discountReason;
     this.selectionAttribute = this.product.variations[0].attributes.find(
       (value) => value.type === 'image'
     );

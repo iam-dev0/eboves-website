@@ -1,14 +1,12 @@
 <main class="main">
-  <app-intro-slider
-    [banners]="banners ? banners.slider : []"
-  ></app-intro-slider>
+  <app-intro-slider [banners]="banners?.slider"></app-intro-slider>
 
   <app-brands-list></app-brands-list>
 
   <div class="mb-3 mb-lg-5"></div>
   <!-- End .mb-3 mb-lg-5 -->
 
-  <app-banners [banners]="banners ? banners.featured : []"></app-banners>
+  <app-banners [banners]="banners?.featured"></app-banners>
 
   <div class="mb-3"></div>
   <!-- End .mb-6 -->
@@ -18,9 +16,7 @@
   <div class="mb-5"></div>
   <!-- End .mb-5 -->
 
-  <app-deals-section
-    [deals]="banners ? banners.dealOfTheDay : []"
-  ></app-deals-section>
+  <app-deals-section [deals]="banners?.dealOfTheDay"></app-deals-section>
 
   <div class="mb-6"></div>
   <!-- End .mb-6 -->

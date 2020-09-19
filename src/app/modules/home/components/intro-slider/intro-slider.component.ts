@@ -1,7 +1,6 @@
 import { Banner } from '@models/banner.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HomeService } from '@services/home.service';
 
 @Component({
   selector: 'app-intro-slider',
@@ -23,11 +22,9 @@ export class IntroSliderComponent implements OnInit {
 
   @Input() banners: Banner[] = [];
 
-  constructor(private service: HomeService) {}
-
   ngOnInit(): void {}
 
   getBannerStyle(banner: any): string {
-    return `background-image: url(${banner.image});`;
+    return `background-image: url(${banner?.image});`;
   }
 }

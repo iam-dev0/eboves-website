@@ -8,8 +8,8 @@
     >
     <a [routerLink]="['/product', product.slug]">
       <img [src]="image" [alt]="product.name" class="product-image" />
-      <div class="product-campaign">
-        <a>Launch Sale</a>
+      <div *ngIf="campaignName" class="product-campaign">
+        <a>{{ campaignName }}</a>
       </div>
     </a>
 

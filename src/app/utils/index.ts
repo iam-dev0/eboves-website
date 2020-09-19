@@ -86,7 +86,9 @@ export const getVariationName = (
   return `${productName} (${variationAttributes.reduce(
     (acc, cur, idx) =>
       acc +
-      (cur.type === ATTRIBUTE_TYPES.IMAGE ? cur.value.alt : cur.value.value) +
+      (cur.type === ATTRIBUTE_TYPES.IMAGE
+        ? cur.value.alt
+        : `${cur.value.value} ${cur.value.unit}`) +
       (idx === variationAttributes.length - 1 ? '' : ' + '),
     ''
   )})`;

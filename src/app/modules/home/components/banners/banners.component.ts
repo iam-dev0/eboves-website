@@ -14,6 +14,9 @@ export class BannersComponent implements OnInit {
   ngOnInit(): void {}
 
   getImage(index: number): string {
-    return this.banners[index] ? this.banners[index].image : '';
+    if (this.banners) {
+      return this.banners[index]?.image;
+    }
+    return '';
   }
 }
