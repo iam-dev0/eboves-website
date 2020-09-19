@@ -3,7 +3,14 @@ import { CartService } from './../../../../services/cart.service';
 import { Brand } from './../../../../models/brand.model';
 import { Category } from '@models/category.model';
 import { ProductAttribute } from '@models/product-attribute.model';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
 import { ProductVariation } from '@models/product-variation.model';
 import {
   isDiscountAvailable,
@@ -12,13 +19,14 @@ import {
 } from '@utils';
 import { ProductService } from '@services/product.service';
 import { CART_ITEM_LIMIT } from 'src/constants';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-product-features',
   templateUrl: './product-features.component.html',
   styleUrls: ['./product-features.component.scss'],
 })
-export class ProductFeaturesComponent implements OnInit {
+export class ProductFeaturesComponent implements OnInit, OnDestroy {
   @Output() onVariationChange = new EventEmitter<string>();
   @Input() price: string;
   @Input() description: string;
@@ -34,6 +42,8 @@ export class ProductFeaturesComponent implements OnInit {
   discountedPrice: number = 0;
   variationName: string = '';
 
+  private subscriptions = new SubSink();
+
   constructor(
     private productService: ProductService,
     private cartService: CartService,
@@ -41,15 +51,17 @@ export class ProductFeaturesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getSelectedVariation().subscribe((variation) => {
-      this.selectedVariation = variation;
-      this.variationName = getVariationName(variation.attributes, this.name);
-      this.isOutOfStock = variation.availableQuantity < 1;
-      this.isDiscountAvailable = isDiscountAvailable(variation);
-      this.isDiscountAvailable &&
-        (this.discountedPrice = getDiscountedPrice(variation));
-      this.qty = 1;
-    });
+    this.subscriptions.sink = this.productService
+      .getSelectedVariation()
+      .subscribe((variation) => {
+        this.selectedVariation = variation;
+        this.variationName = getVariationName(variation.attributes, this.name);
+        this.isOutOfStock = variation.availableQuantity < 1;
+        this.isDiscountAvailable = isDiscountAvailable(variation);
+        this.isDiscountAvailable &&
+          (this.discountedPrice = getDiscountedPrice(variation));
+        this.qty = 1;
+      });
   }
 
   onAttributeValueChange(event: ProductAttribute) {
@@ -83,5 +95,9 @@ export class ProductFeaturesComponent implements OnInit {
 
   private getProductSlug(): string {
     return this.route.snapshot.paramMap.get('slug') || '';
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

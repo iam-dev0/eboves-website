@@ -6,16 +6,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SHIPPING_CHARGES } from 'src/constants';
 import { CartItem } from '@models/cart-item.model';
 import { getDiscountedPrice } from '@utils';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss'],
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
   @Input() cart: Cart;
   shippingCharges: number = 0;
   formStatus: Observable<string> = this.cartService.formStatus;
+
+  private subscriptions = new SubSink();
 
   constructor(private cartService: CartService) {}
 
@@ -25,12 +28,18 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   placeOrder() {
-    this.cartService.placeOrder().subscribe((order) => {
-      console.log(order);
-    });
+    this.subscriptions.sink = this.cartService
+      .placeOrder()
+      .subscribe((order) => {
+        console.log(order);
+      });
   }
 
   getPrice({ variation, qty }: CartItem): number {
     return getDiscountedPrice(variation) * qty;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

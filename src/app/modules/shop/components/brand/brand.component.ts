@@ -3,7 +3,7 @@ import { Category } from '@models/category.model';
 import { Brand } from '@models/brand.model';
 import { Product } from '@models/product.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { BrandsService } from '@services/brands.service';
 import { SeoService } from '@services/seo.service';
 import { getMetaTags, getCategoryTree, filterProducts } from '@utils';

@@ -1,23 +1,25 @@
 import { Category } from '@models/category.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HomeService } from '@services/home.service';
 import { Product } from '@models/product.model';
 import { Tab } from '@models/tab.model';
 import { filterProducts } from '@utils';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-top-selling-products',
   templateUrl: './top-selling-products.component.html',
   styleUrls: ['./top-selling-products.component.scss'],
 })
-export class TopSellingProductsComponent implements OnInit {
+export class TopSellingProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   tabs: Tab[] = [];
+  private subscriptions = new SubSink();
 
   constructor(private service: HomeService) {}
 
   ngOnInit(): void {
-    this.service.getTopSellers().subscribe((data) => {
+    this.subscriptions.sink = this.service.getTopSellers().subscribe((data) => {
       this.products = data;
       this.tabs = this.getTabs(data);
     });
@@ -43,5 +45,9 @@ export class TopSellingProductsComponent implements OnInit {
       (category, index) =>
         categories.findIndex(({ slug }) => category.slug === slug) === index
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -1,9 +1,7 @@
 import { getCategoryTree, filterProducts } from '@utils';
 import { Category } from '@models/category.model';
-import { tap } from 'rxjs/operators';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product } from '@models/product.model';
-import { Observable } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from '@services/search.service';
 import { SubSink } from 'subsink';
