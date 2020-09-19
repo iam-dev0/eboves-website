@@ -1,7 +1,6 @@
 import { Category } from '@models/category.model';
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '@modules/home/services/api.service';
+import { HomeService } from '@services/home.service';
 import { Product } from '@models/product.model';
 import { Tab } from '@models/tab.model';
 import { filterProducts } from '@utils';
@@ -15,7 +14,7 @@ export class TopSellingProductsComponent implements OnInit {
   products: Product[] = [];
   tabs: Tab[] = [];
 
-  constructor(private service: ApiService) {}
+  constructor(private service: HomeService) {}
 
   ngOnInit(): void {
     this.service.getTopSellers().subscribe((data) => {

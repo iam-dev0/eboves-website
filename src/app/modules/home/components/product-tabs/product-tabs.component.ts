@@ -1,5 +1,5 @@
 import { Response } from '@models/api-responses/response.model';
-import { ApiService } from './../../services/api.service';
+import { HomeService } from '@services/home.service';
 import { Product } from './../../../../models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { MainTabs } from '@models/api-responses/main-tabs.model';
@@ -14,18 +14,18 @@ export class ProductTabsComponent implements OnInit {
   onSaleProducts: Product[] = [];
   topRatedProducts: Product[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private HomeService: HomeService) {}
 
   ngOnInit(): void {
-    // this.featuredProducts = this.apiService.getFeaturesProducts();
-    // this.topRatedProducts = this.apiService.getTopRatedProducts();
-    // this.onSaleProducts = this.apiService.getOnSaleProducts();
-    this.apiService
-      .getMainTabsProducts()
-      .subscribe((response: Response<MainTabs>) => {
+    // this.featuredProducts = this.HomeService.getFeaturesProducts();
+    // this.topRatedProducts = this.HomeService.getTopRatedProducts();
+    // this.onSaleProducts = this.HomeService.getOnSaleProducts();
+    this.HomeService.getMainTabsProducts().subscribe(
+      (response: Response<MainTabs>) => {
         this.featuredProducts = response.data.featured;
         this.onSaleProducts = response.data.onSale;
         this.topRatedProducts = response.data.topRated;
-      });
+      }
+    );
   }
 }

@@ -1,9 +1,9 @@
 import { AboutUsComponent } from '@modules/core/components/about-us/about-us.component';
-import { ComingSoonComponent } from '@modules/core/components/coming-soon/coming-soon.component';
 import { NotFoundComponent } from '@modules/core/components/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FaqsComponent } from '@modules/core/components/faqs/faqs.component';
+import { TermsAndConditionsComponent } from '@modules/core/components/terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
   {
@@ -35,6 +35,7 @@ const routes: Routes = [
       ),
   },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
   { path: 'faqs', component: FaqsComponent },
   // 404 path
   { path: '**', component: NotFoundComponent },

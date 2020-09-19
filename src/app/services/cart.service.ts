@@ -165,7 +165,7 @@ export class CartService {
             console.log(error);
             this.notificationService.notify(
               NotificationsService.Type.ERROR,
-              'Could not place your order. Try Again!'
+              'Could not place your order. Try Again Later!'
             );
             return EMPTY;
           }),

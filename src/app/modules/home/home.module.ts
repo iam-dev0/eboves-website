@@ -1,5 +1,5 @@
 import { NewsletterModalComponent } from './components/newsletter-modal/newsletter-modal.component';
-import { ApiService } from './services/api.service';
+import { HomeService } from '@services/home.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -28,6 +28,5 @@ import { SharedModule } from '../shared/shared.module';
     NewsletterModalComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, CarouselModule, SharedModule],
-  providers: [ApiService],
 })
 export class HomeModule {}
