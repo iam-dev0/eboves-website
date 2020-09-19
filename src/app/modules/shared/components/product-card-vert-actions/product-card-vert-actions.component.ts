@@ -49,13 +49,15 @@ export class ProductCardVertActionsComponent implements OnInit {
   ngOnInit(): void {
     this.setLabel();
     this.setPrice();
-    this.image = this.product.mainImage;
+
     this.campaignName = this.product?.variations.find(
       ({ discountReason }) => !!discountReason
     )?.discountReason;
     this.selectionAttribute = this.product.variations[0].attributes.find(
       (value) => value.type === 'image'
     );
+    this.selectedVariation = this.product.variations[0];
+    this.image = this.selectedVariation?.mainImage;
     if (this.selectionAttribute) {
       this.values = this.product.variations.map(
         ({ attributes }) =>
