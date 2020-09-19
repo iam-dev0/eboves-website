@@ -64,6 +64,34 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
@@ -75,6 +103,9 @@
           "configurations": {
             "production": {
               "browserTarget": "eboves-Angular:build:production"
+            },
+            "development": {
+              "browserTarget": "eboves-Angular:build:development"
             }
           }
         },
@@ -116,6 +147,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "eboves-Angular:serve:production"
+            },
+            "development": {
+              "devServerTarget": "eboves-Angular:serve:development"
             }
           }
         },
@@ -137,6 +171,17 @@
               ],
               "sourceMap": false,
               "optimization": true
+            },
+            "development": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
             }
           }
         },
@@ -150,6 +195,10 @@
             "production": {
               "browserTarget": "eboves-Angular:build:production",
               "serverTarget": "eboves-Angular:server:production"
+            },
+            "development": {
+              "browserTarget": "eboves-Angular:build:development",
+              "serverTarget": "eboves-Angular:server:development"
             }
           }
         },
