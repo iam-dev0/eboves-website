@@ -2,16 +2,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+@import "~angular-notifier/styles";
 
-// @import "assets/sass/mixins/breakpoints";
-// @import "assets/sass/mixins/buttons";
-// @import "assets/sass/mixins/clearfix";
-// @import "assets/sass/mixins/lazy";
+@import "./assets/sass/config/variables";
 
-// @import "assets/sass/config/fonts";
-// @import "assets/sass/config/helpers";
-// @import "assets/sass/config/spacing";
-// @import "assets/sass/config/variables";
+@import "./assets/sass/mixins/breakpoints";
 
 // $primary-color: #a6c76c;
 // $secondary-color: #92b25a;
@@ -24,5 +19,32 @@ body.noscroll {
   .mobile-menu-overlay {
     visibility: visible !important;
     opacity: 1 !important;
+  }
+}
+
+.notifier__notification {
+  .notifier__notification-message {
+    font-weight: 200;
+  }
+
+  .notifier__notification-button {
+    line-height: 1rem;
+  }
+}
+
+@include mq("sm", "max") {
+  .notifier__notification {
+    top: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    border-radius: 0;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+
+    .notifier__notification-message {
+      font-size: 1.3rem;
+      letter-spacing: -0.01rem;
+    }
   }
 }

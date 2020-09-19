@@ -16,6 +16,7 @@ import { OrderRequest } from '@models/api-requests/order-request.model';
 import { OrderResponse } from '@models/api-responses/order-response.model';
 import { StockResponse } from '@models/api-responses/stock-response.model';
 import { getDiscountedPrice } from '@utils';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,8 @@ export class CartService {
   constructor(
     private localStorage: LocalStorageService,
     private client: HttpClient,
-    private device: DeviceDetectorService
+    private device: DeviceDetectorService,
+    private notificationService: NotificationsService
   ) {
     const cart = this.localStorage.get(CART_KEY);
     if (cart) this.cart$.next(cart);
@@ -161,6 +163,10 @@ export class CartService {
         .pipe(
           catchError((error) => {
             console.log(error);
+            this.notificationService.notify(
+              NotificationsService.Type.ERROR,
+              'Could not place your order. Try Again!'
+            );
             return EMPTY;
           }),
           map(({ data }) => data),
