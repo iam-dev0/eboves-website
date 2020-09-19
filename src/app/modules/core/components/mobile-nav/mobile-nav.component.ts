@@ -41,5 +41,6 @@ export class MobileNavComponent implements OnInit {
     this.router.navigate(['/shop/search', this.searchValue], {
       relativeTo: this.route,
     });
+    this.closeMobileDrawer();
   }
 }

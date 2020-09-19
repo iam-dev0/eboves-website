@@ -61,7 +61,7 @@
         <nav class="mobile-nav">
           <ul class="mobile-menu">
             <li class="active">
-              <a routerLink="/home">Home</a>
+              <a routerLink="/home" (click)="closeMobileDrawer()">Home</a>
             </li>
             <li>
               <a
@@ -90,10 +90,10 @@
                 <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
               </ul>
             </li>
-            <li>
+            <li (click)="closeMobileDrawer()">
               <a routerLink="/shop/best-seller">Best Seller</a>
             </li>
-            <li>
+            <li (click)="closeMobileDrawer()">
               <a routerLink="/shop/under999">Under 999</a>
             </li>
           </ul>
@@ -112,6 +112,7 @@
             <li *ngFor="let category of categories">
               <div>
                 <a
+                  (click)="closeMobileDrawer()"
                   class="sf-with-ul"
                   [routerLink]="['/shop/category', category.slug]"
                   >{{ category.name }}
@@ -132,6 +133,7 @@
                 <li *ngFor="let subcategory of category.childrens">
                   <div>
                     <a
+                      (click)="closeMobileDrawer()"
                       class="sf-with-ul"
                       [routerLink]="[
                         '/shop/category',
@@ -155,6 +157,7 @@
                   >
                     <li *ngFor="let part of subcategory.childrens">
                       <a
+                        (click)="closeMobileDrawer()"
                         class="sf-with-ul"
                         [routerLink]="[
                           '/shop/category',
