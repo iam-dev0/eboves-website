@@ -15,7 +15,7 @@ export class SearchService {
   search(value: string): Observable<Product[]> {
     return this.client
       .get<Response<Product[]>>(
-        `${environment.apiUrl}products?bestSeller=true&pageSize=100`
+        `${environment.apiUrl}products?search=${value}&pageSize=100`
       )
       .pipe(map(({ data }) => data));
   }
