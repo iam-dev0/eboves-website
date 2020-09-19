@@ -17,7 +17,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class NewsletterModalComponent implements OnInit, AfterViewInit {
   @ViewChild('subscriptionModal') subscriptionModal: ElementRef;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: string) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {}
 
