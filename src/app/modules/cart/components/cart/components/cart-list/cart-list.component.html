@@ -18,7 +18,10 @@
               [routerLink]="['/product', item.productSlug]"
               [queryParams]="{ varSlug: item.variation.slug }"
             >
-              <img [src]="item.variation.mainImage" alt="Product image" />
+              <img
+                [src]="item.variation.mainImage"
+                [alt]="item.variationName"
+              />
             </a>
           </figure>
 
