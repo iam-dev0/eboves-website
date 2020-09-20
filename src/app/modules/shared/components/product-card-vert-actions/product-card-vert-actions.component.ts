@@ -59,10 +59,15 @@ export class ProductCardVertActionsComponent implements OnInit {
     this.selectedVariation = this.product.variations[0];
     this.image = this.selectedVariation?.mainImage;
     if (this.selectionAttribute) {
-      this.values = this.product.variations.map(
-        ({ attributes }) =>
-          attributes.find(({ type }) => type === 'image')?.value
-      );
+      this.values = this.product.variations
+        .map(
+          ({ attributes }) =>
+            attributes.find(({ type }) => type === 'image')?.value
+        )
+        .filter(
+          (value, index, arr) =>
+            arr.findIndex((v) => v.value === value.value) === index
+        );
     }
   }
 

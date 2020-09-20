@@ -20,7 +20,10 @@
 </ng-template>
 <ng-template #elseTemplate>
   <div class="details-filter-row details-row-size">
-    <label for="size">{{ attribute.name | titlecase }}:</label>
+    <label for="size"
+      >{{ attribute.name | titlecase }}
+      {{ attribute.unit ? "(" + attribute.unit + ")" : "" }}:</label
+    >
     <div class="select-custom">
       <select
         name="size"

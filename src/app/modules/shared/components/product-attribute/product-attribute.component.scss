@@ -54,6 +54,8 @@
 
   .product-nav-thumbs {
     padding-top: 0;
+    display: flex;
+    flex-wrap: wrap;
 
     a {
       box-shadow: 0 0 0 0.1rem #ececec;

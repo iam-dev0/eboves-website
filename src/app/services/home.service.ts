@@ -28,7 +28,7 @@ export class HomeService {
 
   getFeaturedBrands(): Observable<Brand[]> {
     return this.client
-      .get<Response<Brand[]>>(`${environment.apiUrl}brands`)
+      .get<Response<Brand[]>>(`${environment.apiUrl}brands?featured=true`)
       .pipe(map((response) => response.data));
   }
 
