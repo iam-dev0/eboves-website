@@ -13,6 +13,7 @@ import { ProductQuickViewComponent } from './components/product-quick-view/produ
 import { ProductFeaturesComponent } from './components/product-features/product-features.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { ProductAttributeComponent } from './components/product-attribute/product-attribute.component';
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProductAttributeComponent } from './components/product-attribute/produc
     ProductFeaturesComponent,
     ImageGalleryComponent,
     ProductAttributeComponent,
+    EllipsisPipe,
   ],
   imports: [CommonModule, CarouselModule, NgxPaginationModule, RouterModule],
   exports: [
@@ -38,6 +40,7 @@ import { ProductAttributeComponent } from './components/product-attribute/produc
     TabsComponent,
     ProductFeaturesComponent,
     ImageGalleryComponent,
+    EllipsisPipe,
   ],
 })
 export class SharedModule {}
