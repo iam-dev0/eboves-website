@@ -1,28 +1,14 @@
 <div class="intro-slider-container">
   <owl-carousel-o class="" [options]="carouselOptions">
     <ng-template carouselSlide *ngFor="let banner of banners">
-      <div class="intro-slide" [style]="getBannerStyle(banner)">
-        <div class="container intro-content">
-          <h3 class="intro-subtitle">Sub-Title</h3>
-          <!-- End .h3 intro-subtitle -->
-          <h1 class="intro-title">
-            Title <br />
-            <!-- <span class="text-primary" *ngIf="banner.price">
-              <sup
-                *ngIf="banner.priceRange"
-                class="text-white font-weight-light"
-                >from</sup
-              ><sup>$</sup>{{ banner.price }}
-            </span> -->
-          </h1>
-          <!-- End .intro-title -->
-
-          <a href="category.html" class="btn btn-primary">
-            <span>Shop Now</span>
-            <i class="icon-long-arrow-right"></i>
-          </a>
-        </div>
-        <!-- End .container intro-content -->
+      <div class="intro-slide">
+        <a [routerLink]="banner.href">
+          <img
+            [src]="banner.image"
+            [alt]="banner.title"
+            [title]="banner.title"
+          />
+        </a>
       </div>
       <!-- End .intro-slide -->
     </ng-template>

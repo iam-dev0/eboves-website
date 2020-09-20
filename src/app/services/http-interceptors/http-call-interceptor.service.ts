@@ -21,7 +21,7 @@ import { tap } from 'rxjs/operators';
 export class HttpCallInterceptorService implements HttpInterceptor {
   constructor(
     private transferState: TransferState,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   intercept(
@@ -36,9 +36,9 @@ export class HttpCallInterceptorService implements HttpInterceptor {
     const key: StateKey<string> = makeStateKey<string>(req.url);
 
     if (isPlatformServer(this.platformId)) {
+      console.log('req from server: ', req.urlWithParams);
       return next.handle(req).pipe(
         tap((event) => {
-          // console.log('server: saving response state: ', req.url);
           this.transferState.set(key, (<HttpResponse<any>>event).body);
         })
       );
@@ -50,10 +50,9 @@ export class HttpCallInterceptorService implements HttpInterceptor {
           status: 200,
         });
         this.transferState.remove(key);
-        // console.log('client: getting response state: ', req.url);
         return of(response);
       } else {
-        // console.log('client: no saved response state: ', req.url);
+        console.log('req from browser: ', req.urlWithParams);
         return next.handle(req);
       }
     }

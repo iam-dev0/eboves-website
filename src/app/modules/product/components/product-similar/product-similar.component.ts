@@ -1,10 +1,6 @@
-import {
-  featuredProducts,
-  topRatedProducts,
-} from './../../../home/services/mock-data';
-import { Product } from './../../../../models/product.model';
+import { Product } from '@models/product.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-similar',
@@ -12,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-similar.component.scss'],
 })
 export class ProductSimilarComponent implements OnInit {
-  products = featuredProducts;
+  @Input() products: Product[] = [];
 
   customOptions: OwlOptions = {
     nav: false,

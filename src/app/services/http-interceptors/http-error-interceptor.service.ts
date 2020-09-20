@@ -6,7 +6,7 @@ import {
   HttpEvent,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           errorMsg = `status: ${error.status}, message: ${error.message}`;
         }
         // console.log('error: ', errorMsg);
-        return throwError(errorMsg);
+        return EMPTY;
       })
     );
   }

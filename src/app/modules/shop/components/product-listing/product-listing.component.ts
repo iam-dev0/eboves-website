@@ -7,8 +7,9 @@ import {
   Inject,
   PLATFORM_ID,
   OnDestroy,
+  Renderer2,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs';
 import { Options, ChangeContext } from 'ng5-slider';
@@ -16,7 +17,7 @@ import { SubSink } from 'subsink';
 
 import { Product } from '@models/product.model';
 import { Brand } from '@models/brand.model';
-import { PriceRange } from '@models/pricae-range.model';
+import { PriceRange } from '@models/price-range.model';
 
 @Component({
   selector: 'app-product-listing',
@@ -38,9 +39,14 @@ export class ProductListingComponent implements OnInit, OnChanges, OnDestroy {
   };
   filterOptions: FilterOptions = {};
   filterOptions$ = new BehaviorSubject<FilterOptions>(this.filterOptions);
+  isFiltersDrawerOpen: boolean = false;
   private subscriptions = new SubSink();
 
-  constructor(@Inject(PLATFORM_ID) private platformId) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -157,6 +163,15 @@ export class ProductListingComponent implements OnInit, OnChanges, OnDestroy {
       selectedBrands.splice(selectedBrands.indexOf(brand), 1);
     }
     this.filterOptions$.next({ ...this.filterOptions, selectedBrands });
+  }
+
+  toggleIsFilterDrawerOpen() {
+    this.isFiltersDrawerOpen = !this.isFiltersDrawerOpen;
+    if (this.isFiltersDrawerOpen) {
+      this.renderer.addClass(this.document.body, 'noscroll');
+    } else {
+      this.renderer.removeClass(this.document.body, 'noscroll');
+    }
   }
 
   ngOnDestroy(): void {

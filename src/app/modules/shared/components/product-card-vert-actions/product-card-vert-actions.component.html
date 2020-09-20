@@ -1,19 +1,15 @@
 <div class="product product-7 text-center">
   <figure class="product-media">
-    <span
-      *ngIf="tagLabel && tagLabel !== ''"
-      class="product-label {{ tagClass }}"
-      >{{ tagLabel }}</span
-    >
-    <span
-      *ngIf="selectedVariation && selectedVariation.preOrder"
-      class="product-label label-new"
+    <span *ngIf="tagLabel" class="product-label {{ tagClass }}">{{
+      tagLabel
+    }}</span>
+    <span *ngIf="checkIfPreOrder()" class="product-label label-new"
       >Pre-Order</span
     >
     <a [routerLink]="['/product', product.slug]">
       <img [src]="image" [alt]="product.name" class="product-image" />
-      <div class="product-campaign">
-        <a>Launch Sale</a>
+      <div *ngIf="campaignName" class="product-campaign">
+        <a>{{ campaignName }}</a>
       </div>
     </a>
 
@@ -21,7 +17,12 @@
       <!-- <a href="#" class="btn-product-icon btn-wishlist btn-expandable"
         ><span>add to wishlist</span></a
       > -->
-      <a class="btn-product-icon btn-quickview" title="Quick view"
+      <a
+        data-toggle="modal"
+        data-target="#quick-view-modal"
+        class="btn-product-icon btn-quickview"
+        title="Quick view"
+        (click)="handleQuickViewClick()"
         ><span>Quick view</span></a
       >
       <!-- <a href="#" class="btn-product-icon btn-compare" title="Compare"
@@ -44,8 +45,10 @@
       }}</a>
     </div>
     <!-- End .product-cat -->
-    <h3 class="product-title">
-      <a [routerLink]="['/product', product.slug]">{{ product.name }}</a>
+    <h3 class="product-title" [title]="product.name">
+      <a [routerLink]="['/product', product.slug]"
+        ><span>{{ product.name | ellipsis: 30 }}</span></a
+      >
     </h3>
     <!-- End .product-title -->
     <div class="product-price">
@@ -68,7 +71,7 @@
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let value of values">
         <a class="active" (click)="changeVariation(value)">
-          <img [src]="value.value" [alt]="value.alt" />
+          <img [src]="value?.value" [alt]="value?.alt" />
         </a>
       </ng-template>
     </owl-carousel-o>

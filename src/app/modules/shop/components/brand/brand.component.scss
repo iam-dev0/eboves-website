@@ -1,4 +1,4 @@
-/* Category */
+/* Brand */
 @import "../../../../../assets/sass/mixins/clearfix";
 @import "../../../../../assets/sass/mixins/breakpoints";
 @import "../../../../../assets/sass/mixins/lazy";
@@ -285,10 +285,6 @@
 }
 
 .filter-items-count {
-  .filter-item {
-    padding-right: 4rem;
-  }
-
   .item-count {
     display: inline-flex;
     align-items: center;

@@ -1,11 +1,14 @@
 <header class="header header-2 header-intro-clearance">
-  <app-header-top></app-header-top>
+  <!-- <app-header-top></app-header-top> -->
   <!-- End .header-top -->
 
   <app-header-middle></app-header-middle>
   <!-- End .header-middle -->
 
-  <app-header-bottom [categories]="categories"></app-header-bottom>
+  <app-header-bottom
+    [categories]="categories"
+    [brands]="brands"
+  ></app-header-bottom>
   <!-- End .header-bottom -->
 </header>
 <!-- End .header -->

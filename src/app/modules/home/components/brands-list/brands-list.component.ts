@@ -1,8 +1,7 @@
-import { Response } from '@models/api-responses/response.model';
 import { Observable } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '@modules/home/services/api.service';
+import { HomeService } from '@services/home.service';
 import { Brand } from '@models/brand.model';
 
 @Component({
@@ -40,7 +39,7 @@ export class BrandsListComponent implements OnInit {
     },
   };
 
-  constructor(private service: ApiService) {}
+  constructor(private service: HomeService) {}
 
   ngOnInit(): void {
     this.featuredBrands$ = this.service.getFeaturedBrands();

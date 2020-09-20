@@ -229,6 +229,17 @@
   }
 }
 
+.logo-container {
+  background-color: #a6c76c;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-box-icon {
+  font-size: 8rem;
+}
+
 @keyframes fadeInUpShort {
   from {
     opacity: 0;
@@ -255,13 +266,4 @@
     -webkit-transform: translate3d(0, -100px, 0);
     transform: translate3d(0, -100px, 0);
   }
-}
-
-@include mq("md") {
-}
-
-@include mq("lg") {
-}
-
-@include mq("xl") {
 }

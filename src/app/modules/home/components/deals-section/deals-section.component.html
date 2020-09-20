@@ -1,31 +1,33 @@
 <div class="bg-light deal-container pt-5 pb-3 mb-5">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="deals">
       <div class="col-lg-9">
         <div class="deal">
           <div class="deal-content">
             <h4>Limited Quantities</h4>
             <h2>Deal of the Day</h2>
 
-            <h3 class="product-title"><a href="product.html">POÄNG</a></h3>
+            <h3 class="product-title">
+              <a [routerLink]="deals[0].href">{{ deals[0].title }}</a>
+            </h3>
             <!-- End .product-title -->
 
             <div class="product-price">
-              <span class="new-price">$149.00</span>
-              <span class="old-price">Was $240.00</span>
+              <span class="new-price">Rs. 4000</span>
+              <span class="old-price">Was Rs. 8000</span>
             </div>
             <!-- End .product-price -->
 
             <!-- End .deal-countdown -->
 
-            <a href="product.html" class="btn btn-primary">
+            <a [routerLink]="deals[0].href" class="btn btn-primary">
               <span>Shop Now</span><i class="icon-long-arrow-right"></i>
             </a>
           </div>
           <!-- End .deal-content -->
           <div class="deal-image">
-            <a href="product.html">
-              <img [src]="getImage(0)" alt="image" />
+            <a [routerLink]="deals[0].href">
+              <img [src]="deals[0]?.image" alt="Deal of the day" />
             </a>
           </div>
           <!-- End .deal-image -->
@@ -38,18 +40,20 @@
         <div
           class="banner banner-overlay banner-overlay-light text-center d-none d-lg-block"
         >
-          <a href="#">
-            <img [src]="getImage(1)" alt="Banner" />
+          <a [routerLink]="deals[1].href">
+            <img [src]="deals[1]?.image" alt="Deal Banner" />
           </a>
 
           <div class="banner-content banner-content-top banner-content-center">
             <h4 class="banner-subtitle">The Best Choice</h4>
             <!-- End .banner-subtitle -->
-            <h3 class="banner-title">AGEN</h3>
+            <h3 class="banner-title">{{ deals[1].title }}</h3>
             <!-- End .banner-title -->
-            <div class="banner-text text-primary">$49.99</div>
+            <!-- <div class="banner-text text-primary">$49.99</div> -->
             <!-- End .banner-text -->
-            <a href="#" class="btn btn-outline-gray banner-link"
+            <a
+              [routerLink]="deals[1].href"
+              class="btn btn-outline-gray banner-link"
               >Shop Now<i class="icon-long-arrow-right"></i
             ></a>
           </div>

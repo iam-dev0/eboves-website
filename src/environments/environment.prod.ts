@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:4040/',
+  apiUrl: 'http://web-api.eboves.com/api/v1/',
 };

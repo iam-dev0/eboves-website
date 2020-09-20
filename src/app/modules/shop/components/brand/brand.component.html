@@ -1,21 +1,15 @@
 <main class="main">
-  <div
-    class="page-header text-center"
-    style="background-image: url('assets/images/page-header-bg.jpg')"
-  >
-    <div class="container">
-      <h1 class="page-title">Grid 4 Columns<span>Shop</span></h1>
-    </div>
+  <div class="page-header text-center">
     <!-- End .container -->
   </div>
   <!-- End .page-header -->
   <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+        <li class="breadcrumb-item"><a>Brands</a></li>
         <li class="breadcrumb-item active" aria-current="page">
-          Grid 4 Columns
+          {{ brand?.name }}
         </li>
       </ol>
     </div>
@@ -29,51 +23,10 @@
         [products]="filteredProducts"
         [showBrandFilter]="false"
       >
-        <div class="sidebar sidebar-shop" categoriesFilter>
-          <div class="widget widget-collapsible">
-            <h3 class="widget-title">
-              <a
-                data-toggle="collapse"
-                href="#widget-1"
-                role="button"
-                aria-expanded="true"
-                aria-controls="widget-1"
-              >
-                Category
-              </a>
-            </h3>
-            <!-- End .widget-title -->
-
-            <div class="collapse show" id="widget-1">
-              <div class="widget-body">
-                <div class="filter-items filter-items-count">
-                  <div class="filter-item" *ngFor="let category of categories">
-                    <div class="custom-control custom-checkbox">
-                      <a
-                        [routerLink]="['/shop/brand', brand.slug]"
-                        [queryParams]="{ catSlug: category.slug }"
-                      >
-                        <label
-                          class="custom-control-label {{
-                            isActive(category.slug) ? 'active' : ''
-                          }}"
-                          >{{ category.name }}</label
-                        ></a
-                      >
-                    </div>
-                    <!-- End .custom-checkbox -->
-                    <!-- <span class="item-count">{{ part.productCount }}</span> -->
-                  </div>
-                  <!-- End .filter-item -->
-                </div>
-                <!-- End .filter-items -->
-              </div>
-              <!-- End .widget-body -->
-            </div>
-            <!-- End .collapse -->
-          </div>
-          <!-- End .widget -->
-        </div>
+        <app-categories-filter
+          categoriesFilter
+          [categories]="categories"
+        ></app-categories-filter>
       </app-product-listing>
     </div>
     <!-- End .container -->

@@ -17,6 +17,8 @@ import { FaqsComponent } from './components/faqs/faqs.component';
 import { CategoryDropdownItemComponent } from './components/header/components/category-dropdown-item/category-dropdown-item.component';
 import { CartDropdownComponent } from './components/header/components/cart-dropdown/cart-dropdown.component';
 import { CartDropdownItemComponent } from './components/header/components/cart-dropdown-item/cart-dropdown-item.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { CartDropdownItemComponent } from './components/header/components/cart-d
     CategoryDropdownItemComponent,
     CartDropdownComponent,
     CartDropdownItemComponent,
+    LoaderComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -45,6 +49,8 @@ import { CartDropdownItemComponent } from './components/header/components/cart-d
     AboutUsComponent,
     ComingSoonComponent,
     NotFoundComponent,
+    LoaderComponent,
+    TermsAndConditionsComponent,
   ],
 })
 export class CoreModule {}

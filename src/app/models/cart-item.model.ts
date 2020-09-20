@@ -4,4 +4,5 @@ export interface CartItem {
   qty: number;
   productName: string;
   productSlug: string;
+  variationName: string;
 }

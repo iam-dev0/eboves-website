@@ -1,6 +1,6 @@
 import { ProductVariation } from '@models/product-variation.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 import { AttributeValue } from '@models/attribute-value.model';
@@ -14,6 +14,7 @@ import { getPriceRange } from '@utils';
   styleUrls: ['./product-card-vert-actions.component.scss'],
 })
 export class ProductCardVertActionsComponent implements OnInit {
+  @Output() onQuickViewClick = new EventEmitter<string>();
   @Input() product: Product;
   tagLabel: string = '';
   tagClass: string = '';
@@ -22,6 +23,7 @@ export class ProductCardVertActionsComponent implements OnInit {
   selectionAttribute: ProductAttribute;
   image: string = '';
   selectedVariation: ProductVariation;
+  campaignName: string = '';
 
   customOptions: OwlOptions = {
     nav: true,
@@ -47,17 +49,33 @@ export class ProductCardVertActionsComponent implements OnInit {
   ngOnInit(): void {
     this.setLabel();
     this.setPrice();
-    this.image = this.product.mainImage;
+
+    this.campaignName = this.product?.variations.find(
+      ({ discountReason }) => !!discountReason
+    )?.discountReason;
     this.selectionAttribute = this.product.variations[0].attributes.find(
       (value) => value.type === 'image'
     );
+    this.selectedVariation = this.product.variations[0];
+    this.image = this.selectedVariation?.mainImage;
     if (this.selectionAttribute) {
-      this.values = this.product.variations.map(
-        ({ attributes }) =>
-          attributes.find(({ type }) => type === 'image')
-            ?.ProductVariationAttributeValues
-      );
+      this.values = this.product.variations
+        .map(
+          ({ attributes }) =>
+            attributes.find(({ type }) => type === 'image')?.value
+        )
+        .filter(
+          (value, index, arr) =>
+            arr.findIndex((v) => v.value === value.value) === index
+        );
     }
+  }
+
+  checkIfPreOrder(): boolean {
+    return this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.preOrder),
+      true
+    );
   }
 
   setLabel() {
@@ -75,18 +93,37 @@ export class ProductCardVertActionsComponent implements OnInit {
         : discounts.length === 1
         ? `${discounts[0]}%`
         : '';
-    if (discountRange) {
+    const isBestSeller: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.bestSeller),
+      true
+    );
+    const isTopRated: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : cur.topRated),
+      true
+    );
+    const isOutOfStock: boolean = this.product.variations.reduce(
+      (acc, cur) => (!acc ? false : !cur.availableQuantity),
+      true
+    );
+    const isPreOrder: boolean = this.checkIfPreOrder();
+    if (isOutOfStock && !isPreOrder) {
+      this.tagClass = 'label-out';
+      this.tagLabel = `Out Of Stock`;
+    } else if (discountRange) {
       this.tagClass = 'label-sale';
       this.tagLabel = `${discountRange} Off`;
-    } else if (this.product.topRated) {
+    } else if (isTopRated) {
       this.tagClass = 'label-top';
       this.tagLabel = 'Top';
+    } else if (isBestSeller) {
+      this.tagClass = 'label-sale';
+      this.tagLabel = `Best Seller`;
     }
   }
 
   setPrice() {
-    const priceRange = getPriceRange(this.product);
-    this.price = `Rs. ${priceRange.min} - Rs. ${priceRange.max}`;
+    const { min, max } = getPriceRange(this.product);
+    this.price = min === max ? `Rs. ${min}` : `Rs. ${min} - Rs. ${max}`;
   }
 
   changeVariation(attributeValue: AttributeValue) {
@@ -94,11 +131,14 @@ export class ProductCardVertActionsComponent implements OnInit {
       ({ attributes }) =>
         attributes.findIndex(
           (attr) =>
-            attr?.ProductVariationAttributeValues.id === attributeValue.id &&
-            attr?.ProductVariationAttributeValues?.value ===
-              attributeValue?.value
+            attr?.value.id === attributeValue.id &&
+            attr?.value?.value === attributeValue?.value
         ) > -1
     );
     this.image = this.selectedVariation?.mainImage;
+  }
+
+  handleQuickViewClick() {
+    this.onQuickViewClick.emit(this.product.slug);
   }
 }

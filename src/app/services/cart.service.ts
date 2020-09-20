@@ -1,10 +1,22 @@
+import { map, tap, catchError } from 'rxjs/operators';
+import { Response } from '@models/api-responses/response.model';
+import { SHIPPING_TYPES, ORDER_SOURCE } from 'src/constants';
+import { environment } from '@environment/environment';
+import { HttpClient } from '@angular/common/http';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { FORM_STATUS } from './../../constants';
 import { LocalStorageService } from './local-storage.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, EMPTY, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
 import { CartItem } from '@models/cart-item.model';
 import { Cart } from '@models/cart.model';
 import { CART_KEY } from '../../constants';
+import { BillingForm } from '@models/billing-form.model';
+import { OrderRequest } from '@models/api-requests/order-request.model';
+import { OrderResponse } from '@models/api-responses/order-response.model';
+import { StockResponse } from '@models/api-responses/stock-response.model';
+import { getDiscountedPrice } from '@utils';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +24,31 @@ import { CART_KEY } from '../../constants';
 export class CartService {
   private cart$ = new BehaviorSubject<Cart>({ items: [], total: 0 });
 
-  constructor(private localStorage: LocalStorageService) {
+  private formStatus$ = new BehaviorSubject<string>(FORM_STATUS.INVALID);
+  formStatus: Observable<string> = this.formStatus$.asObservable();
+
+  private formValues$ = new BehaviorSubject<BillingForm>({});
+  formValues: Observable<BillingForm> = this.formValues$.asObservable();
+
+  private isOrderPlaced$ = new Subject<boolean>();
+  isOrderPlaced: Observable<boolean> = this.isOrderPlaced$.asObservable();
+
+  constructor(
+    private localStorage: LocalStorageService,
+    private client: HttpClient,
+    private device: DeviceDetectorService,
+    private notificationService: NotificationsService
+  ) {
     const cart = this.localStorage.get(CART_KEY);
     if (cart) this.cart$.next(cart);
+  }
+
+  bindFormStatus(formStatus: Observable<string>) {
+    formStatus.subscribe(this.formStatus$);
+  }
+
+  bindFormValues(formValues: Observable<BillingForm>) {
+    formValues.subscribe(this.formValues$);
   }
 
   getCart(): Observable<Cart> {
@@ -74,11 +108,108 @@ export class CartService {
 
   private getItemPrice(cartItem: CartItem): number {
     const { qty, variation } = cartItem;
-    return moment().isBetween(
-      variation.discountStartTime,
-      variation.discountEndTime
-    )
-      ? variation.discountPrice * qty
-      : variation.price * qty;
+    return getDiscountedPrice(variation) * qty;
+  }
+
+  private isFormValid(): boolean {
+    return this.formStatus$.value === FORM_STATUS.VALID;
+  }
+
+  private getOrder(): OrderRequest {
+    const { items, shippingType, total } = this.cart$.value;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      addressLineOne,
+      addressLineTwo,
+      city,
+    } = this.formValues$.value;
+    return new OrderRequest(
+      this.device.isMobile()
+        ? ORDER_SOURCE.WEBSITE_MOBILE
+        : ORDER_SOURCE.WEBSITE_DESKTOP,
+      total >= 3000
+        ? SHIPPING_TYPES.FREE
+        : shippingType || SHIPPING_TYPES.STANDARD,
+      items.map(({ variation: { id }, qty: quantity }) => ({ id, quantity })),
+      firstName,
+      lastName,
+      email,
+      phone,
+      `${addressLineOne} ${addressLineTwo}`,
+      city
+    );
+  }
+
+  private isCartEmpty(): boolean {
+    return !this.getCartList().length;
+  }
+
+  private canPlaceOrder(): boolean {
+    return this.isFormValid() && !this.isCartEmpty();
+  }
+
+  private emptyCart() {
+    this.updateCart([]);
+  }
+
+  placeOrder(): Observable<OrderResponse> {
+    if (this.canPlaceOrder()) {
+      return this.client
+        .post<Response<OrderResponse>>(
+          `${environment.apiUrl}orders/place-order`,
+          this.getOrder()
+        )
+        .pipe(
+          catchError((error) => {
+            console.log(error);
+            this.notificationService.notify(
+              NotificationsService.Type.ERROR,
+              'Could not place your order. Try Again Later!'
+            );
+            return EMPTY;
+          }),
+          map(({ data }) => data),
+          tap(() => {
+            this.emptyCart();
+            this.isOrderPlaced$.next(true);
+          })
+        );
+    }
+
+    return of(null);
+  }
+
+  private getSlugs(): string {
+    return this.getCartList()
+      .map((item) => item.variation.slug)
+      .toString();
+  }
+
+  private updateStock(stocks: StockResponse[]) {
+    const cart: CartItem[] = this.getCartList().map((item) => {
+      const newStock = stocks.find(({ id }) => id === item.variation.id);
+      return {
+        ...item,
+        variation: {
+          ...item.variation,
+          availableQuantity: newStock?.availableQuantity,
+        },
+      };
+    });
+    this.updateCart(cart);
+  }
+
+  checkStock() {
+    this.client
+      .get<Response<StockResponse[]>>(
+        `${environment.apiUrl}/products/get-stock?slugs=${this.getSlugs()}`
+      )
+      .pipe(
+        map(({ data }) => data),
+        tap((data) => this.updateStock(data))
+      );
   }
 }

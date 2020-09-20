@@ -1,0 +1,27 @@
+.loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+
+  &.show {
+    display: block;
+  }
+
+  .loader-overlay {
+    background: #0000004d;
+    height: 100%;
+  }
+
+  .loader-image {
+    position: fixed;
+    top: 45%;
+    left: 45%;
+
+    img {
+      width: 5rem;
+    }
+  }
+}

@@ -1,31 +1,34 @@
 import { Response } from '@models/api-responses/response.model';
-import { ApiService } from './../../services/api.service';
+import { HomeService } from '@services/home.service';
 import { Product } from './../../../../models/product.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MainTabs } from '@models/api-responses/main-tabs.model';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-product-tabs',
   templateUrl: './product-tabs.component.html',
   styleUrls: ['./product-tabs.component.scss'],
 })
-export class ProductTabsComponent implements OnInit {
+export class ProductTabsComponent implements OnInit, OnDestroy {
   featuredProducts: Product[] = [];
   onSaleProducts: Product[] = [];
   topRatedProducts: Product[] = [];
+  private subscriptions = new SubSink();
 
-  constructor(private apiService: ApiService) {}
+  constructor(private HomeService: HomeService) {}
 
   ngOnInit(): void {
-    // this.featuredProducts = this.apiService.getFeaturesProducts();
-    // this.topRatedProducts = this.apiService.getTopRatedProducts();
-    // this.onSaleProducts = this.apiService.getOnSaleProducts();
-    this.apiService
-      .getMainTabsProducts()
-      .subscribe((response: Response<MainTabs>) => {
+    this.subscriptions.sink = this.HomeService.getMainTabsProducts().subscribe(
+      (response: Response<MainTabs>) => {
         this.featuredProducts = response.data.featured;
         this.onSaleProducts = response.data.onSale;
         this.topRatedProducts = response.data.topRated;
-      });
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

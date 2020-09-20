@@ -1,9 +1,6 @@
-import { Banners } from '@models/api-responses/banners.model';
-import { Response } from '@models/api-responses/response.model';
 import { Banner } from '@models/banner.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-intro-slider',
@@ -25,11 +22,5 @@ export class IntroSliderComponent implements OnInit {
 
   @Input() banners: Banner[] = [];
 
-  constructor(private service: ApiService) {}
-
   ngOnInit(): void {}
-
-  getBannerStyle(banner: any): string {
-    return `background-image: url(${banner.image});`;
-  }
 }

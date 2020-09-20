@@ -7,5 +7,4 @@ export interface ProductAttribute {
   unit?: string;
   value?: AttributeValue;
   attributeValues?: AttributeValue[];
-  ProductVariationAttributeValues?: AttributeValue;
 }

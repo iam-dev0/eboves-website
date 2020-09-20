@@ -37,6 +37,7 @@
 .footer-logo {
   margin-bottom: 2rem;
   margin-top: -0.8rem;
+  width: 12rem;
 }
 
 .widget-about p {
@@ -116,9 +117,8 @@
 }
 
 .footer-payments {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
+  width: 5rem;
+  margin-top: -1rem !important;
 }
 
 @include mq("lg") {

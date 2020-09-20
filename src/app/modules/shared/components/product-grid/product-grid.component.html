@@ -1,5 +1,5 @@
 <ng-container *ngIf="cardType === 'vertActions'; else elseTemplate">
-  <div class="toolbox" toolbox>
+  <div class="toolbox" toolbox *ngIf="showToolbox">
     <div class="toolbox-left">
       <div class="toolbox-info">
         Total <span>{{ products?.length }}</span> Products
@@ -8,7 +8,7 @@
     </div>
     <!-- End .toolbox-left -->
 
-    <div class="toolbox-right">
+    <!-- <div class="toolbox-right">
       <div class="toolbox-sort">
         <label for="sortby">Sort by:</label>
         <div class="select-custom">
@@ -18,10 +18,10 @@
             <option value="date">Date</option>
           </select>
         </div>
-      </div>
-      <!-- End .toolbox-sort -->
-      <!-- End .toolbox-layout -->
-    </div>
+      </div> -->
+    <!-- End .toolbox-sort -->
+    <!-- End .toolbox-layout -->
+    <!-- </div> -->
     <!-- End .toolbox-right -->
   </div>
   <!-- End .toolbox -->
@@ -29,7 +29,7 @@
   <div class="products {{ customClasses }}">
     <div class="row justify-content-center">
       <div
-        class="col-6 col-md-4 col-lg-4 col-xl-3"
+        class="col-6 col-md-4 col-lg-4 col-xl-3 mb-4"
         *ngFor="
           let product of products
             | paginate: { itemsPerPage: itemsPerPage, currentPage: page }
@@ -37,12 +37,16 @@
       >
         <app-product-card-vert-actions
           [product]="product"
+          (onQuickViewClick)="openQuickViewModal($event)"
         ></app-product-card-vert-actions>
       </div>
     </div>
     <!-- End .row -->
   </div>
   <!-- End .products -->
+  <app-product-quick-view
+    [selectedProductSlug]="selectedProductSlug"
+  ></app-product-quick-view>
 </ng-container>
 <ng-template #elseTemplate>
   <div class="toolbox" toolbox>
@@ -88,7 +92,7 @@
   <!-- End .products -->
 </ng-template>
 <pagination-controls
-  *ngIf="!isMobile"
+  *ngIf="pagination && !isMobile"
   (pageChange)="page = $event"
   nextLabel="Next"
   previousLabel="Prev"

@@ -1,0 +1,27 @@
+<div class="product-gallery product-gallery-vertical">
+  <div class="row">
+    <figure class="product-main-image">
+      <img [src]="selectedImage" [alt]="selectedImage" />
+
+      <!-- <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+        <i class="icon-arrows"></i>
+      </a> -->
+    </figure>
+    <!-- End .product-main-image -->
+
+    <div class="product-image-gallery">
+      <div
+        *ngFor="let image of images"
+        class="product-gallery-item {{
+          image === selectedImage ? 'active' : ''
+        }}"
+        (click)="updateSelectedImage(image)"
+      >
+        <img [src]="image" [alt]="image" />
+      </div>
+    </div>
+    <!-- End .product-image-gallery -->
+  </div>
+  <!-- End .row -->
+</div>
+<!-- End .product-gallery -->

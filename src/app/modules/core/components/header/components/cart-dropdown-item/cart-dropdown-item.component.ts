@@ -1,5 +1,6 @@
 import { CartItem } from '@models/cart-item.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { getDiscountedPrice, getVariationName } from '@utils';
 
 @Component({
   selector: 'app-cart-dropdown-item',
@@ -9,10 +10,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CartDropdownItemComponent implements OnInit {
   @Output() onRemoveItem = new EventEmitter<string>();
   @Input() item: CartItem;
+  price: number = 0;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.price = getDiscountedPrice(this.item.variation);
+  }
 
   removeItem() {
     this.onRemoveItem.emit(this.item.variation.slug);
