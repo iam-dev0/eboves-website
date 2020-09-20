@@ -8,7 +8,7 @@ export class SeoService {
   constructor(private title: Title, private meta: Meta) {}
 
   setTitle(title: string) {
-    this.title.setTitle(title);
+    this.title.setTitle(title || 'eboves');
   }
 
   setMetaTags(tags: Map<string, string>) {
