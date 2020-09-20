@@ -93,17 +93,26 @@
   <div class="product-details-footer">
     <div class="product-cat">
       <span>Category:</span>
-      <a href="#">Women</a>, <a href="#">Dresses</a>,
-      <a href="#">Yellow</a>
+      <a [routerLink]="['/shop/category', category.slug]">{{
+        category.name
+      }}</a>
     </div>
     <!-- End .product-cat -->
 
     <div class="social-icons social-icons-sm">
       <span class="social-label">Share:</span>
-      <a href="#" class="social-icon" title="Facebook" target="_blank"
+      <a
+        href="https://www.facebook.com/ebovesofficial/"
+        class="social-icon"
+        title="Facebook"
+        target="_blank"
         ><i class="icon-facebook-f"></i
       ></a>
-      <a href="#" class="social-icon" title="Instagram" target="_blank"
+      <a
+        href="https://www.instagram.com/ebovesofficial/"
+        class="social-icon"
+        title="Instagram"
+        target="_blank"
         ><i class="icon-instagram"></i
       ></a>
     </div>
