@@ -36,6 +36,7 @@ export class HttpCallInterceptorService implements HttpInterceptor {
     const key: StateKey<string> = makeStateKey<string>(req.url);
 
     if (isPlatformServer(this.platformId)) {
+      console.log('req from server: ', req.urlWithParams);
       return next.handle(req).pipe(
         tap((event) => {
           this.transferState.set(key, (<HttpResponse<any>>event).body);
@@ -51,6 +52,7 @@ export class HttpCallInterceptorService implements HttpInterceptor {
         this.transferState.remove(key);
         return of(response);
       } else {
+        console.log('req from browser: ', req.urlWithParams);
         return next.handle(req);
       }
     }

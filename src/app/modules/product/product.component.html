@@ -40,7 +40,9 @@
       <app-product-detail [product]="product"></app-product-detail>
       <!-- End .product-details-tab -->
 
-      <!-- <app-product-similar></app-product-similar> -->
+      <app-product-similar
+        [products]="similarProducts$ | async"
+      ></app-product-similar>
     </div>
     <!-- End .container -->
   </div>

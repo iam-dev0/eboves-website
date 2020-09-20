@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Product } from '@models/product.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -21,6 +22,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   price: string = '';
   shortDescription: string = '';
   attributes: ProductAttribute[] = [];
+  similarProducts$: Observable<Product[]>;
   private subscriptions = new SubSink();
 
   constructor(
@@ -44,6 +46,11 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.shortDescription = variation.shortDescription;
         this.galleryImages = [variation.mainImage, ...variation.images];
       });
+
+    this.product &&
+      (this.similarProducts$ = this.productService.getSimilarProducts(
+        this.product.slug
+      ));
   }
 
   getProductImages(product: Product): string[] {

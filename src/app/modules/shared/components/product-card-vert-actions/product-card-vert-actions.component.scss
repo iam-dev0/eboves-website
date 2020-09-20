@@ -1,3 +1,8 @@
+.product {
+  max-width: fit-content;
+  margin: auto;
+}
+
 .product-nav {
   margin-bottom: 0;
 
@@ -24,6 +29,7 @@
 .product-body {
   padding: 1.1rem 2rem;
   background-color: #fafafa;
+  max-width: fit-content;
 
   .product-cat {
     font-weight: 400;

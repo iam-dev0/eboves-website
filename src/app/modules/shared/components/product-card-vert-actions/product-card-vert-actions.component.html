@@ -46,7 +46,9 @@
     </div>
     <!-- End .product-cat -->
     <h3 class="product-title">
-      <a [routerLink]="['/product', product.slug]">{{ product.name }}</a>
+      <a [routerLink]="['/product', product.slug]"
+        ><span>{{ product.name }}</span></a
+      >
     </h3>
     <!-- End .product-title -->
     <div class="product-price">

@@ -117,4 +117,12 @@ export class ProductService {
       queryParamsHandling: 'merge',
     });
   }
+
+  getSimilarProducts(slug: string): Observable<Product[]> {
+    return this.client
+      .get<Response<Product[]>>(
+        `${environment.apiUrl}products/similar-products/${slug}`
+      )
+      .pipe(map(({ data }) => data));
+  }
 }
