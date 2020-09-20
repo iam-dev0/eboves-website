@@ -298,6 +298,11 @@
   // Menu with arrows
   &.sf-arrows {
     justify-content: space-evenly;
+
+    li {
+      cursor: pointer;
+    }
+
     > li {
       > .sf-with-ul {
         padding-right: 2rem;
