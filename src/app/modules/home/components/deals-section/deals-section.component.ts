@@ -12,11 +12,4 @@ export class DealsSectionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  getImage(index: number): string {
-    if (this.deals) {
-      return this.deals[index]?.image;
-    }
-    return '';
-  }
 }

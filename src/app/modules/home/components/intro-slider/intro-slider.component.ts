@@ -23,8 +23,4 @@ export class IntroSliderComponent implements OnInit {
   @Input() banners: Banner[] = [];
 
   ngOnInit(): void {}
-
-  getBannerStyle(banner: any): string {
-    return `background-image: url(${banner?.image});`;
-  }
 }

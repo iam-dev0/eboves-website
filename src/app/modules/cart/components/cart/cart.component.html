@@ -120,15 +120,19 @@
                         <label
                           class="custom-control-label"
                           for="standard-shipping"
-                          >Standard:</label
+                          >{{
+                            (cart$ | async).total >= 3000 ? "Free" : "Standard"
+                          }}:</label
                         >
                       </div>
                       <!-- End .custom-control -->
                     </td>
                     <td>
                       {{
-                        shippingCharges.STANDARD
-                          | currency: "PKR":"symbol":"1.2-2"
+                        (cart$ | async).total >= 3000
+                          ? shippingCharges.FREE
+                          : (shippingCharges.STANDARD
+                            | currency: "PKR":"symbol":"1.2-2")
                       }}
                     </td>
                   </tr>

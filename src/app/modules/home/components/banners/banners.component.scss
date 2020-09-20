@@ -1,3 +1,15 @@
 .banner-subtitle {
   margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 1.7rem;
+}
+
+.banner-link {
+  color: #fff;
+  background-color: #a6c76c;
+
+  &:hover {
+    color: #a6c76c;
+    background-color: #fff;
+  }
 }

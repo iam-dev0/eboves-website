@@ -23,7 +23,7 @@ export class BillingFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       addressLineOne: ['', [Validators.required]],
       addressLineTwo: '',
-      city: ['', [Validators.required]],
+      city: [{ value: 'Lahore', disabled: true }, [Validators.required]],
     });
 
     this.cartService.bindFormStatus(this.billingForm.statusChanges);

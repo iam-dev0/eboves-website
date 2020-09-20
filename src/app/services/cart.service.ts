@@ -116,7 +116,7 @@ export class CartService {
   }
 
   private getOrder(): OrderRequest {
-    const { items, shippingType } = this.cart$.value;
+    const { items, shippingType, total } = this.cart$.value;
     const {
       firstName,
       lastName,
@@ -130,7 +130,9 @@ export class CartService {
       this.device.isMobile()
         ? ORDER_SOURCE.WEBSITE_MOBILE
         : ORDER_SOURCE.WEBSITE_DESKTOP,
-      shippingType || SHIPPING_TYPES.STANDARD,
+      total >= 3000
+        ? SHIPPING_TYPES.FREE
+        : shippingType || SHIPPING_TYPES.STANDARD,
       items.map(({ variation: { id }, qty: quantity }) => ({ id, quantity })),
       firstName,
       lastName,
@@ -157,7 +159,7 @@ export class CartService {
     if (this.canPlaceOrder()) {
       return this.client
         .post<Response<OrderResponse>>(
-          `${environment.apiUrl}/orders/place-order`,
+          `${environment.apiUrl}orders/place-order`,
           this.getOrder()
         )
         .pipe(
