@@ -1,7 +1,7 @@
 import { Product } from '@models/product.model';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { Response } from '@models/api-responses/response.model';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Category } from '@models/category.model';
 import { HttpClient } from '@angular/common/http';
@@ -11,12 +11,18 @@ import { environment } from '@environment/environment';
   providedIn: 'root',
 })
 export class CategoriesService {
+  private categories$ = new ReplaySubject<Category[]>();
+  categories: Observable<Category[]> = this.categories$.asObservable();
+
   constructor(private client: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
     return this.client
       .get<Response<Category[]>>(`${environment.apiUrl}categories`)
-      .pipe(map(({ data }) => data));
+      .pipe(
+        map(({ data }) => data),
+        tap((categories) => this.categories$.next(categories))
+      );
   }
 
   getCategoryInfo(catSlug: string): Observable<Category> {

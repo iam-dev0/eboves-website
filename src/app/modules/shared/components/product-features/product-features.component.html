@@ -93,8 +93,8 @@
   <div class="product-details-footer">
     <div class="product-cat">
       <span>Category:</span>
-      <a [routerLink]="['/shop/category', category.slug]">{{
-        category.name
+      <a [routerLink]="['/shop/category', category?.slug || '']">{{
+        category?.name
       }}</a>
     </div>
     <!-- End .product-cat -->
