@@ -1,5 +1,5 @@
 import { SubSink } from 'subsink';
-import { filter } from 'rxjs/operators';
+import { filter, shareReplay } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { BrandsService } from '@services/brands.service';
 import { Observable } from 'rxjs';
@@ -44,8 +44,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.categories$ = this.categoriesService.getCategories();
-    this.brands$ = this.brandsService.getBrands();
+    this.categories$ = this.categoriesService
+      .getCategories()
+      .pipe(shareReplay(1));
+    this.brands$ = this.brandsService.getBrands().pipe(shareReplay(1));
   }
 
   @HostListener('window:scroll', ['$event'])
