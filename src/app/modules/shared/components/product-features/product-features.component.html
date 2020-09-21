@@ -22,7 +22,7 @@
 
   <div class="price">
     <span class="discount-price" *ngIf="isDiscountAvailable">
-      <del>{{ price | currency: "PKR":"symbol":"1.2-2" }}</del>
+      <del>{{ price }}</del>
     </span>
     <span class="product-price">
       {{ isDiscountAvailable ? "Rs. " + discountedPrice : price }}
