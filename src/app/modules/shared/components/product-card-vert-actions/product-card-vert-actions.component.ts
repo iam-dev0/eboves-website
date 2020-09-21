@@ -66,7 +66,7 @@ export class ProductCardVertActionsComponent implements OnInit {
         )
         .filter(
           (value, index, arr) =>
-            arr.findIndex((v) => v.value === value.value) === index
+            arr.findIndex((v) => v?.value === value?.value) === index
         );
     }
   }
@@ -89,7 +89,9 @@ export class ProductCardVertActionsComponent implements OnInit {
       .sort((a, b) => a - b);
     const discountRange =
       discounts.length > 1
-        ? `${discounts[0]}% - ${discounts[discounts.length - 1]}%`
+        ? discounts[0] === discounts[discounts.length - 1]
+          ? `${discounts[0]}%`
+          : `${discounts[0]}% - ${discounts[discounts.length - 1]}%`
         : discounts.length === 1
         ? `${discounts[0]}%`
         : '';
