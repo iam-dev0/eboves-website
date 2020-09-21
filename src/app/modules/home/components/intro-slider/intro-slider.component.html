@@ -2,7 +2,7 @@
   <owl-carousel-o class="" [options]="carouselOptions">
     <ng-template carouselSlide *ngFor="let banner of banners">
       <div class="intro-slide">
-        <a [routerLink]="banner.href">
+        <a [href]="banner.href">
           <img
             [src]="banner.image"
             [alt]="banner.title"
