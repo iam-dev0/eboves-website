@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.sink = this.service
       .getBanners()
-      .subscribe((response: Response<Banners>) => {
-        this.banners = response.data;
+      .subscribe((banners: Banners) => {
+        this.banners = banners;
       });
   }
 

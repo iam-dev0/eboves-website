@@ -6,7 +6,7 @@
     <span *ngIf="checkIfPreOrder()" class="product-label label-new"
       >Pre-Order</span
     >
-    <a [routerLink]="['/product', product.slug]">
+    <a class="product-figure" [routerLink]="['/product', product.slug]">
       <img [src]="image" [alt]="product.name" class="product-image" />
       <div *ngIf="campaignName" class="product-campaign">
         <a>{{ campaignName }}</a>
@@ -51,6 +51,9 @@
       >
     </h3>
     <!-- End .product-title -->
+    <div *ngIf="oldPrice" class="old-price">
+      <del>{{ oldPrice }}</del>
+    </div>
     <div class="product-price">
       {{ price }}
     </div>

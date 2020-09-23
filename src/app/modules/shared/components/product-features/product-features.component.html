@@ -1,9 +1,15 @@
 <div class="product-details">
+  <span *ngIf="isDiscountAvailable" class="product-campaign">
+    {{ selectedVariation.discountReason }}
+  </span>
+  <span class="product-discount" *ngIf="isDiscountAvailable">
+    ({{ selectedVariation.discountPercentage }}% Off)
+  </span>
   <h1 class="product-title">
     {{ name }}
   </h1>
   <!-- End .product-title -->
-  <p>
+  <p class="product-brand">
     <i>{{ brand?.name }}</i>
   </p>
   <h4 class="error" *ngIf="isOutOfStock">OUT OF STOCK</h4>
@@ -151,7 +157,11 @@
         </h6>
       </div>
       <div class="btn-wrap">
-        <a routerLink="/cart" class="btn btn-outline-primary"
+        <a
+          routerLink="/cart"
+          class="btn btn-outline-primary"
+          data-dismiss="modal"
+          data-target="#addToCartModal"
           ><span>Go to cart</span><i class="icon-long-arrow-right"></i
         ></a>
       </div>

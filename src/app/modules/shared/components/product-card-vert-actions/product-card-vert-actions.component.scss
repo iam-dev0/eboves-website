@@ -1,3 +1,5 @@
+@import "../../../../../assets/sass/config/variables";
+
 .product {
   max-width: fit-content;
   margin: auto;
@@ -20,12 +22,6 @@
   }
 }
 
-.product-campaign {
-  background-color: #a6c76c;
-  color: #fff;
-  font-weight: 500;
-}
-
 .product-body {
   padding: 1.1rem 2rem;
   background-color: #fafafa;
@@ -39,6 +35,25 @@
 
   .product-title {
     font-weight: 500;
+  }
+
+  .old-price {
+    color: $light-text;
+  }
+}
+
+.product-media {
+  .product-figure {
+    position: relative;
+
+    .product-campaign {
+      background-color: #a6c76c;
+      color: #fff;
+      font-weight: 500;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   }
 }
 
@@ -72,6 +87,11 @@
     box-shadow: 1px 2px 10px;
     line-height: 3rem;
     pointer-events: all;
+    width: auto;
+    height: auto;
+    position: initial;
+    top: 0;
+    border-radius: 0.3rem;
 
     span {
       width: 100%;

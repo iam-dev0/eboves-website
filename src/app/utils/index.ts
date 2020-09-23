@@ -51,19 +51,22 @@ export const getCategoryTree = (products: Product[]): Category[] => {
   return getTree(getTree(parts));
 };
 
-export const getPriceRange = (product: Product): PriceRange => {
+export const getPriceRange = (
+  product: Product,
+  applyDiscount: boolean = true
+): PriceRange => {
   const min = product.variations?.reduce((accumulator, current, index) => {
-    const price = getDiscountedPrice(current);
+    const price = applyDiscount ? getDiscountedPrice(current) : current.price;
     if (index === 0) return price;
     return price < accumulator ? price : accumulator;
   }, 0);
 
   const max = product.variations?.reduce((accumulator, current) => {
-    const price = getDiscountedPrice(current);
+    const price = applyDiscount ? getDiscountedPrice(current) : current.price;
     return price > accumulator ? price : accumulator;
   }, 0);
 
-  return { min, max };
+  return { min: Math.round(min), max: Math.round(max) };
 };
 
 export const getDiscountedPrice = (variation: ProductVariation): number => {

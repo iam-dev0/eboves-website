@@ -13,9 +13,15 @@
     font-weight: 400;
     font-size: 2.4rem;
     letter-spacing: -0.025em;
-    margin-bottom: 1.2rem;
-    margin-top: -0.5rem;
     padding-right: 1rem;
+    line-height: 1rem;
+    margin-top: 2rem;
+  }
+
+  .product-brand {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
 
   .ratings-container {
@@ -44,6 +50,21 @@
 
   .new-price {
     margin-right: 1rem;
+  }
+
+  .product-discount {
+    font-weight: 600;
+    color: #ef837b;
+  }
+
+  .product-campaign {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #a6c76c;
+    border: 0.2rem solid #a6c76c;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-transform: uppercase;
   }
 
   .product-content {

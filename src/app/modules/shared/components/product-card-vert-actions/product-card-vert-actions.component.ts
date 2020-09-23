@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { AttributeValue } from '@models/attribute-value.model';
 import { ProductAttribute } from '@models/product-attribute.model';
 import { Product } from '@models/product.model';
-import { getPriceRange } from '@utils';
+import { getPriceRange, isDiscountAvailable } from '@utils';
 
 @Component({
   selector: 'app-product-card-vert-actions',
@@ -24,6 +24,7 @@ export class ProductCardVertActionsComponent implements OnInit {
   image: string = '';
   selectedVariation: ProductVariation;
   campaignName: string = '';
+  oldPrice: string = '';
 
   customOptions: OwlOptions = {
     nav: true,
@@ -126,6 +127,15 @@ export class ProductCardVertActionsComponent implements OnInit {
   setPrice() {
     const { min, max } = getPriceRange(this.product);
     this.price = min === max ? `Rs. ${min}` : `Rs. ${min} - Rs. ${max}`;
+    const discountAvailable: boolean = this.product.variations.reduce(
+      (acc, cur) => (acc ? true : isDiscountAvailable(cur)),
+      false
+    );
+    if (discountAvailable) {
+      const { min: oldMin, max: oldMax } = getPriceRange(this.product, false);
+      this.oldPrice =
+        oldMin === oldMax ? `Rs. ${oldMin}` : `Rs. ${oldMin} - Rs. ${oldMax}`;
+    }
   }
 
   changeVariation(attributeValue: AttributeValue) {
