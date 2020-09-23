@@ -63,13 +63,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
       );
     }
 
-    this.subscriptions.sink = this.categoriesService.categories.subscribe(
-      (categories) => {
-        this.subcategories = categories.find(
-          ({ slug }) => slug === this.category?.slug
-        )?.childrens;
-      }
-    );
+    // this.subscriptions.sink = this.categoriesService.categories.subscribe(
+    //   (categories) => {
+    //     this.subcategories = categories.find(
+    //       ({ slug }) => slug === this.category?.slug
+    //     )?.childrens;
+    //   }
+    // );
   }
 
   setMetaData(category: Category) {
