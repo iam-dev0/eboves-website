@@ -15,9 +15,10 @@ import { Product } from '@models/product.model';
 export class HomeService {
   constructor(private client: HttpClient) {}
 
-  getBanners(): Observable<Response<Banners>> {
-    // console.log('getting banners');
-    return this.client.get<Response<Banners>>(`${environment.apiUrl}banners`);
+  getBanners(): Observable<Banners> {
+    return this.client
+      .get<Response<Banners>>(`${environment.apiUrl}banners`)
+      .pipe(map(({ data }) => data));
   }
 
   getMainTabsProducts(): Observable<Response<MainTabs>> {

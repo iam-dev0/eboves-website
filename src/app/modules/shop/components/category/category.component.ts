@@ -50,26 +50,26 @@ export class CategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.category = this.route.snapshot.data.category;
-    // console.log(this.route.snapshot.data.category);
-    this.setMetaData(this.category);
-    if (this.category) {
-      this.featuredProducts$ = this.categoriesService.getFeatured(
-        this.category.slug,
-        15
+    this.subscriptions.sink = this.route.params.subscribe(() => {
+      this.category = this.route.snapshot.data.category;
+      this.setMetaData(this.category);
+      if (this.category) {
+        this.featuredProducts$ = this.categoriesService.getFeatured(
+          this.category.slug,
+          15
+        );
+        this.bestSellerProducts$ = this.categoriesService.getBestSeller(
+          this.category.slug
+        );
+      }
+      this.subscriptions.sink = this.categoriesService.categories.subscribe(
+        (categories) => {
+          this.subcategories = categories.find(
+            ({ slug }) => slug === this.category?.slug
+          )?.childrens;
+        }
       );
-      this.bestSellerProducts$ = this.categoriesService.getBestSeller(
-        this.category.slug
-      );
-    }
-
-    // this.subscriptions.sink = this.categoriesService.categories.subscribe(
-    //   (categories) => {
-    //     this.subcategories = categories.find(
-    //       ({ slug }) => slug === this.category?.slug
-    //     )?.childrens;
-    //   }
-    // );
+    });
   }
 
   setMetaData(category: Category) {
