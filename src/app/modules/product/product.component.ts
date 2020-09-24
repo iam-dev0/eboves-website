@@ -44,7 +44,10 @@ export class ProductComponent implements OnInit, OnDestroy {
       .subscribe((variation) => {
         this.price = `Rs. ${variation.price}`;
         this.shortDescription = variation.shortDescription;
-        this.galleryImages = [variation.mainImage, ...variation.images];
+        this.galleryImages =
+          variation.mainImage || variation.images
+            ? [variation.mainImage, ...variation.images]
+            : [this.product.mainImage];
       });
 
     this.product &&
