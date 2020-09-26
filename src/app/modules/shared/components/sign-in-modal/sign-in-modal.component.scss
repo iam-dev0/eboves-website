@@ -1,7 +1,6 @@
-@import "../../../../../assets/sass/config/variables";
+/* Login */
 @import "../../../../../assets/sass/mixins/breakpoints";
 
-/* Login */
 .form-box {
   max-width: 575px;
   margin-left: auto;
@@ -129,8 +128,6 @@
     margin-right: 0 !important;
     margin-left: 0 !important;
     min-width: 2rem;
-    on-facebook-f {
-    }
   }
 
   &.btn-g {
