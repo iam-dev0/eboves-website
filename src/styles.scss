@@ -7,6 +7,10 @@
 @import "./assets/sass/config/variables";
 @import "./assets/sass/mixins/breakpoints";
 
+body {
+  height: auto;
+}
+
 body.noscroll {
   overflow: hidden;
 }

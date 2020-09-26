@@ -4,23 +4,27 @@
   margin-bottom: 5rem;
 
   .nav.nav-pills {
+    flex-wrap: nowrap;
+
+    .nav-item {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+    }
+
     .nav-link {
       color: #333333;
       font-size: 1.6rem;
-      padding: 0.55rem 3rem;
+      padding: 0.55rem 2rem;
       border-bottom-width: 0.2rem;
       text-transform: capitalize;
+      width: 100%;
 
       &:hover,
       &:focus {
         color: $primary-color;
         border-bottom-color: $primary-color;
-      }
-    }
-
-    .nav-item {
-      & + .nav-item {
-        margin-left: 2rem;
       }
     }
   }
@@ -47,7 +51,7 @@
     margin-top: 1rem;
   }
 
-  .product-details-tab .nav.nav-pills .nav-item + .nav-item {
+  .product-details-tab .nav.nav-pills .nav-item {
     margin-left: 0;
 
     .nav-link,
