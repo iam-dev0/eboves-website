@@ -1,4 +1,3 @@
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { ProductVariation } from '@models/product-variation.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -26,7 +25,6 @@ export class ProductCardVertActionsComponent implements OnInit {
   selectedVariation: ProductVariation;
   campaignName: string = '';
   oldPrice: string = '';
-  isDesktop: boolean = false;
 
   customOptions: OwlOptions = {
     nav: true,
@@ -47,13 +45,11 @@ export class ProductCardVertActionsComponent implements OnInit {
     },
   };
 
-  constructor(private deviceDetector: DeviceDetectorService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.setLabel();
     this.setPrice();
-
-    this.isDesktop = this.deviceDetector.isDesktop();
 
     this.campaignName = this.product?.variations.find(
       ({ discountReason }) => !!discountReason

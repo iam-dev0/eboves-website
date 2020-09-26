@@ -18,15 +18,15 @@ export class ProductCarouselComponent implements OnInit {
     loop: false,
     responsive: {
       0: {
-        items: 2,
+        items: 1,
       },
-      500: {
-        items: 3,
+      400: {
+        items: 2,
       },
       768: {
         items: 3,
       },
-      930: {
+      992: {
         items: 4,
       },
       1200: {
