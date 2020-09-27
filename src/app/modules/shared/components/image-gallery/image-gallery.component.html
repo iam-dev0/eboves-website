@@ -1,7 +1,10 @@
 <div class="product-gallery product-gallery-vertical">
   <div class="row">
     <figure class="product-main-image">
-      <img [src]="selectedImage" [alt]="selectedImage" />
+      <img
+        [src]="selectedImage + '?x-oss-process=image/resize,w_460'"
+        [alt]="selectedImage"
+      />
 
       <!-- <a href="#" id="btn-product-gallery" class="btn-product-gallery">
         <i class="icon-arrows"></i>
@@ -17,7 +20,10 @@
         }}"
         (click)="updateSelectedImage(image)"
       >
-        <img [src]="image" [alt]="image" />
+        <img
+          [src]="image + '?x-oss-process=image/resize,w_100'"
+          [alt]="image"
+        />
       </div>
     </div>
     <!-- End .product-image-gallery -->
