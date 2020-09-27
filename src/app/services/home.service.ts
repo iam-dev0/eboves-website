@@ -36,7 +36,7 @@ export class HomeService {
   getTopSellers(): Observable<Product[]> {
     return this.client
       .get<Response<Product[]>>(
-        `${environment.apiUrl}products?top-sellers=true&pageSize=10&pricelte=10000&pricegte=100`
+        `${environment.apiUrl}products?bestSeller=true&pageSize=10&pricelte=10000&pricegte=100`
       )
       .pipe(map(({ data }) => data));
   }
