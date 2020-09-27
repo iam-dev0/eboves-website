@@ -27,8 +27,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.searchValue = this.route.snapshot.paramMap.get('value');
-    this.seoService.setTitle(`eboves - Search - ${this.searchValue}`);
     this.setupParamsSubscription();
     this.setupQuerySubscription();
   }
@@ -36,6 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   setupParamsSubscription() {
     this.subscriptions.sink = this.route.params.subscribe((params) => {
       this.searchValue = params.value;
+      this.seoService.setTitle(`eboves - Search - ${this.searchValue}`);
       this.subscriptions.sink = this.searchService
         .search(params.value)
         .subscribe((products) => {

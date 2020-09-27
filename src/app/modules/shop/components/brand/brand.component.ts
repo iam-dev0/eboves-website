@@ -28,14 +28,14 @@ export class BrandComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.brand = this.route.snapshot.data.brand;
-    this.setMetaData(this.route.snapshot.data.brand);
     this.setupParamsSubscription();
     this.setupQuerySubscription();
   }
 
   setupParamsSubscription() {
     this.subscriptions.sink = this.route.params.subscribe((params) => {
+      this.brand = this.route.snapshot.data.brand;
+      this.setMetaData(this.route.snapshot.data.brand);
       this.subscriptions.sink = this.brandsService
         .getBrandProducts(params.brandSlug)
         .subscribe((products) => {
