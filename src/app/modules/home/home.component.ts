@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { HomeService } from '@services/home.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Banners } from '@models/api-responses/banners.model';
@@ -13,9 +14,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   banners: Banners;
   private subscriptions = new SubSink();
 
-  constructor(private service: HomeService) {}
+  constructor(private service: HomeService, private seoService: SeoService) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('');
+    this.seoService.setMetaTags();
     this.subscriptions.sink = this.service
       .getBanners()
       .subscribe((banners: Banners) => {

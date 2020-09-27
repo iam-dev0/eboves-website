@@ -195,6 +195,17 @@
   }
 }
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .grid-item {
+    width: 20rem;
+    margin: 0.5rem;
+  }
+}
+
 @include mq("sm") {
   .toolbox-right {
     flex-direction: row;
@@ -214,5 +225,21 @@
 
   .toolbox-center {
     margin-top: 0;
+  }
+}
+
+@include mq("xxs", "max") {
+  .grid {
+    .grid-item {
+      width: 14rem !important;
+    }
+  }
+}
+
+@include mq("md", "max") {
+  .grid {
+    .grid-item {
+      width: 18rem;
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { FORM_STATUS } from './../../../constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -14,10 +15,13 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private contactUsService: ContactUsService
+    private contactUsService: ContactUsService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('Contact Us - eboves');
+    this.seoService.setMetaTags();
     this.contactUsForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       phone: ['', [Validators.required, Validators.pattern('^03[0-9]{9}$')]],

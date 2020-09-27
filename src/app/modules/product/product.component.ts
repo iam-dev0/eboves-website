@@ -37,7 +37,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.attributes = getAttributesWithValues(this.product);
     this.price = this.getProductPriceRange(this.product);
 
-    this.setMetaData(this.route.snapshot.data.product);
+    this.route.params.subscribe(() => {
+      this.product = this.route.snapshot.data.product;
+      this.setMetaData(this.product);
+    });
 
     this.subscriptions.sink = this.productService
       .getSelectedVariation()
