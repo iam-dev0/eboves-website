@@ -19,6 +19,7 @@ import { CartDropdownComponent } from './components/header/components/cart-dropd
 import { CartDropdownItemComponent } from './components/header/components/cart-dropdown-item/cart-dropdown-item.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { GTMComponent } from './components/gtm/gtm.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
     CartDropdownItemComponent,
     LoaderComponent,
     TermsAndConditionsComponent,
+    GTMComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -51,6 +53,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
     NotFoundComponent,
     LoaderComponent,
     TermsAndConditionsComponent,
+    GTMComponent,
   ],
 })
 export class CoreModule {}

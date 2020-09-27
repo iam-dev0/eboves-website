@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4040/api/v1/',
+  apiUrl: 'https://localhost:4040/api/v1/',
+  GtmTrackingId: 'UA-178644490-2',
 };
 
 /**
