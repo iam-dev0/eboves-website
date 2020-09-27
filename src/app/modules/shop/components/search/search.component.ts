@@ -34,7 +34,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   setupParamsSubscription() {
     this.subscriptions.sink = this.route.params.subscribe((params) => {
       this.searchValue = params.value;
-      this.seoService.setTitle(`eboves - Search - ${this.searchValue}`);
+      this.seoService.setTitle(`${this.searchValue} - Search - eboves`);
+      this.seoService.setMetaTags();
       this.subscriptions.sink = this.searchService
         .search(params.value)
         .subscribe((products) => {

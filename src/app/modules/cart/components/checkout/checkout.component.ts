@@ -29,7 +29,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setTitle('eboves - Checkout');
+    this.seoService.setTitle('Checkout - eboves');
+    this.seoService.setMetaTags();
     this.cart$ = this.cartService.getCart();
     this.subscriptions.sink = this.cartService.isOrderPlaced.subscribe(
       (isOrderPlaced) => {

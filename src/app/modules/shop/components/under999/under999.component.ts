@@ -26,7 +26,8 @@ export class Under999Component implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setTitle('eboves - Under 999');
+    this.seoService.setTitle('Under 999 - eboves');
+    this.seoService.setMetaTags();
     this.subscriptions.sink = this.searchService
       .getUnder999()
       .subscribe((products) => {

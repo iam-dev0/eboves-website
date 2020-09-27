@@ -20,7 +20,8 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setTitle('eboves - Contact Us');
+    this.seoService.setTitle('Contact Us - eboves');
+    this.seoService.setMetaTags();
     this.contactUsForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       phone: ['', [Validators.required, Validators.pattern('^03[0-9]{9}$')]],

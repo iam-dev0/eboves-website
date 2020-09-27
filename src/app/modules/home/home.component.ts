@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.seoService.setTitle('eboves');
+    this.seoService.setMetaTags();
     this.subscriptions.sink = this.service
       .getBanners()
       .subscribe((banners: Banners) => {

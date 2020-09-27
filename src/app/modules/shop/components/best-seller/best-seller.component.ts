@@ -26,7 +26,8 @@ export class BestSellerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setTitle('eboves - Best Sellers');
+    this.seoService.setTitle('Best Sellers - eboves');
+    this.seoService.setMetaTags();
     this.subscriptions.sink = this.searchService
       .getBestSeller()
       .subscribe((products) => {

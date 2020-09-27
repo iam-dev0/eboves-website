@@ -23,7 +23,8 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.setTitle('eboves - Cart');
+    this.seoService.setTitle('Cart - eboves');
+    this.seoService.setMetaTags();
     this.cartService.checkStock();
     this.cart$ = this.cartService.getCart();
   }

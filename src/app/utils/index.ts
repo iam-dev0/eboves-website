@@ -12,7 +12,7 @@ import { FilterOptions } from '@models/filter-options.model';
 export const getMetaTags = (data): Map<string, string> => {
   const tags: Map<string, string> = new Map<string, string>();
   tags.set('keywords', data?.metaKeywords);
-  tags.set('descriptions', data?.metaDescription);
+  tags.set('description', data?.metaDescription);
   return tags;
 };
 
