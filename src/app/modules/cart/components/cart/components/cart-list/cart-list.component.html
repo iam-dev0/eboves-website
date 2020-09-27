@@ -19,7 +19,9 @@
               [queryParams]="{ varSlug: item.variation.slug }"
             >
               <img
-                [src]="item.variation.mainImage"
+                [src]="
+                  item.variation.mainImage + '?x-oss-process=image/resize,w_60'
+                "
                 [alt]="item.variationName"
               />
             </a>

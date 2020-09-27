@@ -21,7 +21,10 @@
       [queryParams]="{ varSlug: item.variation.slug }"
       class="product-image"
     >
-      <img [src]="item.variation.mainImage" [alt]="item.variationName" />
+      <img
+        [src]="item.variation.mainImage + '?x-oss-process=image/resize,w_60'"
+        [alt]="item.variationName"
+      />
     </a>
   </figure>
   <div class="btn-remove" title="Remove Product" (click)="removeItem()">

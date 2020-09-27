@@ -7,7 +7,11 @@
       >Pre-Order</span
     >
     <a class="product-figure" [routerLink]="['/product', product.slug]">
-      <img [src]="image" [alt]="product.name" class="product-image" />
+      <img
+        [src]="image + '?x-oss-process=image/resize,w_250'"
+        [alt]="product.name"
+        class="product-image"
+      />
       <div *ngIf="campaignName" class="product-campaign">
         <a>{{ campaignName }}</a>
       </div>
@@ -74,7 +78,10 @@
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let value of values">
         <a class="active" (click)="changeVariation(value)">
-          <img [src]="value?.value" [alt]="value?.alt" />
+          <img
+            [src]="value?.value + '?x-oss-process=image/resize,w_40'"
+            [alt]="value?.alt"
+          />
         </a>
       </ng-template>
     </owl-carousel-o>
