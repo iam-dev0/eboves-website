@@ -42,7 +42,7 @@ pipeline {
 
               yarn
               yarn build:prod
-              pm2 restart website
+              pm2 restart pro-website
             \'
             '''
       }
