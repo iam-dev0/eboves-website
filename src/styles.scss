@@ -5,11 +5,11 @@
 @import "~angular-notifier/styles";
 
 @import "./assets/sass/config/variables";
-
 @import "./assets/sass/mixins/breakpoints";
 
-// $primary-color: #a6c76c;
-// $secondary-color: #92b25a;
+body {
+  height: auto;
+}
 
 body.noscroll {
   overflow: hidden;

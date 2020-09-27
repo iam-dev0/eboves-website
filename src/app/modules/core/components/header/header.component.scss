@@ -1,8 +1,5 @@
-$primary-color: #a6c76c;
-$secondary-color: #92b25a;
-
-@import "../../../../../assets/sass/config/variables";
 @import "../../../../../assets/sass/mixins/breakpoints";
+
 @import "styles/header";
 @import "styles/vertical-menu";
 @import "styles/header-2";

@@ -1,5 +1,8 @@
 @import "../assets/sass/mixins/breakpoints";
-@import "../assets/sass/config/variables";
+
+.page-wrapper {
+  overflow-x: hidden;
+}
 
 /* Scroll Top Button */
 #scroll-top {

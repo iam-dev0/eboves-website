@@ -1,15 +1,57 @@
-.banner-subtitle {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  font-size: 1.7rem;
+@import "../../../../../assets/sass/mixins/breakpoints";
+
+.banner {
+  background-color: #fff;
+
+  .banner-title {
+    letter-spacing: -0.05rem;
+  }
+
+  .banner-content {
+    right: 2rem;
+  }
+
+  .banner-subtitle {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1.7rem;
+  }
+
+  .banner-link {
+    color: #fff;
+    background-color: #a6c76c;
+
+    &:hover {
+      color: #a6c76c;
+      background-color: #fff;
+    }
+  }
 }
 
-.banner-link {
-  color: #fff;
-  background-color: #a6c76c;
+@include mq("xs", "max") {
+  .banner-title {
+    font-size: 1.7rem;
+    letter-spacing: -0.05rem;
+  }
 
-  &:hover {
-    color: #a6c76c;
-    background-color: #fff;
+  .btn.banner-link {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+
+    i {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .banner-content-left {
+    left: 1rem !important;
+  }
+
+  .banner-content-top {
+    top: 1rem;
+  }
+
+  .banner-content {
+    left: 2rem;
   }
 }
