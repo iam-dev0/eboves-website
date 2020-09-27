@@ -27,9 +27,9 @@
   <!-- End .toolbox -->
 
   <div class="products {{ customClasses }}">
-    <div class="row justify-content-center">
+    <div class="grid">
       <div
-        class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 mb-4"
+        class="grid-item"
         *ngFor="
           let product of products
             | paginate: { itemsPerPage: itemsPerPage, currentPage: page }

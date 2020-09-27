@@ -57,7 +57,7 @@
                 >Brands<span class="mmenu-btn"></span
               ></a>
               <ul class="collapse" id="brandCollapse">
-                <li *ngFor="let brand of brands">
+                <li *ngFor="let brand of brands" (click)="closeMobileDrawer()">
                   <a [routerLink]="['/shop/brand', brand.slug]">{{
                     brand.name
                   }}</a>
