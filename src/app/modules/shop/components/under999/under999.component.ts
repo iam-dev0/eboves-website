@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '@models/product.model';
 import { Category } from '@models/category.model';
@@ -20,10 +21,12 @@ export class Under999Component implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('eboves - Under 999');
     this.subscriptions.sink = this.searchService
       .getUnder999()
       .subscribe((products) => {

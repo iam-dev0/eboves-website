@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { getCategoryTree, filterProducts } from '@utils';
 import { Category } from '@models/category.model';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -21,11 +22,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
     this.searchValue = this.route.snapshot.paramMap.get('value');
+    this.seoService.setTitle(`eboves - Search - ${this.searchValue}`);
     this.setupParamsSubscription();
     this.setupQuerySubscription();
   }

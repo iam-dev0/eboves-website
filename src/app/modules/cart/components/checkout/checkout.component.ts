@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { Cart } from '@models/cart.model';
 import { Observable } from 'rxjs';
 import { CartService } from '@services/cart.service';
@@ -22,9 +23,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   private subscriptions = new SubSink();
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private seoService: SeoService
+  ) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('eboves - Checkout');
     this.cart$ = this.cartService.getCart();
     this.subscriptions.sink = this.cartService.isOrderPlaced.subscribe(
       (isOrderPlaced) => {

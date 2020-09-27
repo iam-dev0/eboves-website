@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { CartItem } from '@models/cart-item.model';
 import { Cart } from '@models/cart.model';
 import { Observable } from 'rxjs';
@@ -16,9 +17,13 @@ export class CartComponent implements OnInit {
   shippingTypes = SHIPPING_TYPES;
   selectedShipping: string = SHIPPING_TYPES.STANDARD;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private seoService: SeoService
+  ) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('eboves - Cart');
     this.cartService.checkStock();
     this.cart$ = this.cartService.getCart();
   }
