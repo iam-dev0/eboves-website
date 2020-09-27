@@ -27,20 +27,20 @@ export class SubcategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subcategory = this.route.snapshot.data.subcategory;
-    this.setMetaData(this.subcategory);
     this.setupParamsSubscription();
     this.setupQueryParamsSubscription();
   }
 
   setupParamsSubscription() {
     this.subscriptions.sink = this.route.params.subscribe((params) => {
-      this.subscriptions.sink = this.categoriesService
-        .getCategoryInfo(params.subCatSlug)
-        .subscribe((category) => {
-          this.subcategory = category;
-          this.setMetaData(category);
-        });
+      this.subcategory = this.route.snapshot.data.subcategory;
+      this.setMetaData(this.subcategory);
+      // this.subscriptions.sink = this.categoriesService
+      //   .getCategoryInfo(params.subCatSlug)
+      //   .subscribe((category) => {
+      //     this.subcategory = category;
+      //     this.setMetaData(category);
+      //   });
       this.subscriptions.sink = this.categoriesService
         .getSubCategoryProducts(params.subCatSlug)
         .subscribe((response) => {
