@@ -1,7 +1,6 @@
-@import "../../../../../../../assets/sass/config/variables";
+/* Header Search */
 @import "../../../../../../../assets/sass/mixins/breakpoints";
 
-/* Header Search */
 .search-toggle {
   position: relative;
   display: block;
@@ -375,6 +374,48 @@
     .header-search-wrapper {
       &:before {
         border-bottom-color: #dadada;
+      }
+    }
+  }
+
+  .header-search {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin: 2rem;
+
+    &.header-search-extended {
+      width: auto;
+    }
+
+    form {
+      flex: 1;
+    }
+
+    .search-toggle {
+      background-color: #a6c76c;
+      color: #fff;
+      padding: 0.7rem;
+    }
+
+    .header-search-wrapper {
+      width: 100%;
+    }
+
+    .header-search-wrapper {
+      position: relative;
+      right: 0;
+      top: 0;
+      margin-top: 0;
+      display: block;
+      border-width: 0.1rem;
+
+      &::before {
+        display: none;
+      }
+
+      .btn.btn-primary {
+        display: none;
       }
     }
   }

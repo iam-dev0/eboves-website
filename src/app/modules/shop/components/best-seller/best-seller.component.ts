@@ -1,3 +1,4 @@
+import { SeoService } from '@services/seo.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '@models/product.model';
 import { Category } from '@models/category.model';
@@ -20,10 +21,13 @@ export class BestSellerComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
+    this.seoService.setTitle('Best Sellers - eboves');
+    this.seoService.setMetaTags();
     this.subscriptions.sink = this.searchService
       .getBestSeller()
       .subscribe((products) => {

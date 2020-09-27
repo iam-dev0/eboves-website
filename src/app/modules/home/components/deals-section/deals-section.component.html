@@ -1,7 +1,7 @@
 <div class="bg-light deal-container pt-5 pb-3 mb-5">
   <div class="container">
     <div class="row" *ngIf="deals">
-      <div class="col-lg-9">
+      <div class="col-sm-7 col-md-9 col-lg-9">
         <div class="deal">
           <div class="deal-content">
             <h4>Limited Quantities</h4>
@@ -36,9 +36,9 @@
       </div>
       <!-- End .col-lg-9 -->
 
-      <div class="col-lg-3">
+      <div class="col-sm-5 col-md-3 col-lg-3">
         <div
-          class="banner banner-overlay banner-overlay-light text-center d-none d-lg-block"
+          class="deal-two banner banner-overlay banner-overlay-light text-center d-lg-block"
         >
           <a [href]="deals[1].href">
             <img [src]="deals[1]?.image" alt="Deal Banner" />
@@ -51,7 +51,7 @@
             <!-- End .banner-title -->
             <!-- <div class="banner-text text-primary">$49.99</div> -->
             <!-- End .banner-text -->
-            <a [href]="deals[1].href" class="btn btn-outline-gray banner-link"
+            <a [href]="deals[1].href" class="btn banner-link"
               >Shop Now<i class="icon-long-arrow-right"></i
             ></a>
           </div>

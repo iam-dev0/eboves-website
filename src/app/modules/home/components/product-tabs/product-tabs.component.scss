@@ -1,0 +1,9 @@
+@import "../../../../../assets/sass/mixins/_breakpoints.scss";
+
+@include mq("xs", "max") {
+  .nav-item {
+    .nav-link {
+      font-size: 1.6rem;
+    }
+  }
+}

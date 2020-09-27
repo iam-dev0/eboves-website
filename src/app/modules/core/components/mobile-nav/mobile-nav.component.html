@@ -7,23 +7,6 @@
       ><i class="icon-close"></i
     ></span>
 
-    <div class="mobile-search">
-      <label for="mobile-search" class="sr-only">Search</label>
-      <input
-        type="text"
-        class="form-control"
-        name="mobile-search"
-        id="mobile-search"
-        placeholder="Search product ..."
-        required
-        (change)="onChange($event)"
-        (keydown)="onKeyDown($event)"
-      />
-      <button class="btn btn-primary" (click)="onSubmit($event)">
-        <i class="icon-search"></i>
-      </button>
-    </div>
-
     <ul class="nav nav-pills-mobile nav-border-anim" role="tablist">
       <li class="nav-item">
         <a
@@ -74,7 +57,7 @@
                 >Brands<span class="mmenu-btn"></span
               ></a>
               <ul class="collapse" id="brandCollapse">
-                <li *ngFor="let brand of brands">
+                <li *ngFor="let brand of brands" (click)="closeMobileDrawer()">
                   <a [routerLink]="['/shop/brand', brand.slug]">{{
                     brand.name
                   }}</a>

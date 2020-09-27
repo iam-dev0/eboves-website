@@ -1,4 +1,3 @@
-@import "../../../../../../../assets/sass/config/variables";
 @import "../../../../../../../assets/sass/mixins/breakpoints";
 
 .container,
@@ -226,6 +225,12 @@
 
 @media screen and (max-width: 991px) {
   .header-middle .header-center {
+    display: none;
+  }
+}
+
+@include mq("lg") {
+  .mobile-search {
     display: none;
   }
 }

@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4040/api/v1/',
+  apiUrl: 'https://localhost:4040/api/v1/',
+  GtmTrackingId: 'UA-178644490-2',
 };
 
-/*
+/**
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

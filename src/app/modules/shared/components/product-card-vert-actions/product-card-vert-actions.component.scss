@@ -1,8 +1,11 @@
-@import "../../../../../assets/sass/config/variables";
+@import "../../../../../assets/sass/mixins/breakpoints";
 
 .product {
   max-width: fit-content;
   margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-nav {
@@ -24,8 +27,9 @@
 
 .product-body {
   padding: 1.1rem 2rem;
-  background-color: #fafafa;
+  background-color: #f4f7f2;
   max-width: 28rem;
+  flex: 1;
 
   .product-cat {
     font-weight: 400;
@@ -35,6 +39,18 @@
 
   .product-title {
     font-weight: 500;
+    letter-spacing: -0.05rem;
+
+    a {
+      span {
+        height: 3.6rem;
+        line-height: 1.8rem;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+    }
   }
 
   .old-price {
@@ -43,6 +59,9 @@
 }
 
 .product-media {
+  width: 100%;
+  background-color: #fff;
+
   .product-figure {
     position: relative;
 
@@ -53,6 +72,10 @@
       position: absolute;
       bottom: 0;
       width: 100%;
+    }
+
+    .product-image {
+      object-fit: contain;
     }
   }
 }
@@ -106,5 +129,22 @@
   .owl-next.disabled,
   .owl-prev.disabled {
     visibility: hidden;
+  }
+}
+
+@include mq("md", "max") {
+  .product-image {
+    height: 20rem;
+  }
+
+  .product-body {
+    .product-title,
+    .product-price {
+      font-size: 1.3rem;
+    }
+
+    .product-cat {
+      font-size: 1.2rem;
+    }
   }
 }
