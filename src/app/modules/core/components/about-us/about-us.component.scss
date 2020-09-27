@@ -227,6 +227,11 @@
   padding: 3rem;
   display: flex;
   justify-content: center;
+  max-height: 18rem;
+
+  img {
+    object-fit: contain;
+  }
 }
 
 .icon-box-icon {
