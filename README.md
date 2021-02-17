@@ -1,4 +1,13 @@
-# ebovesAngular
+# Online Shop Eboves
+
+![image](https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/178102961/original/0ff1243ef188e03023a4b559b51c7d3ce223962a/create-a-custom-ecommerce-platform-and-management-system.png)
+
+**Online eCommerce Shop** https://github.com/awais000/eboves-website
+
+**Managment System** https://github.com/awais000/eboves-management-portal
+
+**Managment System** https://github.com/awais000/eboves-api
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
